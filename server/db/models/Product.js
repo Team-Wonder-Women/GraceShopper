@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const Candle = db.define("candle", {
+const Product = db.define("product", {
 	name: {
 		type: Sequelize.STRING,
 		allowNull: false,
@@ -42,4 +42,4 @@ const Candle = db.define("candle", {
 	}
 });
 
-module.exports = Candle;
+module.exports = Product;

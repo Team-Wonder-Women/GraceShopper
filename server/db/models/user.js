@@ -20,7 +20,10 @@ const User = db.define("user", {
 	email: {
 		type: Sequelize.STRING,
 		unique: true,
-		allowNull: false
+		allowNull: false,
+		validate: {
+			isEmail: true
+		}
 	},
 	password: {
 		type: Sequelize.STRING,
@@ -40,6 +43,10 @@ const User = db.define("user", {
 	},
 	googleId: {
 		type: Sequelize.STRING
+	},
+	isAdmin: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
 	}
 });
 
