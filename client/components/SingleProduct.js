@@ -1,21 +1,31 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 
-function SingleProduct(props) {
-	const [name, setName] = useState;
-}
+export const SingleProduct = props => {
+	const dispatch = useDispatch();
+	// const [name, setName] = useState;
+	const selectedCandle = useSelector(state => state.singleProduct);
+	useEffect(() => {
+		dispatch(fetchSingleProduct(id));
+	});
+	return (
+		<div>
+			<h1>Hi</h1>
+		</div>
+	);
+};
 
-function mapStateToProps(state) {
-	return {
-		product: state.singleProduct.selected
-	};
-}
+// function mapStateToProps(state) {
+// 	return {
+// 		product: state.singleProduct.selected
+// 	};
+// }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		getSingleProduct: id => dispatch(fetchSingleProduct(id))
-	};
-}
+// function mapDispatchToProps(dispatch) {
+// 	return {
+// 		getSingleProduct: id => dispatch(fetchSingleProduct(id))
+// 	};
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
+// export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
