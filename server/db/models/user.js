@@ -4,18 +4,18 @@ const db = require("../db");
 
 const User = db.define("user", {
 	firstName: {
-		type: Sequelize.STRING,
-		allowNull: false,
-		validate: {
-			notEmpty: true
-		}
+		type: Sequelize.STRING
+		// allowNull: false,
+		// validate: {
+		// 	notEmpty: true
+		// }
 	},
 	lastName: {
-		type: Sequelize.STRING,
-		allowNull: false,
-		validate: {
-			notEmpty: true
-		}
+		type: Sequelize.STRING
+		// allowNull: false,
+		// validate: {
+		// 	notEmpty: true
+		// }
 	},
 	email: {
 		type: Sequelize.STRING,
@@ -24,6 +24,10 @@ const User = db.define("user", {
 		validate: {
 			isEmail: true
 		}
+	},
+	isAdmin: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
 	},
 	password: {
 		type: Sequelize.STRING,
@@ -43,10 +47,6 @@ const User = db.define("user", {
 	},
 	googleId: {
 		type: Sequelize.STRING
-	},
-	isAdmin: {
-		type: Sequelize.BOOLEAN,
-		defaultValue: false
 	}
 });
 

@@ -13,7 +13,7 @@ const CartItem = require("./CartItem");
 User.hasOne(Cart);
 Cart.belongsTo(User);
 
-Cart.hasMany(Product);
+Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
 
 /**
