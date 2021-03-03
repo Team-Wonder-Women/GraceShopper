@@ -7,7 +7,7 @@ const products = [
 		name: "B-Shizzle",
 		description:
 			"Get these 100% beeswax candles to cleanse the air in your home. Comes in bundles of three.",
-		imageUrl: "placeholder.png",
+		imageUrl: "b-shizzle.jpg",
 		quantity: 500,
 		price: 4750,
 		size: "2 oz",
@@ -17,7 +17,7 @@ const products = [
 		name: "Lit & Company",
 		description:
 			"This warming scent begins with a citrus blend of orange and grapefruit, making way for the main earthy, Cedarwood theme.",
-		imageUrl: "placeholder.png",
+		imageUrl: "lit-company.jpg",
 		quantity: 500,
 		price: 4999,
 		size: "9 oz"
@@ -26,7 +26,7 @@ const products = [
 		name: "JOMO Dip",
 		description:
 			"Hand-dipped candles made from a bee-wax blend and colored with natural dyes. Comes in sets of two.",
-		imageUrl: "placeholder.png",
+		imageUrl: "jomo-dip.jpg",
 		quantity: 500,
 		price: 3320,
 		size: "2 oz"
@@ -35,7 +35,7 @@ const products = [
 		name: "Not Today",
 		description:
 			"Let this blend of black currant, bergamot, rose, and black pepper comfort you and soothe your case of Mondays.",
-		imageUrl: "placeholder.png",
+		imageUrl: "nottoday.jpg",
 		quantity: 500,
 		price: 3495,
 		size: "9 oz"
@@ -44,7 +44,7 @@ const products = [
 		name: "You Know The Vibes",
 		description:
 			"Life is good with this earthy, calming scent. With notes of driftwood and orchid cactus, get swept away in the fantasy of soft breezes and chill lo-fi music serenading the air around you. Fragrance: White Driftwood, Orchid Cactus, Fresh Waterfall Mist.",
-		imageUrl: "placeholder.png",
+		imageUrl: "yktv.jpg",
 		quantity: 500,
 		price: 9130,
 		size: "3 oz"
@@ -53,7 +53,7 @@ const products = [
 		name: "Stay Woke",
 		description:
 			"There’s nothing like a fresly brewed dark roast coffee aroma to jump start your day. With a splash of sweet coconut milk and undertones of premium eucalpytus, skip the coffee runs and fill your room with a vitalizing scent bound to jolt you with that caffeinated buzz. Fragrance: Fresh Brewed Coffee, Sweet Coconut Milk, Eucalpytus.",
-		imageUrl: "placeholder.png",
+		imageUrl: "staywoke.jpg",
 		quantity: 500,
 		price: 980,
 		size: "9 oz"
@@ -62,7 +62,7 @@ const products = [
 		name: "TBeeH",
 		description:
 			"This pair of 100% beeswax candles will have you wondering if maybe you really should have your friends over, if only to admire your new and beautiful dinner table set up. A kind gesture, or a sick burn? Maybe a little of both, TBH.",
-		imageUrl: "placeholder.png",
+		imageUrl: "placeholder.jpg",
 		quantity: 500,
 		price: 5050,
 		size: "2 oz"
@@ -71,7 +71,7 @@ const products = [
 		name: "Bye Firlicia",
 		description:
 			"Friends can be flakes, but this candle will never let you down. This Friday, we invite you to turn your phone to do not disturb and let notes of sandalwood, eucalyptus, and fir be your posse. Bye humans, hello bliss.",
-		imageUrl: "placeholder.png",
+		imageUrl: "placeholder.jpg",
 		quantity: 500,
 		price: 6060,
 		size: "9 oz"
@@ -80,7 +80,7 @@ const products = [
 		name: "Spilt Tea",
 		description:
 			"Steep yourself in the intoxicating aroma of bergamot, chamomile and the latest hot goss. With this candle by your side, at least you know you’re not the one getting burned.",
-		imageUrl: "placeholder.png",
+		imageUrl: "placeholder.jpg",
 		quantity: 500,
 		price: 7575,
 		size: "9 oz"
