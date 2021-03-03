@@ -18,7 +18,7 @@ const Product = db.define("product", {
 	},
 	imageUrl: {
 		type: Sequelize.TEXT,
-		defaultValue: "../../public/placeholder.png",
+		defaultValue: "placeholder.png",
 		validate: {
 			notEmpty: true
 		}
