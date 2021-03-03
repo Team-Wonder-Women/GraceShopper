@@ -5,7 +5,7 @@ const db = require("../index");
 const User = require("./user");
 
 describe("User model", () => {
-	let user1, user2, user3;
+	let user1, user2;
 	beforeEach(async () => {
 		user1 = await User.create({
 			firstName: "Sally",
@@ -23,7 +23,7 @@ describe("User model", () => {
 	});
 	afterEach(() => db.sync({ force: true }));
 
-	it("creates a new user", async () => {
+	it("creates a new user", () => {
 		expect(user1.firstName).to.be.equal("Sally");
 		expect(user1.lastName).to.be.equal("Ride");
 		expect(user1.email).to.be.equal("sallyride@nasa.gov");
@@ -34,11 +34,11 @@ describe("User model", () => {
 		expect(user2.isAdmin).to.be.equal(true);
 	});
 
-	it("defaults isAdmin to false", async () => {
+	it("defaults isAdmin to false", () => {
 		expect(user1.isAdmin).to.be.equal(false);
 	});
 
-	it("does not store password as plain text", async () => {
+	it("does not store password as plain text", () => {
 		expect(user1.password).to.not.be.equal("password");
 	});
 
