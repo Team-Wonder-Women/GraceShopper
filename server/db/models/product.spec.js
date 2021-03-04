@@ -37,7 +37,7 @@ describe("Product model", () => {
 	});
 
 	it("has a imageUrl by default", () => {
-		expect(product1.imageUrl).to.be.equal("../../public/image.png");
+		expect(product1.imageUrl).to.be.equal("placeholder.jpg");
 	});
 
 	it("accepts only a given ENUM sizes ", async () => {
