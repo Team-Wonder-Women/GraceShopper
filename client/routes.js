@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
-
 import {
 	AllProductsList,
 	SingleProduct,
@@ -10,7 +9,6 @@ import {
 	Login,
 	Signup
 } from "./components";
-
 import { me } from "./store";
 
 /**

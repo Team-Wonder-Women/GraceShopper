@@ -19,5 +19,3 @@ router.get("/:productId", async (req, res, next) => {
 		next(err);
 	}
 });
-
-
