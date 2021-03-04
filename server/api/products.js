@@ -15,7 +15,9 @@ router.get("/:productId", async (req, res, next) => {
 	try {
 		const singleProduct = await Product.findByPk(req.params.productId);
 		res.json(singleProduct);
-    } catch (err) {
+	} catch (err) {
 		next(err);
 	}
 });
+
+
