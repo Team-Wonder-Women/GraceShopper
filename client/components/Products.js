@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Products(props) {
-	let price = props.price;
-
 	return (
 		<div className="product-container">
-			<Link to={`products/${props.id}`}>
+			<Link to={`products/${props.id}`} className="product-link-container">
 				<img src={props.imageUrl} />
-				<h2 className="product-name">{props.name}</h2>
-				<p className="product-price">${(props.price / 100).toFixed(2)}</p>
+				<div className="product-text">
+					<h2 className="product-name">{props.name}</h2>
+					<p className="product-price">${(props.price / 100).toFixed(2)}</p>
+				</div>
 			</Link>
 			<button type="button">Add to Cart</button>
 		</div>

@@ -1,5 +1,7 @@
 body {
 	font-family: sans-serif;
+	background-color: #8a9acf;
+	font-family: "Work Sans", sans-serif;
 }
 
 a {
@@ -22,4 +24,35 @@ form div {
 
 img {
 	width: 256px;
+	border-radius: 1rem;
+}
+
+.product-container {
+	display: flex;
+	align-items: center;
+	margin: 2rem;
+	padding: 1rem;
+	border: 0.5px solid black;
+	border-radius: 1rem;
+	backdrop-filter: blur(7px);
+	background: rgba(245, 175, 91, 96);
+}
+
+.product-link-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.product-text {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+button {
+	align-self: flex-end;
+	border-radius: 12px;
+	font-size: 14px;
 }
