@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Products(props) {
-	console.log("producs props", props);
 	let price = props.price;
 
 	return (
