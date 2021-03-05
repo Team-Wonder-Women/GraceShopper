@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { logout } from "../store";
 import Cart from "./Cart";
 
-
 class Navbar extends Component {
 	constructor(props) {
 		super(props);
@@ -29,12 +28,12 @@ class Navbar extends Component {
 		const { handleClick, isLoggedIn } = this.props;
 		return (
 			<div className="navbar">
-      <div clasName="header-logo">
-				<Link to="/products">
-					<h1>Lit Collective</h1>
-				</Link>
-      <img id="logo" src="lit-collective.png" alt="lit collective logo" />
-      </div>
+				<div className="header-logo">
+					<Link to="/products">
+						<h1>Lit Collective</h1>
+					</Link>
+					<img id="logo" src="lit-collective.png" alt="lit collective logo" />
+				</div>
 				<div id="nav-buttons">
 					<div>
 						{isLoggedIn ? (
