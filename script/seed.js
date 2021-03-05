@@ -92,71 +92,71 @@ const users = [
 		firstName: "Olivia",
 		lastName: "Wong",
 		email: "olivia@litcollective.com",
-		password: "",
+		password: "password",
 		isAdmin: true
 	},
 	{
 		firstName: "Isa",
 		lastName: "Stettler",
 		email: "isa@litcollective.com",
-		password: "",
+		password: "password",
 		isAdmin: true
 	},
 	{
 		firstName: "Sandy",
 		lastName: "Dai",
 		email: "sandy@litcollective.com",
-		password: "",
+		password: "password",
 		isAdmin: true
 	},
 	{
 		firstName: "Siray",
 		lastName: "Wali",
 		email: "siray@litcollective.com",
-		password: "",
+		password: "password",
 		isAdmin: true
 	},
 	{
 		firstName: "Alice",
 		lastName: "Ryan-Riley",
 		email: "alice@gmail.com",
-		password: ""
+		password: "password"
 	},
 	{
 		firstName: "Mary",
 		lastName: "Gaudet",
 		email: "mary@gmail.com",
-		password: ""
+		password: "password"
 	},
 	{
 		firstName: "Sam",
 		lastName: "Clement",
 		email: "sam@gmail.com",
-		password: ""
+		password: "password"
 	},
 	{
 		firstName: "Bri",
 		lastName: "Hanan",
 		email: "bri@gmail.com",
-		password: ""
+		password: "password"
 	},
 	{
 		firstName: "Kelly",
 		lastName: "Quinn",
 		email: "kelly@gmail.com",
-		password: ""
+		password: "password"
 	},
 	{
 		firstName: "Drew",
 		lastName: "Kroculick",
 		email: "drew@gmail.com",
-		password: ""
+		password: "password"
 	},
 	{
 		firstName: "Sarah",
 		lastName: "Furhman",
 		email: "sarah@gmail.com",
-		password: ""
+		password: "password"
 	}
 ];
 
