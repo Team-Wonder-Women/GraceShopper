@@ -1,11 +1,28 @@
+a {
+	text-decoration: none;
+}
+
 body {
 	font-family: sans-serif;
 	background-color: #8a9acf;
 	font-family: "Work Sans", sans-serif;
 }
 
-a {
-	text-decoration: none;
+button {
+	align-self: flex-end;
+	border-radius: 12px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+form div {
+	margin: 1em;
+	display: inline-block;
+}
+
+img {
+	width: 256px;
+	border-radius: 1rem;
 }
 
 label {
@@ -17,14 +34,14 @@ nav a {
 	margin: 1em;
 }
 
-form div {
-	margin: 1em;
-	display: inline-block;
+#logo {
+	width: auto;
+	height: 3.8rem;
+	margin-left: 6px;
 }
 
-img {
-	width: 256px;
-	border-radius: 1rem;
+.header-logo {
+	display: flex;
 }
 
 .product-container {
@@ -49,11 +66,4 @@ img {
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-}
-
-button {
-	align-self: flex-end;
-	border-radius: 12px;
-	font-size: 14px;
-	cursor: pointer;
 }
