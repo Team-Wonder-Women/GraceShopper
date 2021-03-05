@@ -43,7 +43,7 @@ const products = [
 	{
 		name: "You Know The Vibes",
 		description:
-			"Life is good with this earthy, calming scent. With notes of driftwood and orchid cactus, get swept away in the fantasy of soft breezes and chill lo-fi music serenading the air around you. Fragrance: White Driftwood, Orchid Cactus, Fresh Waterfall Mist.",
+			"Life is good with this earthy, calming scent. With notes of driftwood and orchid cactus, get swept away in the fantasy of soft breezes and chill lo-fi music serenading the air around you.",
 		imageUrl: "yktv.jpg",
 		quantity: 500,
 		price: 9130,
@@ -52,7 +52,7 @@ const products = [
 	{
 		name: "Stay Woke",
 		description:
-			"There’s nothing like a fresly brewed dark roast coffee aroma to jump start your day. With a splash of sweet coconut milk and undertones of premium eucalpytus, skip the coffee runs and fill your room with a vitalizing scent bound to jolt you with that caffeinated buzz. Fragrance: Fresh Brewed Coffee, Sweet Coconut Milk, Eucalpytus.",
+			"There’s nothing like a fresly brewed dark roast coffee aroma to jump start your day. With a splash of sweet coconut milk and undertones of premium eucalpytus, skip the coffee runs and fill your room with a vitalizing scent bound to jolt you with that caffeinated buzz.",
 		imageUrl: "staywoke.jpg",
 		quantity: 500,
 		price: 980,
@@ -62,7 +62,7 @@ const products = [
 		name: "TBeeH",
 		description:
 			"This pair of 100% beeswax candles will have you wondering if maybe you really should have your friends over, if only to admire your new and beautiful dinner table set up. A kind gesture, or a sick burn? Maybe a little of both, TBH.",
-		imageUrl: "placeholder.jpg",
+		imageUrl: "tbeeh.jpg",
 		quantity: 500,
 		price: 5050,
 		size: "2 oz"
@@ -71,7 +71,7 @@ const products = [
 		name: "Bye Firlicia",
 		description:
 			"Friends can be flakes, but this candle will never let you down. This Friday, we invite you to turn your phone to do not disturb and let notes of sandalwood, eucalyptus, and fir be your posse. Bye humans, hello bliss.",
-		imageUrl: "placeholder.jpg",
+		imageUrl: "byefirlicia.jpg",
 		quantity: 500,
 		price: 6060,
 		size: "9 oz"
@@ -80,7 +80,7 @@ const products = [
 		name: "Spilt Tea",
 		description:
 			"Steep yourself in the intoxicating aroma of bergamot, chamomile and the latest hot goss. With this candle by your side, at least you know you’re not the one getting burned.",
-		imageUrl: "placeholder.jpg",
+		imageUrl: "splittea.jpg",
 		quantity: 500,
 		price: 7575,
 		size: "9 oz"

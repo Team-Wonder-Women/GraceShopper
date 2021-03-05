@@ -1,3 +1,7 @@
+a {
+	text-decoration: none;
+}
+
 body {
 	font-family: sans-serif;
 	background-color: #8a9acf;
@@ -56,9 +60,11 @@ hr {
 	padding-inline: 20px;
 }
 
+
 a {
 	text-decoration: none;
 	color: white;
+
 }
 
 label {
@@ -105,6 +111,16 @@ img {
 	padding: 1rem;
 }
 
+  #logo {
+	width: auto;
+	height: 3.8rem;
+	margin-left: 6px;
+}
+  
+.header-logo {
+	display: flex;
+  }
+  
 button {
 	width: 10rem;
 	min-height: 2rem;
@@ -157,3 +173,4 @@ button {
 .cart-content {
 	margin: 8px;
 }
+

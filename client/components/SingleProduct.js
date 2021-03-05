@@ -5,7 +5,9 @@ import { fetchSingleProduct } from "../store/singleProduct";
 export default function SingleProduct() {
 	// in lieu of mapState
 	const singleProduct = useSelector(state => state.singleProduct);
-	const [image, setImage] = useState("/placeholder.jpg");
+	const [image, setImage] = useState(
+		"https://flevix.com/wp-content/uploads/2019/07/Round-Line-Loading.gif"
+	);
 	// in lieu of match.props.params
 	let { productId } = useParams();
 	// in lieu of mapDispatch
@@ -24,6 +26,7 @@ export default function SingleProduct() {
 			<img src={image} />
 			<h1>{singleProduct.description}</h1>
 			<h1>${(singleProduct.price / 100).toFixed(2)}</h1>
+			<button type="button">Add to Cart</button>
 		</div>
 	);
 }
