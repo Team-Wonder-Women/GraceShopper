@@ -1,10 +1,12 @@
 import { expect } from "chai";
 import React from "react";
 import { Provider } from "react-redux";
-import enzyme, { shallow, render } from "enzyme";
+import enzyme, { render } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import SingleProduct from "./SingleProduct";
+import { SingleProduct } from "./SingleProduct";
 import store from "../store";
+
+console.log(SingleProduct);
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
@@ -28,6 +30,8 @@ describe("Single Product component", () => {
 		);
 	});
 
+	console.log("singleProductView", singleProductView.find("div"));
+
 	it("renders a single product", () => {
 		expect(singleProductView.find("div").text().to.include("Pretty Candle"));
 		expect(singleProductView.find("div").text().to.include("a pretty candle"));
@@ -37,7 +41,5 @@ describe("Single Product component", () => {
 				.text()
 				.to.include((product.price / 100).toFixed(2))
 		);
-		expect(product.imageUrl).to.be.a("string");
-		expect(product.imageUrl.length).to.be.greaterThan(1);
 	});
 });
