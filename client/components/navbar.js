@@ -1,34 +1,82 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import Cart from "./Cart";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-	<div>
-		<Link to="/products">
-			<h1>Lit Collective</h1>
-		</Link>
-		<nav>
-			{isLoggedIn ? (
-				<div>
-					{/* The navbar will show these links after you log in */}
-					<Link to="/home">Home</Link>
-					<a href="#" onClick={handleClick}>
-						Logout
-					</a>
+class Navbar extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			show: false
+		};
+		this.showCart = this.showCart.bind(this);
+		this.hideCart = this.hideCart.bind(this);
+	}
+
+	showCart = () => {
+		this.setState({ show: true });
+	};
+
+	hideCart = () => {
+		this.setState({ show: false });
+	};
+
+	render() {
+		const { handleClick, isLoggedIn } = this.props;
+		return (
+			<div className="navbar">
+				<Link to="/products">
+					<h1>Lit Collective</h1>
+				</Link>
+				<div id="nav-buttons">
+					<div>
+						{isLoggedIn ? (
+							<div className="nav-buttons-left-container">
+								{/* The navbar will show these links after you log in */}
+								<Link className="nav-buttons-left" to="/home">
+									Home
+								</Link>
+								<a className="nav-buttons-left" href="#" onClick={handleClick}>
+									Logout
+								</a>
+							</div>
+						) : (
+							<div className="nav-buttons-left-container">
+								{/* The navbar will show these links before you log in */}
+								<Link className="nav-buttons-left" to="/login">
+									Login
+								</Link>
+								<Link className="nav-buttons-left" to="/signup">
+									Sign Up
+								</Link>
+							</div>
+						)}
+					</div>
+					<Cart show={this.state.show} handleClose={this.hideCart}>
+						<div className="cart-content">
+							<h1>Your Cart</h1>
+							<ul>
+								<li>All the candles</li>
+								<li>A million more candles</li>
+								<li>
+									No, literally...ALL the candles. candles have gone extinct
+									after this order
+								</li>
+							</ul>
+						</div>
+					</Cart>
+					<div id="cart" onClick={this.showCart}>
+						<img src="cart.svg" />
+					</div>
 				</div>
-			) : (
-				<div>
-					{/* The navbar will show these links before you log in */}
-					<Link to="/login">Login</Link>
-					<Link to="/signup">Sign Up</Link>
-				</div>
-			)}
-		</nav>
-		<hr />
-	</div>
-);
+				<hr />
+			</div>
+		);
+	}
+}
 
 /**
  * CONTAINER
