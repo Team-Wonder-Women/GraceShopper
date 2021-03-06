@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import Cart from "./Cart";
+import InsideCart from "./InsideCart";
 
 class Navbar extends Component {
 	constructor(props) {
@@ -30,8 +31,12 @@ class Navbar extends Component {
 			<div className="navbar">
 				<div className="header-logo">
 					<Link to="/">
-						<img id="logo" src="lit-collective.png" alt="lit collective logo" />
-						<h1>Lit Collective</h1>
+						<img
+							id="logo"
+							src="/lit-collective.png"
+							alt="lit collective logo"
+						/>
+						<h1 id="company-title">Lit Collective</h1>
 					</Link>
 				</div>
 				<div id="nav-buttons">
@@ -67,18 +72,11 @@ class Navbar extends Component {
 					<Cart show={this.state.show} handleClose={this.hideCart}>
 						<div className="cart-content">
 							<h1>Your Cart</h1>
-							<ul>
-								<li>All the candles</li>
-								<li>A million more candles</li>
-								<li>
-									No, literally...ALL the candles. candles have gone extinct
-									after this order
-								</li>
-							</ul>
+							<InsideCart />
 						</div>
 					</Cart>
 					<div id="cart" onClick={this.showCart}>
-						<img src="cart.svg" />
+						<img src="/cart.svg" />
 					</div>
 				</div>
 				<hr />

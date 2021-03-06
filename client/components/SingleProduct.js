@@ -8,6 +8,7 @@ export default function SingleProduct() {
 	const [image, setImage] = useState(
 		"https://flevix.com/wp-content/uploads/2019/07/Round-Line-Loading.gif"
 	);
+	const [count, setCount] = useState(1);
 	// in lieu of match.props.params
 	let { productId } = useParams();
 	// in lieu of mapDispatch
@@ -26,6 +27,23 @@ export default function SingleProduct() {
 			<img src={image} />
 			<h1>{singleProduct.description}</h1>
 			<h1>${(singleProduct.price / 100).toFixed(2)}</h1>
+			<div>
+				<button
+					className="quantity-button"
+					type="button"
+					onClick={() => setCount(count >= 1 ? count - 1 : count)}
+				>
+					-
+				</button>
+				<h2 id="quantity-counter">{count}</h2>
+				<button
+					className="quantity-button"
+					type="button"
+					onClick={() => setCount(count + 1)}
+				>
+					+
+				</button>
+			</div>
 			<button type="button">Add to Cart</button>
 		</div>
 	);
