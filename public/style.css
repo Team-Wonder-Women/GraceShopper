@@ -137,6 +137,7 @@ button {
 }
 
 .single-product-container button {
+	margin-top: 1.5rem;
 	align-self: auto;
 }
 
@@ -220,4 +221,15 @@ button {
 	font-family: "High Tide Sans", sans-serif;
 	font-weight: lighter;
 	font-size: 30px;
+}
+
+.quantity-button {
+	width: 2rem;
+	min-height: 1rem;
+	background: #aed4d7;
+}
+
+#quantity-counter {
+	margin: 0px 10px;
+	display: inline;
 }

@@ -26,6 +26,15 @@ export default function SingleProduct() {
 			<img src={image} />
 			<h1>{singleProduct.description}</h1>
 			<h1>${(singleProduct.price / 100).toFixed(2)}</h1>
+			<div>
+				<button className="quantity-button" type="button">
+					-
+				</button>
+				<h2 id="quantity-counter">0</h2>
+				<button className="quantity-button" type="button">
+					+
+				</button>
+			</div>
 			<button type="button">Add to Cart</button>
 		</div>
 	);
