@@ -210,3 +210,14 @@ button {
 		rgba(245, 175, 91, 0.5)
 	);
 }
+
+@font-face {
+	font-family: "High Tide Sans";
+	src: url("/HighTide-Sans.otf") format("opentype");
+}
+
+#company-title {
+	font-family: "High Tide Sans", sans-serif;
+	font-weight: lighter;
+	font-size: 30px;
+}

@@ -37,7 +37,7 @@ class Navbar extends Component {
 						/>
 					</Link>
 					<Link to="/products">
-						<h1>Lit Collective</h1>
+						<h1 id="company-title">Lit Collective</h1>
 					</Link>
 				</div>
 				<div id="nav-buttons">
