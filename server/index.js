@@ -6,7 +6,11 @@ const session = require("express-session");
 const passport = require("passport");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { db } = require("./db");
-const sessionStore = new SequelizeStore({ db });
+const sessionStore = new SequelizeStore({
+	db,
+	checkExpirationiInterval: 15 * 60 * 1000,
+	expiration: 5 * 60 * 1000
+});
 const PORT = process.env.PORT || 8080;
 const app = express();
 const socketio = require("socket.io");
@@ -54,7 +58,7 @@ const createApp = () => {
 	// session middleware with passport
 	app.use(
 		session({
-			secret: process.env.SESSION_SECRET || "my best friend is Cody",
+			secret: process.env.SESSION_SECRET || "candles will always be lit",
 			store: sessionStore,
 			resave: false,
 			saveUninitialized: false

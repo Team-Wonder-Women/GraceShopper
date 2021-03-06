@@ -29,7 +29,6 @@ h1 {
 #nav-buttons {
 	display: flex;
 	justify-content: space-between;
-	padding: 1rem 4rem;
 }
 
 hr {
@@ -121,6 +120,7 @@ img {
 
 .header-logo {
 	display: flex;
+	justify-content: center;
 	align-items: center;
 }
 
