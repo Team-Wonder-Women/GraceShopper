@@ -136,6 +136,10 @@ button {
 	cursor: pointer;
 }
 
+.single-product-container button {
+	align-self: auto;
+}
+
 .modal {
 	position: fixed;
 	top: 0;
