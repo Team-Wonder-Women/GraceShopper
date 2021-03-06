@@ -24,16 +24,26 @@ router.get("/cart", (req, res, next) => {
 		res.render("/cart", { products: null });
 	}
 	let cart = new GuestCart(req.session.cart);
-	console.log("this is the total of the cart", cart.totalPrice);
 	let cartArr = cart.createItemArr();
 	res.json({ products: cartArr, total: cart.totalPrice });
 });
 
-router.put("/remove-item", (req, res, next) => {
-	let productId = req.body.id;
-	let cart = new GuestCart(req.session.cart);
-	let updatedCart = cart.removeItem(cart, productId);
-	req.session.cart = updatedCart;
-	console.log("this is the req.session", req.session);
-	res.send("OK");
+router.get("/reduce/:productId", (req, res, next) => {
+	let id = req.params.productId;
+	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
+
+	cart.reduceItem(id);
+	console.log("this is the cart after reducing items", cart);
+	req.session.cart = cart;
+	res.redirect("/cart");
+});
+
+router.get("/remove/:productId", (req, res, next) => {
+	let id = req.params.productId;
+	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
+
+	cart.removeProduct(id);
+	console.log("this is cart after removing product", cart);
+	req.session.cart = cart;
+	res.redirect("/cart");
 });
