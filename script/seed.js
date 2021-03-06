@@ -162,7 +162,7 @@ const users = [
 
 const carts = [
 	{
-		orderStatus: "incomplete",
+		orderStatus: "complete",
 		userId: 1
 	},
 	{

@@ -9,4 +9,5 @@ export { Login, Signup } from "./auth-form";
 export { default as AllProductsList } from "./AllProductsList";
 export { default as SingleProduct } from "./SingleProduct";
 export { default as Checkout } from "./Checkout";
+export { default as InsideCart } from "./InsideCart";
 export { default as LandingPage } from "./LandingPage";
