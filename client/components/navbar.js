@@ -36,8 +36,6 @@ class Navbar extends Component {
 							src="/lit-collective.png"
 							alt="lit collective logo"
 						/>
-					</Link>
-					<Link to="/products">
 						<h1 id="company-title">Lit Collective</h1>
 					</Link>
 				</div>
@@ -48,6 +46,9 @@ class Navbar extends Component {
 								{/* The navbar will show these links after you log in */}
 								<Link className="nav-buttons-left" to="/home">
 									Home
+								</Link>
+								<Link className="nav-buttons-left" to="/products">
+									All Candles
 								</Link>
 								<a className="nav-buttons-left" href="#" onClick={handleClick}>
 									Logout
@@ -61,6 +62,9 @@ class Navbar extends Component {
 								</Link>
 								<Link className="nav-buttons-left" to="/signup">
 									Sign Up
+								</Link>
+								<Link className="nav-buttons-left" to="/products">
+									All Candles
 								</Link>
 							</div>
 						)}
