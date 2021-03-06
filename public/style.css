@@ -136,6 +136,11 @@ button {
 	cursor: pointer;
 }
 
+.single-product-container button {
+	margin-top: 1.5rem;
+	align-self: auto;
+}
+
 .modal {
 	position: fixed;
 	top: 0;
@@ -205,4 +210,26 @@ button {
 		rgba(0, 0, 0, 0.25),
 		rgba(245, 175, 91, 0.5)
 	);
+}
+
+@font-face {
+	font-family: "High Tide Sans";
+	src: url("/HighTide-Sans.otf") format("opentype");
+}
+
+#company-title {
+	font-family: "High Tide Sans", sans-serif;
+	font-weight: lighter;
+	font-size: 30px;
+}
+
+.quantity-button {
+	width: 2rem;
+	min-height: 1rem;
+	background: #aed4d7;
+}
+
+#quantity-counter {
+	margin: 0px 10px;
+	display: inline;
 }

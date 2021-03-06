@@ -31,10 +31,14 @@ class Navbar extends Component {
 			<div className="navbar">
 				<div className="header-logo">
 					<Link to="/">
-						<img id="logo" src="lit-collective.png" alt="lit collective logo" />
+						<img
+							id="logo"
+							src="/lit-collective.png"
+							alt="lit collective logo"
+						/>
 					</Link>
 					<Link to="/products">
-						<h1>Lit Collective</h1>
+						<h1 id="company-title">Lit Collective</h1>
 					</Link>
 				</div>
 				<div id="nav-buttons">
@@ -68,7 +72,7 @@ class Navbar extends Component {
 						</div>
 					</Cart>
 					<div id="cart" onClick={this.showCart}>
-						<img src="cart.svg" />
+						<img src="/cart.svg" />
 					</div>
 				</div>
 				<hr />
