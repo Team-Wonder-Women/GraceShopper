@@ -21,7 +21,7 @@ export default function SingleProduct() {
 		setImage(`/${singleProduct.imageUrl}`);
 	});
 	return (
-		<div>
+		<div className="single-product-container">
 			<h1>{singleProduct.name}</h1>
 			<img src={image} />
 			<h1>{singleProduct.description}</h1>

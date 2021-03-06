@@ -9,7 +9,8 @@ import {
 	Login,
 	Signup,
 	Checkout,
-	InsideCart
+	InsideCart,
+	LandingPage
 } from "./components";
 import { me } from "./store";
 
@@ -26,6 +27,7 @@ class Routes extends Component {
 		return (
 			<Switch>
 				{/* Routes placed here are available to all visitors */}
+				<Route exact path="/" component={LandingPage} />
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
 				<Route exact path="/" component={AllProductsList} />
@@ -41,7 +43,7 @@ class Routes extends Component {
 				{/* Displays our home component as a fallback */}
 				{/* <Route component={Login} /> */}
 				<Route path="/checkout" component={Checkout} />
-				<Route exact path="/" component={AllProductsList} />
+				<Route exact path="/" component={LandingPage} />
 			</Switch>
 		);
 	}

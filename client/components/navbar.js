@@ -30,10 +30,12 @@ class Navbar extends Component {
 		return (
 			<div className="navbar">
 				<div className="header-logo">
+					<Link to="/">
+						<img id="logo" src="lit-collective.png" alt="lit collective logo" />
+					</Link>
 					<Link to="/products">
 						<h1>Lit Collective</h1>
 					</Link>
-					<img id="logo" src="lit-collective.png" alt="lit collective logo" />
 				</div>
 				<div id="nav-buttons">
 					<div>
