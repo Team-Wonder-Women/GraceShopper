@@ -5,8 +5,9 @@ import { fetchCartItems } from "../store/cartItem";
 export default function SingleProduct() {
 	// in lieu of mapState
 	const cartItems = useSelector(state => state.cartItems);
-	// console.log("* -->", cartItems.products);
-	const [items, setItems] = useState(["Loading...."]);
+	console.log("* -->", cartItems.products);
+	const [items, setItems] = useState(cartItems);
+	const [isLoading, setIsLoading] = useState(true);
 	console.log("items -->", items);
 
 	// in lieu of match.props.params
@@ -21,12 +22,15 @@ export default function SingleProduct() {
 
 	useEffect(() => {
 		setItems(cartItems.products);
+		if (items && items.length >= 1) {
+			setIsLoading(false);
+		}
 	});
 
 	// in lieu of componentDidUpdate
 	return (
 		<div>
-			<h1>{items[0]}</h1>
+			{isLoading ? <h1>Loading...</h1> : <h1>{items[0].name}</h1>}
 			{/* <img src={image} />
 			<h1>{singleProduct.description}</h1>
 			<h1>${(singleProduct.price / 100).toFixed(2)}</h1>
