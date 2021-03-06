@@ -8,7 +8,8 @@ import {
 	UserHome,
 	Login,
 	Signup,
-	Checkout
+	Checkout,
+	LandingPage
 } from "./components";
 import { me } from "./store";
 
@@ -25,11 +26,11 @@ class Routes extends Component {
 		return (
 			<Switch>
 				{/* Routes placed here are available to all visitors */}
+				<Route exact path="/" component={LandingPage} />
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
-				<Route exact path="/products/:productId" component={SingleProduct} />
-				<Route exact path="/" component={AllProductsList} />
 				<Route exact path="/products" component={AllProductsList} />
+				<Route exact path="/products/:productId" component={SingleProduct} />
 				{isLoggedIn && (
 					<Switch>
 						{/* Routes placed here are only available after logging in */}
@@ -39,7 +40,7 @@ class Routes extends Component {
 				{/* Displays our home component as a fallback */}
 				{/* <Route component={Login} /> */}
 				<Route path="/checkout" component={Checkout} />
-				<Route exact path="/" component={AllProductsList} />
+				<Route exact path="/" component={LandingPage} />
 			</Switch>
 		);
 	}
