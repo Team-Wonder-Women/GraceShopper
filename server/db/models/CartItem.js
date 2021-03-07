@@ -9,7 +9,7 @@ const CartItem = db.define("cartitem", {
 	},
 	priceAtPurchase: {
 		type: Sequelize.INTEGER,
-		deafaultValue: Product.price
+		defaultValue: Product.price
 	}
 });
 
