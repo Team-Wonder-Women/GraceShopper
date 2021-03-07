@@ -211,62 +211,74 @@ const cartItems = [
 	{
 		quantity: 1,
 		cartId: 1,
-		productId: 1
+		productId: 1,
+		priceAtPurchase: 4750
 	},
 	{
 		quantity: 2,
 		cartId: 1,
-		productId: 2
+		productId: 2,
+		priceAtPurchase: 4999
 	},
 	{
 		quantity: 1,
 		cartId: 3,
-		productId: 3
+		productId: 3,
+		priceAtPurchase: 3320
 	},
 	{
 		quantity: 1,
 		cartId: 4,
-		productId: 4
+		productId: 4,
+		priceAtPurchase: 3495
 	},
 	{
 		quantity: 1,
 		cartId: 5,
-		productId: 5
+		productId: 5,
+		priceAtPurchase: 9130
 	},
 	{
 		quantity: 1,
 		cartId: 6,
-		productId: 6
+		productId: 6,
+		priceAtPurchase: 980
 	},
 	{
 		quantity: 1,
 		cartId: 7,
-		productId: 7
+		productId: 7,
+		priceAtPurchase: 5050
 	},
 	{
 		quantity: 1,
 		cartId: 8,
-		productId: 8
+		productId: 8,
+		priceAtPurchase: 6060
 	},
 	{
 		quantity: 1,
 		cartId: 9,
-		productId: 9
+		productId: 9,
+		priceAtPurchase: 7575
 	},
 	{
 		quantity: 1,
 		cartId: 10,
-		productId: 7
+		productId: 7,
+		priceAtPurchase: 5050
 	},
 	{
 		quantity: 1,
 		cartId: 11,
-		productId: 8
+		productId: 8,
+		priceAtPurchase: 6060
 	},
 	{
 		quantity: 1,
 		cartId: 10,
-		productId: 9
+		productId: 9,
+		priceAtPurchase: 7575
 	}
 ];
 
