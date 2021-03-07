@@ -10,7 +10,8 @@ import {
 	Signup,
 	Checkout,
 	InsideCart,
-	LandingPage
+	LandingPage,
+	AdminDash
 } from "./components";
 import { me } from "./store";
 
@@ -38,12 +39,14 @@ class Routes extends Component {
 					<Switch>
 						{/* Routes placed here are only available after logging in */}
 						<Route path="/home" component={UserHome} />
+						<Route path="/admin" component={AdminDash} />
+						<Route path="/checkout" component={Checkout} />
 					</Switch>
 				)}
 				{/* Displays our home component as a fallback */}
 				{/* <Route component={Login} /> */}
-				<Route path="/checkout" component={Checkout} />
 				<Route exact path="/" component={LandingPage} />
+				<Route path="/checkout" component={Checkout} />
 			</Switch>
 		);
 	}

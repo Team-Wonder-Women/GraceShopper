@@ -11,4 +11,4 @@ export { default as SingleProduct } from "./SingleProduct";
 export { default as Checkout } from "./Checkout";
 export { default as InsideCart } from "./InsideCart";
 export { default as LandingPage } from "./LandingPage";
-
+export { default as AdminDash } from "./AdminDash";
