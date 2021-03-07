@@ -10,7 +10,6 @@ class AllProductsList extends Component {
 	}
 
 	render() {
-		console.log("all products", this.props);
 		return this.props.products.map(product => {
 			return <Products key={product.id} {...product} />;
 		});

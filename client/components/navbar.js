@@ -27,9 +27,8 @@ class Navbar extends Component {
 
 	render() {
 		const { handleClick, isLoggedIn } = this.props;
-		const openedCart = this.state.show;
 		let cart;
-		if (openedCart) {
+		if (isLoggedIn) {
 			cart = <InsideCart />;
 		} else {
 			cart = "";
