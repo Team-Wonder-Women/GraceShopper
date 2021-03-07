@@ -8,10 +8,10 @@ export const gotCartItems = items => ({
 });
 
 //logged in
-export const fetchCartItemsUser = id => {
+export const fetchCartItemsUser = userId => {
 	return async dispatch => {
 		try {
-			const { data: items } = await axios.get(`/api/cart/${id}`);
+			const { data: items } = await axios.get(`/api/usercart/${userId}`);
 			dispatch(gotCartItems(items));
 		} catch (err) {
 			console.log("We're having trouble fetching the user cart.");
@@ -23,7 +23,7 @@ export const fetchCartItemsUser = id => {
 export const fetchCartItemsGuest = () => {
 	return async dispatch => {
 		try {
-			const { data: items } = await axios.get(`/api/cart`);
+			const { data: items } = await axios.get(`/api/guestcart`);
 			dispatch(gotCartItems(items));
 		} catch (err) {
 			console.log("We're having trouble fetching the guest cart.");
