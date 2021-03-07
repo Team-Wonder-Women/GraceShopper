@@ -10,15 +10,35 @@ class AllProductsList extends Component {
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleSubtract = this.handleSubtract.bind(this);
 		this.state = {
-			count: 1
+			counts: null
 		};
 	}
 	componentDidMount() {
 		this.props.loadProducts();
 	}
 
-	handleAdd() {
-		this.setState(prevState => ({ count: prevState.count + 1 }));
+	componentDidUpdate() {
+		if (this.state.counts === null) {
+			let productCounts = this.props.products.reduce((accumulator, elem) => {
+				accumulator[elem.id] = 1;
+				return accumulator;
+			}, {});
+			this.setState({
+				counts: productCounts
+			});
+			// this.setState({ counts: this.props.products.map(product => 1) });
+		}
+	}
+
+	handleAdd(props) {
+		console.log("props -->", props);
+		this.setState(prevState => ({
+			counts: {
+				...prevState.counts,
+				[props.id]: prevState.counts[props.id] + 1
+			}
+		}));
+		// this.setState(prevState => ({ count: prevState.id.count + 1 }));
 	}
 
 	handleSubtract() {
@@ -30,18 +50,21 @@ class AllProductsList extends Component {
 	}
 
 	render() {
-		console.log("all products", this.props);
-		return this.props.products.map(product => {
-			return (
-				<Products
-					key={product.id}
-					{...product}
-					add={this.handleAdd}
-					subtract={this.handleSubtract}
-					count={this.state.count}
-				/>
-			);
-		});
+		console.log("this.state -->", this.state);
+		return (
+			this.state.counts !== null &&
+			this.props.products.map(product => {
+				return (
+					<Products
+						key={product.id}
+						{...product}
+						add={this.handleAdd}
+						subtract={this.handleSubtract}
+						count={this.state.counts[product.id]}
+					/>
+				);
+			})
+		);
 	}
 }
 

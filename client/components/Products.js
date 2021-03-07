@@ -23,7 +23,7 @@ export default function Products(props) {
 				<button
 					className="quantity-button"
 					type="button"
-					onClick={() => props.add()}
+					onClick={() => props.add(props)}
 				>
 					+
 				</button>
