@@ -90,6 +90,7 @@ class Navbar extends Component {
 					</Cart>
 					<div id="cart" onClick={this.showCart}>
 						<img src="/cart.svg" />
+						<span id="lblCartCount">0</span>
 					</div>
 				</div>
 				<hr />
