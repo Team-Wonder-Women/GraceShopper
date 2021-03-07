@@ -2,7 +2,19 @@ const router = require("express").Router();
 const { Product, GuestCart } = require("../db");
 module.exports = router;
 
-router.get("/add-to-cart/:productId", async (req, res, next) => {
+// GET api/guestCart
+router.get("/", (req, res, next) => {
+	if (!req.session.cart) {
+		res.status(200).json({ products: null });
+	} else {
+		let cart = new GuestCart(req.session.cart);
+		let cartArr = cart.createItemArr();
+		res.json({ products: cartArr, total: cart.totalPrice });
+	}
+});
+
+//GET api/guestCart/productId --> add-to-cart
+router.get("/:productId", async (req, res, next) => {
 	try {
 		let id = req.params.productId;
 		let cart = new GuestCart(req.session.cart ? req.session.cart : {});
@@ -18,16 +30,7 @@ router.get("/add-to-cart/:productId", async (req, res, next) => {
 	}
 });
 
-router.get("/", (req, res, next) => {
-	if (!req.session.cart) {
-		res.status(200).json({ products: null });
-	} else {
-		let cart = new GuestCart(req.session.cart);
-		let cartArr = cart.createItemArr();
-		res.json({ products: cartArr, total: cart.totalPrice });
-	}
-});
-
+//GET api/guestCart/reduce/productId --> decrement product quantity in cart
 router.get("/reduce/:productId", (req, res, next) => {
 	let id = req.params.productId;
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
@@ -37,11 +40,12 @@ router.get("/reduce/:productId", (req, res, next) => {
 	res.redirect("/");
 });
 
+//GET api/guestCart/remove/productId --> delet item from cart
 router.get("/remove/:productId", (req, res, next) => {
 	let id = req.params.productId;
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
 
 	cart.removeProduct(id);
 	req.session.cart = cart;
-	res.redirect("/");
+	res.send(204).redirect("/");
 });
