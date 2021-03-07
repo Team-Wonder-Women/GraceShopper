@@ -6,8 +6,15 @@ import user from "./user";
 import products from "./products";
 import singleProduct from "./singleProduct";
 import cartItems from "./cartItem";
+import allUsers from "./allUsers";
 
-const reducer = combineReducers({ user, products, singleProduct, cartItems });
+const reducer = combineReducers({
+	users: allUsers,
+	user,
+	products,
+	singleProduct,
+	cartItems
+});
 const middleware = composeWithDevTools(
 	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
