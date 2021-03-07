@@ -33,12 +33,11 @@ router.post("/:userId/:productId", async (req, res, next) => {
 		});
 		if (!(await cart[0].hasProduct(req.params.productId))) {
 			const newItem = await Product.findByPk(req.params.productId);
-			console.log("newItem", newItem, newItem.price);
 			await cart[0].addProduct(newItem);
-			await CartItem.increment("priceAtPurchase", {
-				by: newItem.price,
-				where: { cartId: cart[0].id, productId: req.params.productId }
-			});
+			CartItem.update(
+				{ priceAtPurchase: newItem.price },
+				{ where: { cartId: cart[0].id, productId: req.params.productId } }
+			);
 		}
 		await CartItem.increment("quantity", {
 			where: { cartId: cart[0].id, productId: req.params.productId }
@@ -53,12 +52,20 @@ router.post("/:userId/:productId", async (req, res, next) => {
 //GET api/userCart/reduce/productId --> decrement product quantity in cart
 router.put("/:cartId/:productId", async (req, res, next) => {
 	try {
-		await CartItem.decrement("quantity", {
+		const item = await CartItem.findOne({
 			where: { cartId: req.params.cartId, productId: req.params.productId }
 		});
-		const cartArr = await CartItem.findAll({
-			where: { cartId: req.params.cartId }
-		});
+		if (item.quantity > 1) {
+			await CartItem.decrement("quantity", {
+				where: { cartId: req.params.cartId, productId: req.params.productId }
+			});
+		} else {
+			await CartItem.destroy({
+				where: { cartId: req.params.cartId, productId: req.params.productId }
+			});
+		}
+		const cart = await Cart.findByPk(req.params.cartId);
+		const cartArr = await cart.getProducts();
 
 		res.status(202).json({ products: cartArr, total: 0 });
 	} catch (err) {
@@ -69,13 +76,10 @@ router.put("/:cartId/:productId", async (req, res, next) => {
 //DELETE api/userCart/cartId/productId ---> delete item from cart
 router.delete("/:cartId/:productId", async (req, res, next) => {
 	try {
-		const deleted = await CartItem.destroy({
+		await CartItem.destroy({
 			where: { cartId: req.params.cartId, productId: req.params.productId }
 		});
-		if (deleted) {
-			res.sendStatus(204);
-		}
-		//no else statement yet..what's the status for that??
+		res.sendStatus(204);
 	} catch (err) {
 		next(err);
 	}
