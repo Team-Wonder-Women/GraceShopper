@@ -1,9 +1,15 @@
 import axios from "axios";
 
 const GOT_CART_ITEMS = "GOT_CART_ITEMS";
+const ADDED_ITEMS = "ADDED_ITEMS";
 
 export const gotCartItems = items => ({
 	type: GOT_CART_ITEMS,
+	items
+});
+
+export const addedItems = items => ({
+	type: ADDED_ITEMS,
 	items
 });
 
@@ -31,12 +37,25 @@ export const fetchCartItemsGuest = () => {
 	};
 };
 
-const initialState = [];
+export const addItem = productId => {
+	return async dispatch => {
+		try {
+			const { data: items } = await axios.get(`/api/guestcart/${productId}`);
+			dispatch(addedItems(items));
+		} catch (err) {
+			console.log("We could not add this item to your cart.");
+		}
+	};
+};
+
+const initialState = { products: [], total: 0 };
 
 export default function cartItems(state = initialState, action) {
 	switch (action.type) {
 		case GOT_CART_ITEMS:
-			return action.items;
+			return { ...state, products: [...action.items] };
+		case ADDED_ITEMS:
+			return { ...state, products: [...action.items] };
 		default:
 			return state;
 	}

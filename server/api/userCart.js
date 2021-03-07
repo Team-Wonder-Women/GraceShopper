@@ -1,32 +1,81 @@
 const router = require("express").Router();
-const { Cart, Product } = require("../db/models");
+const { Cart, Product, CartItem } = require("../db/models");
 module.exports = router;
 
-//GET api/cart/id
+//GET api/userCart/id
 router.get("/:userId", async (req, res, next) => {
 	try {
 		const cart = await Cart.findOrCreate({
-			where: { userId: req.params.userId }
+			where: {
+				userId: req.params.userId,
+				orderStatus: "incomplete"
+			}
 		});
-		if (cart[0].orderStatus === "incomplete") {
-			const incompleteCart = await Cart.findByPk(cart[0].id, {
-				include: { model: Product }
-			});
-			res.json(incompleteCart);
+		const cartArr = await cart[0].getProducts();
+		if (cartArr.length) {
+			res.json({ products: cartArr, total: 0 });
 		} else {
-			res.send("There's nothing in this cart!");
+			res.status(200).json({ products: null });
 		}
 	} catch (err) {
 		next(err);
 	}
 });
 
+//POST api/userCart/userId/productId --> add-to-cart
 router.post("/:userId/:productId", async (req, res, next) => {
 	try {
-		const cart = await Cart.findOne({ where: { userId: req.params.userId } });
-		const product = await Product.findByPk(req.params.productId);
-		const newCartItem = await cart.addProduct(product);
-		res.json({ newCartItem });
+		const cart = await Cart.findOrCreate({
+			where: {
+				userId: req.params.userId,
+				orderStatus: "incomplete"
+			}
+		});
+		if (!(await cart[0].hasProduct(req.params.productId))) {
+			const newItem = await Product.findByPk(req.params.productId);
+			console.log("newItem", newItem, newItem.price);
+			await cart[0].addProduct(newItem);
+			await CartItem.increment("priceAtPurchase", {
+				by: newItem.price,
+				where: { cartId: cart[0].id, productId: req.params.productId }
+			});
+		}
+		await CartItem.increment("quantity", {
+			where: { cartId: cart[0].id, productId: req.params.productId }
+		});
+		const cartArr = await cart[0].getProducts();
+		res.json({ products: cartArr, total: 0 });
+	} catch (err) {
+		next(err);
+	}
+});
+
+//GET api/userCart/reduce/productId --> decrement product quantity in cart
+router.put("/:cartId/:productId", async (req, res, next) => {
+	try {
+		await CartItem.decrement("quantity", {
+			where: { cartId: req.params.cartId, productId: req.params.productId }
+		});
+		const cartArr = await CartItem.findAll({
+			where: { cartId: req.params.cartId }
+		});
+
+		res.status(202).json({ products: cartArr, total: 0 });
+	} catch (err) {
+		next(err);
+	}
+});
+
+//DELETE api/userCart/cartId/productId ---> delete item from cart
+router.delete("/:cartId/:productId", async (req, res, next) => {
+	try {
+		const deleted = await CartItem.destroy({
+			where: { cartId: req.params.cartId, productId: req.params.productId }
+		});
+		if (deleted) {
+			res.sendStatus(204);
+		}
+		//no else statement yet..what's the status for that??
 	} catch (err) {
 		next(err);
 	}
