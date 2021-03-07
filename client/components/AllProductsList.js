@@ -26,31 +26,28 @@ class AllProductsList extends Component {
 			this.setState({
 				counts: productCounts
 			});
-			// this.setState({ counts: this.props.products.map(product => 1) });
 		}
 	}
 
-	handleAdd(props) {
-		console.log("props -->", props);
+	handleAdd(id) {
 		this.setState(prevState => ({
 			counts: {
 				...prevState.counts,
-				[props.id]: prevState.counts[props.id] + 1
+				[id]: prevState.counts[id] + 1
 			}
 		}));
-		// this.setState(prevState => ({ count: prevState.id.count + 1 }));
 	}
 
-	handleSubtract() {
-		this.state.count < 1
-			? this.setState({
-					count: 0
-			  })
-			: this.setState(prevState => ({ count: prevState.count - 1 }));
+	handleSubtract(id) {
+		this.setState(prevState => ({
+			counts:
+				prevState.counts[id] > 0
+					? { ...prevState.counts, [id]: prevState.counts[id] - 1 }
+					: { ...prevState.counts, [id]: prevState.counts[id] }
+		}));
 	}
 
 	render() {
-		console.log("this.state -->", this.state);
 		return (
 			this.state.counts !== null &&
 			this.props.products.map(product => {

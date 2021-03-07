@@ -15,7 +15,7 @@ export default function Products(props) {
 				<button
 					className="quantity-button"
 					type="button"
-					onClick={() => props.subtract()}
+					onClick={() => props.subtract(props.id)}
 				>
 					-
 				</button>
@@ -23,7 +23,7 @@ export default function Products(props) {
 				<button
 					className="quantity-button"
 					type="button"
-					onClick={() => props.add(props)}
+					onClick={() => props.add(props.id)}
 				>
 					+
 				</button>
