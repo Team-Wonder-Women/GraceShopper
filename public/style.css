@@ -6,6 +6,7 @@ body {
 	font-family: sans-serif;
 	background-color: #8a9acf;
 	font-family: "Work Sans", sans-serif;
+	height: 100vh;
 	background: linear-gradient(
 		to bottom left,
 		rgba(138, 154, 207, 0.6),

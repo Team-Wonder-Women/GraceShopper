@@ -162,7 +162,7 @@ const users = [
 
 const carts = [
 	{
-		orderStatus: "complete",
+		orderStatus: "incomplete",
 		userId: 1
 	},
 	{
@@ -214,8 +214,8 @@ const cartItems = [
 		productId: 1
 	},
 	{
-		quantity: 1,
-		cartId: 2,
+		quantity: 2,
+		cartId: 1,
 		productId: 2
 	},
 	{
