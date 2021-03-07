@@ -7,13 +7,26 @@ export const gotCartItems = items => ({
 	items
 });
 
-export const fetchCartItems = id => {
+//logged in
+export const fetchCartItemsUser = userId => {
 	return async dispatch => {
 		try {
-			const { data: items } = await axios.get(`/api/cart/${id}`);
+			const { data: items } = await axios.get(`/api/usercart/${userId}`);
 			dispatch(gotCartItems(items));
 		} catch (err) {
-			console.log("We're having trouble fetching the cart.");
+			console.log("We're having trouble fetching the user cart.");
+		}
+	};
+};
+
+//guest
+export const fetchCartItemsGuest = () => {
+	return async dispatch => {
+		try {
+			const { data: items } = await axios.get(`/api/guestcart`);
+			dispatch(gotCartItems(items));
+		} catch (err) {
+			console.log("We're having trouble fetching the guest cart.");
 		}
 	};
 };
