@@ -31,7 +31,7 @@ export default function SingleProduct() {
 				<button
 					className="quantity-button"
 					type="button"
-					onClick={() => setCount(count >= 1 ? count - 1 : count)}
+					onClick={() => setCount(count > 1 ? count - 1 : count)}
 				>
 					-
 				</button>

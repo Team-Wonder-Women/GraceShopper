@@ -41,7 +41,7 @@ class AllProductsList extends Component {
 	handleSubtract(id) {
 		this.setState(prevState => ({
 			counts:
-				prevState.counts[id] > 0
+				prevState.counts[id] > 1
 					? { ...prevState.counts, [id]: prevState.counts[id] - 1 }
 					: { ...prevState.counts, [id]: prevState.counts[id] }
 		}));
