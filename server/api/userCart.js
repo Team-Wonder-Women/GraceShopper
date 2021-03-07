@@ -43,6 +43,7 @@ router.post("/:userId/:productId", async (req, res, next) => {
 			where: { cartId: cart[0].id, productId: req.params.productId }
 		});
 		const cartArr = await cart[0].getProducts();
+		// const totalPrice = cartArr.map( item => item.price * item.quantity)
 		res.json({ products: cartArr, total: 0 });
 	} catch (err) {
 		next(err);
