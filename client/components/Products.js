@@ -11,6 +11,23 @@ export default function Products(props) {
 					<p className="product-price">${(props.price / 100).toFixed(2)}</p>
 				</div>
 			</Link>
+			<div className="allproducts-quantity">
+				<button
+					className="quantity-button"
+					type="button"
+					onClick={() => props.subtract(props.id)}
+				>
+					-
+				</button>
+				<h2 id="quantity-counter">{props.count}</h2>
+				<button
+					className="quantity-button"
+					type="button"
+					onClick={() => props.add(props.id)}
+				>
+					+
+				</button>
+			</div>
 			<button type="button">Add to Cart</button>
 		</div>
 	);
