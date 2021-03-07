@@ -26,7 +26,8 @@ class Navbar extends Component {
 	};
 
 	render() {
-		const { handleClick, isLoggedIn } = this.props;
+		console.log("navbar props", this.props);
+		const { handleClick, isLoggedIn, isAdmin } = this.props;
 		const openedCart = this.state.show;
 		let cart;
 		if (openedCart) {
@@ -54,6 +55,13 @@ class Navbar extends Component {
 								<Link className="nav-buttons-left" to="/home">
 									Home
 								</Link>
+								{isAdmin ? (
+									<Link className="nav-buttons-left" to="/admin">
+										Dashboard
+									</Link>
+								) : (
+									<></>
+								)}
 								<Link className="nav-buttons-left" to="/products">
 									All Candles
 								</Link>
@@ -97,7 +105,8 @@ class Navbar extends Component {
  */
 const mapState = state => {
 	return {
-		isLoggedIn: !!state.user.id
+		isLoggedIn: !!state.user.id,
+		isAdmin: !!state.user.isAdmin
 	};
 };
 
