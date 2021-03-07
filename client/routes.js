@@ -11,7 +11,8 @@ import {
 	Checkout,
 	InsideCart,
 	LandingPage,
-	AdminDash
+	AdminDash,
+	AddProduct
 } from "./components";
 import { me } from "./store";
 
@@ -41,6 +42,7 @@ class Routes extends Component {
 						<Route path="/home" component={UserHome} />
 						<Route path="/admin" component={AdminDash} />
 						<Route path="/checkout" component={Checkout} />
+						<Route path="/add-product" component={AddProduct} />
 					</Switch>
 				)}
 				{/* Displays our home component as a fallback */}
