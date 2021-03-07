@@ -24,9 +24,12 @@ router.get("/:userId", async (req, res, next) => {
 router.post("/:userId/:productId", async (req, res, next) => {
 	try {
 		const cart = await Cart.findOne({ where: { userId: req.params.userId } });
+		const cartItem = await cart.getProducts({
+			where: { id: req.params.productId }
+		});
 		const product = await Product.findByPk(req.params.productId);
 		const newCartItem = await cart.addProduct(product);
-		res.json({ newCartItem });
+		res.json({ products });
 	} catch (err) {
 		next(err);
 	}
