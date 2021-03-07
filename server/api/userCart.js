@@ -13,7 +13,11 @@ router.get("/:userId", async (req, res, next) => {
 		});
 		const cartArr = await cart[0].getProducts();
 		if (cartArr.length) {
-			res.json({ products: cartArr, total: 0 });
+			let totalPrice = 0;
+			cartArr.forEach(item => {
+				totalPrice = totalPrice + item.price * item.cartitem.quantity;
+			});
+			res.json({ products: cartArr, total: totalPrice });
 		} else {
 			res.status(200).json({ products: null });
 		}
@@ -43,7 +47,11 @@ router.post("/:userId/:productId", async (req, res, next) => {
 			where: { cartId: cart[0].id, productId: req.params.productId }
 		});
 		const cartArr = await cart[0].getProducts();
-		res.json({ products: cartArr, total: 0 });
+		let totalPrice = 0;
+		cartArr.forEach(item => {
+			totalPrice = totalPrice + item.price * item.cartitem.quantity;
+		});
+		res.json({ products: cartArr, total: totalPrice });
 	} catch (err) {
 		next(err);
 	}
@@ -52,10 +60,10 @@ router.post("/:userId/:productId", async (req, res, next) => {
 //GET api/userCart/reduce/productId --> decrement product quantity in cart
 router.put("/:cartId/:productId", async (req, res, next) => {
 	try {
-		const item = await CartItem.findOne({
+		const updateItem = await CartItem.findOne({
 			where: { cartId: req.params.cartId, productId: req.params.productId }
 		});
-		if (item.quantity > 1) {
+		if (updateItem.quantity > 1) {
 			await CartItem.decrement("quantity", {
 				where: { cartId: req.params.cartId, productId: req.params.productId }
 			});
@@ -66,8 +74,12 @@ router.put("/:cartId/:productId", async (req, res, next) => {
 		}
 		const cart = await Cart.findByPk(req.params.cartId);
 		const cartArr = await cart.getProducts();
+		let totalPrice = 0;
+		cartArr.forEach(item => {
+			totalPrice = totalPrice + item.price * item.cartitem.quantity;
+		});
 
-		res.status(202).json({ products: cartArr, total: 0 });
+		res.status(202).json({ products: cartArr, total: totalPrice });
 	} catch (err) {
 		next(err);
 	}
