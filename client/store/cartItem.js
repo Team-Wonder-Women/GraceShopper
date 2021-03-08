@@ -70,7 +70,11 @@ const initialState = { products: [], total: 0 };
 export default function cartItems(state = initialState, action) {
 	switch (action.type) {
 		case GOT_CART_ITEMS:
-			return { ...state, products: [...action.items] };
+			if (action.items) {
+				return { ...state, products: [...action.items] };
+			} else {
+				return state;
+			}
 		case ADDED_ITEMS:
 			return { ...state, products: [...action.items] };
 		default:
