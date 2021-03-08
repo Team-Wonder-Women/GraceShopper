@@ -24,6 +24,7 @@ router.get("/:productId", async (req, res, next) => {
 
 // POST /api/products/add
 router.post("/add", async (req, res, next) => {
+	console.log("req.body ----->", req.body);
 	try {
 		const name = req.body.name;
 		const description = req.body.description;
