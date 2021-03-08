@@ -11,6 +11,7 @@ export default function SingleProduct() {
 		"https://flevix.com/wp-content/uploads/2019/07/Round-Line-Loading.gif"
 	);
 	const [count, setCount] = useState(1);
+	console.log("count in singleproduct --->", count);
 	// in lieu of match.props.params
 	const { productId } = useParams();
 	// in lieu of mapDispatch
@@ -25,7 +26,8 @@ export default function SingleProduct() {
 	});
 
 	const handleAdd = () => {
-		dispatch(addItemUser(id, productId));
+		dispatch(addItemUser(productId, count));
+		setCount(1);
 	};
 
 	return (

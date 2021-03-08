@@ -27,11 +27,13 @@ router.get("/:userId", async (req, res, next) => {
 });
 
 //POST api/userCart/userId/productId --> add-to-cart
-router.post("/:userId/:productId", async (req, res, next) => {
+router.post("/:productId", async (req, res, next) => {
+	console.log("count -->", req.body.count);
+
 	try {
 		const cart = await Cart.findOrCreate({
 			where: {
-				userId: req.params.userId,
+				userId: req.user.id,
 				orderStatus: "incomplete"
 			}
 		});
@@ -44,6 +46,7 @@ router.post("/:userId/:productId", async (req, res, next) => {
 			);
 		}
 		await CartItem.increment("quantity", {
+			by: req.body.count,
 			where: { cartId: cart[0].id, productId: req.params.productId }
 		});
 		const cartArr = await cart[0].getProducts();
