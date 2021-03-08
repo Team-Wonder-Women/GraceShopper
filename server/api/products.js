@@ -27,7 +27,7 @@ router.post("/add", async (req, res, next) => {
 	try {
 		const name = req.body.name;
 		const description = req.body.description;
-		const price = req.body.price;
+		const price = req.body.price * 100;
 		const size = req.body.size;
 		const quantity = req.body.quantity;
 		const [newProduct, wasCreated] = await Product.findOrCreate({

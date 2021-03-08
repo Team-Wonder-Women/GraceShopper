@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createSingleProduct } from "../store/singleProduct";
+import { createSingleProduct } from "../store/products";
 
 class AddProduct extends Component {
 	constructor() {
@@ -8,9 +8,9 @@ class AddProduct extends Component {
 		this.state = {
 			name: "",
 			description: "",
-			price: undefined,
+			price: "",
 			size: "",
-			quantity: undefined
+			quantity: ""
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +24,7 @@ class AddProduct extends Component {
 	handleSubmit(evt) {
 		evt.preventDefault();
 		this.props.addProduct({ ...this.state });
+		this.props.history.push("/products");
 	}
 
 	render() {
@@ -102,7 +103,7 @@ class AddProduct extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addProduct: product => dispatch(createSingleProduct(product, history))
+		addProduct: product => dispatch(createSingleProduct(product))
 	};
 };
 
