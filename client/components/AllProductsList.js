@@ -48,6 +48,7 @@ class AllProductsList extends Component {
 	}
 
 	render() {
+		console.log("products -->", this.props.products);
 		return (
 			this.state.counts !== null &&
 			this.props.products.map(product => {

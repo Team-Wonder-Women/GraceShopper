@@ -301,10 +301,6 @@ button {
 	border-left: 1px solid gold;
 }
 
-/* .badge {
-	border-radius: 9px;
-} */
-
 #lblCartCount {
 	font-size: 10px;
 	font-weight: bold;
@@ -313,4 +309,64 @@ button {
 	margin: 0px -10px 30px -6px;
 	padding: 0px 5px;
 	border-radius: 9px;
+}
+
+textarea {
+	resize: none;
+	font-family: "Work Sans", sans-serif;
+	width: 200px;
+	height: 70px;
+}
+
+.dollar-sign {
+	border: 1px inset #ccc;
+}
+.dollar-sign input {
+	border: 0;
+}
+
+/* gets rids of arrows in number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input,
+select {
+	font-family: "Work Sans", sans-serif;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form h3,
+.single-product-container h2 {
+	margin-top: 13px;
+	margin-bottom: 3px;
+}
+
+.form button {
+	margin-top: 2rem;
+}
+
+.add-product-bg {
+	border-radius: 1rem;
+	background: white;
+	background: linear-gradient(
+		to top right,
+		rgba(255, 255, 255, 0.7),
+		rgba(255, 255, 255, 0.3)
+	);
+	height: 500px;
+	margin: 10px;
+}
+
+.single-product-container select {
+	width: 55px;
+	height: 30px;
+	font-size: 1rem;
 }
