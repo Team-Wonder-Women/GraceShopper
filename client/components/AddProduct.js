@@ -9,7 +9,7 @@ class AddProduct extends Component {
 			name: "",
 			description: "",
 			price: "",
-			size: "",
+			size: "2 oz",
 			quantity: ""
 		};
 		this.handleChange = this.handleChange.bind(this);

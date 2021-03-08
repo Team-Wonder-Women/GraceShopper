@@ -370,3 +370,23 @@ select {
 	height: 30px;
 	font-size: 1rem;
 }
+.login-signup-container form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.first-last-name-container {
+	display: flex;
+	flex-direction: row;
+	margin: 0px;
+}
+
+.login-signup-container input {
+	margin-bottom: -5px;
+}
+
+#email,
+#password {
+	width: 300px;
+}
