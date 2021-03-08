@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class AddProduct extends Component {
+	constructor() {
+		super();
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 	componentDidMount() {
 		// this.props.loadUsers();
 	}
@@ -18,7 +22,7 @@ class AddProduct extends Component {
 	render() {
 		return (
 			<div className="add-product-bg">
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={this.handleSubmit}>
 					<div className="form">
 						<h2>Add Product</h2>
 						<label htmlFor="name">
