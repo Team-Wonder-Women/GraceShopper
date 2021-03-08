@@ -1,27 +1,31 @@
 //Creating a object for the guest cart
 module.exports = function GuestCart(prevCart) {
 	this.items = prevCart.items || {};
-	this.totalQty = prevCart.totalQty || 0;
+	// this.totalQuantity = prevCart.totalQuantity || 0;
 	this.totalPrice = prevCart.totalPrice || 0;
 
 	//function for adding a new item to cart
-	this.addItem = function (product, productId) {
-		let storedItem = this.items[productId];
+	this.addItem = function (product, count) {
+		let storedItem = this.items[product.id];
 		if (!storedItem) {
-			storedItem = this.items[productId] = { item: product, qty: 0, price: 0 };
+			storedItem = this.items[product.id] = {
+				item: product,
+				cartitem: { quantity: 0, price: product.price }
+			};
 		}
-		storedItem.qty++;
-		storedItem.price = storedItem.item.price * storedItem.qty;
-		this.totalQty++;
-		this.totalPrice = this.totalPrice + storedItem.item.price;
+		storedItem.cartitem.quantity += count;
+		storedItem.cartitem.price =
+			storedItem.item.price * storedItem.cartitem.quantity;
+		// this.totalQuantity = this.totalQuantity + count;
+		this.totalPrice = this.totalPrice + storedItem.cartitem.price;
 	};
 
 	//remove one item from cart
 	this.reduceItem = function (productId) {
 		let deletedItem = this.items[productId];
-		deletedItem.qty--;
+		deletedItem.quantity--;
 		deletedItem.price -= deletedItem.item.price;
-		this.totalQty--;
+		this.totalQuantity--;
 		this.totalPrice -= deletedItem.item.price;
 
 		if (this.items[productId] <= 0) {
@@ -31,7 +35,7 @@ module.exports = function GuestCart(prevCart) {
 
 	//remove all from one product
 	this.removeProduct = function (productId) {
-		this.totalQty -= this.items[productId].qty;
+		this.totalQuantity -= this.items[productId].quantity;
 		this.totalPrice -= this.items[productId].price;
 		delete this.items[productId];
 	};

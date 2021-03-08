@@ -6,7 +6,6 @@ import { connect } from "react-redux";
  * COMPONENT
  */
 export const UserHome = props => {
-	console.log("props in user home-->", props);
 	const { firstName } = props;
 
 	return (
