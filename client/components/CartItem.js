@@ -4,6 +4,8 @@ import { deleteItem } from "../store/cartItem";
 
 export default function CartItem(props) {
 	const { name, price, cartitem, id } = props;
+	console.log("name -->", name);
+	console.log("props -->", props);
 	const { cartId } = cartitem;
 
 	const [cartItem, setCartItem] = useState(cartitem);
