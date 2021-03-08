@@ -20,7 +20,7 @@ const gotUsers = users => ({ type: GET_USERS, users });
  */
 export const getUsers = () => async dispatch => {
 	try {
-		const { data } = await axios.get("./api/users");
+		const { data } = await axios.get("/api/users");
 		dispatch(gotUsers(data));
 	} catch (err) {
 		console.error(err);
