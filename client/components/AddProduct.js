@@ -9,26 +9,48 @@ class AddProduct extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Add Product</h2>
-				<div>
-					<form>
-						<div>
-							<label htmlFor="name">
-								<small>Name</small>
-							</label>
-							<input name="name" type="text" />
-						</div>
-						<div>
-							<label htmlFor="description">
-								<small>Description</small>
-							</label>
-							<textarea name="description" />
-						</div>
+				<form>
+					<div className="form">
+						<h2>Add Product</h2>
+						<label htmlFor="name">
+							<h3>Name</h3>
+						</label>
+						<input name="name" type="text" required />
+						<label htmlFor="description">
+							<h3>Description</h3>
+						</label>
+						<textarea name="description" required />
+						<label htmlFor="price">
+							<h3>Price</h3>
+						</label>
+						<span className="dollar-sign">
+							$
+							<input
+								type="number"
+								pattern="/^\d*\.?\d*$/"
+								name="price"
+								min="1"
+								max="100"
+								step="0.01"
+							/>
+						</span>
+						<label htmlFor="size">
+							<h3>Size:</h3>
+						</label>
+						<select name="size">
+							<option value="2 oz">2 oz</option>
+							<option value="3 oz">3 oz</option>
+							<option value="9 oz">9 oz</option>
+						</select>
+						<label htmlFor="quantity">
+							<h3>Quantity</h3>
+						</label>
+						<input type="number" name="price" min="1" max="500" />
 						<button style={{ width: "100%" }} type="submit">
 							Add New Product
 						</button>
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
 		);
 	}
