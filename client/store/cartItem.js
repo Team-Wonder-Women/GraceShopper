@@ -2,7 +2,7 @@ import axios from "axios";
 
 const GOT_CART_ITEMS = "GOT_CART_ITEMS";
 const ADDED_ITEMS = "ADDED_ITEMS";
-const DELETED_ITEM = "DELETED_ITEMS";
+const DELETED_ITEM = "DELETED_ITEM";
 
 export const gotCartItems = items => ({
 	type: GOT_CART_ITEMS,
@@ -70,9 +70,9 @@ const initialState = { products: [], total: 0 };
 export default function cartItems(state = initialState, action) {
 	switch (action.type) {
 		case GOT_CART_ITEMS:
-			return { ...state, products: action.items };
+			return { ...state, products: [...action.items] };
 		case ADDED_ITEMS:
-			return { ...state, products: action.items };
+			return { ...state, products: [...action.items] };
 		default:
 			return state;
 	}
