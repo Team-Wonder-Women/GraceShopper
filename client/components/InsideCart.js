@@ -20,7 +20,7 @@ export default function InsideCart() {
 	}, []);
 
 	useEffect(() => {
-		if (cartItems && cartItems.length >= 1) {
+		if (cartItems.length >= 1) {
 			setIsEmpty(false);
 		} else {
 			setIsEmpty(true);

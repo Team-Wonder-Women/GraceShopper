@@ -9,9 +9,10 @@ export const gotCartItems = items => ({
 	items
 });
 
-export const addedItems = items => ({
+export const addedItems = (items, total) => ({
 	type: ADDED_ITEMS,
-	items
+	items,
+	total
 });
 
 export const deletedItem = productId => ({
@@ -36,23 +37,37 @@ export const fetchCartItemsGuest = () => {
 	return async dispatch => {
 		try {
 			const { data: items } = await axios.get(`/api/guestcart`);
-			dispatch(gotCartItems(items.products));
+			dispatch(gotCartItems(items.products, items.total));
 		} catch (err) {
 			console.log("We're having trouble fetching the guest cart.");
 		}
 	};
 };
 
-export const addItem = productId => {
+export const addItemUser = (productId, count) => {
+	console.log("count inside thunk", count);
 	return async dispatch => {
 		try {
-			const { data: items } = await axios.get(`/api/guestcart/${productId}`);
-			dispatch(addedItems(items.products));
+			const { data: items } = await axios.post(`/api/usercart/${productId}`, {
+				count
+			});
+			dispatch(addedItems(items.products, items.total));
 		} catch (err) {
 			console.log("We could not add this item to your cart.");
 		}
 	};
 };
+
+// export const addItemGuest = productId => {
+// 	return async dispatch => {
+// 		try {
+// 			const { data: items } = await axios.get(`/api/guestcart/${productId}`);
+// 			dispatch(addedItems(items.products, items.total));
+// 		} catch (err) {
+// 			console.log("We could not add this item to your cart.");
+// 		}
+// 	};
+// };
 
 export const deleteItem = (cartId, productId) => {
 	return async dispatch => {
@@ -71,7 +86,7 @@ export default function cartItems(state = initialState, action) {
 	switch (action.type) {
 		case GOT_CART_ITEMS:
 			if (action.items) {
-				return { ...state, products: [...action.items] };
+				return { ...state, products: [...action.items], total: action.total };
 			} else {
 				return state;
 			}

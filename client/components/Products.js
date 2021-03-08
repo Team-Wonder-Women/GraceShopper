@@ -1,10 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { addItem } from "../store/cartItem";
+import { addItemUser } from "../store/cartItem";
 
 export default function Products(props) {
+	const [count, setCount] = useState(props.count);
+
+	const dispatch = useDispatch();
+
+	function handleAdd() {
+		console.log("count in handleAdd -->", props.id);
+		dispatch(addItemUser(props.id, count));
+		setCount(1);
+	}
+
 	return (
 		<div className="product-container">
 			<Link to={`products/${props.id}`} className="product-link-container">
@@ -18,20 +28,22 @@ export default function Products(props) {
 				<button
 					className="quantity-button"
 					type="button"
-					onClick={() => props.subtract(props.id)}
+					onClick={() => setCount(count > 1 ? count - 1 : count)}
 				>
 					-
 				</button>
-				<h2 id="quantity-counter">{props.count}</h2>
+				<h2 id="quantity-counter">{count}</h2>
 				<button
 					className="quantity-button"
 					type="button"
-					onClick={() => props.add(props.id)}
+					onClick={() => setCount(count + 1)}
 				>
 					+
 				</button>
 			</div>
-			<button type="button">Add to Cart</button>
+			<button type="button" onClick={handleAdd}>
+				Add to Cart
+			</button>
 		</div>
 	);
 }
