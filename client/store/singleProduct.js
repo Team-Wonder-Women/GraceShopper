@@ -30,8 +30,9 @@ export const fetchSingleProduct = id => {
 export const createSingleProduct = (product, history) => {
 	return async dispatch => {
 		try {
+			console.log("product -->", product);
 			const { data: created } = await axios.post("/api/products/add", product);
-			dispatch(addSingleStudent(created));
+			dispatch(addSingleProduct(created));
 			history.push("/products");
 		} catch (err) {
 			console.log("We're having trouble adding this product.");

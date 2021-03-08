@@ -1,38 +1,58 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { createSingleProduct } from "../store/singleProduct";
 
 class AddProduct extends Component {
 	constructor() {
 		super();
+		this.state = {
+			name: "",
+			description: "",
+			price: undefined,
+			size: "",
+			quantity: undefined
+		};
+		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	componentDidMount() {
-		// this.props.loadUsers();
+	handleChange(evt) {
+		this.setState({
+			[evt.target.name]: evt.target.value
+		});
 	}
 
 	handleSubmit(evt) {
 		evt.preventDefault();
-		const name = evt.target.name;
-		const description = evt.target.description.value;
-		const price = evt.target.price.value;
-		const size = evt.target.size.value;
-		const quantity = evt.target.quantity.value;
+		this.props.addProduct({ ...this.state });
 	}
 
 	render() {
+		const { name, description, price, size, quantity } = this.state;
+		const { handleSubmit, handleChange } = this;
 		return (
 			<div className="add-product-bg">
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={handleSubmit}>
 					<div className="form">
 						<h2>Add Product</h2>
 						<label htmlFor="name">
 							<h3>Name</h3>
 						</label>
-						<input name="name" type="text" required />
+						<input
+							name="name"
+							type="text"
+							value={name}
+							onChange={handleChange}
+							required
+						/>
 						<label htmlFor="description">
 							<h3>Description</h3>
 						</label>
-						<textarea name="description" required />
+						<textarea
+							name="description"
+							value={description}
+							onChange={handleChange}
+							required
+						/>
 						<label htmlFor="price">
 							<h3>Price</h3>
 						</label>
@@ -45,13 +65,15 @@ class AddProduct extends Component {
 								min="1"
 								max="100"
 								step="0.01"
+								value={price}
+								onChange={handleChange}
 								required
 							/>
 						</span>
 						<label htmlFor="size">
 							<h3>Size</h3>
 						</label>
-						<select name="size">
+						<select name="size" value={size} onChange={handleChange}>
 							<option value="2 oz">2 oz</option>
 							<option value="3 oz">3 oz</option>
 							<option value="9 oz">9 oz</option>
@@ -59,7 +81,15 @@ class AddProduct extends Component {
 						<label htmlFor="quantity">
 							<h3>Quantity</h3>
 						</label>
-						<input type="number" name="price" min="1" max="500" required />
+						<input
+							type="number"
+							name="quantity"
+							min="1"
+							max="500"
+							value={quantity}
+							onChange={handleChange}
+							required
+						/>
 						<button style={{ width: "100%" }} type="submit">
 							Add New Product
 						</button>
@@ -71,7 +101,9 @@ class AddProduct extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-	return {};
+	return {
+		addProduct: product => dispatch(createSingleProduct(product, history))
+	};
 };
 
 export default connect(null, mapDispatchToProps)(AddProduct);
