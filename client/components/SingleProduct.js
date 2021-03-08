@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/singleProduct";
+import { addItemUser } from "../store/cartItem";
 export default function SingleProduct() {
 	// in lieu of mapState
 	const singleProduct = useSelector(state => state.singleProduct);
+	const { id } = useSelector(state => state.user);
 	const [image, setImage] = useState(
 		"https://flevix.com/wp-content/uploads/2019/07/Round-Line-Loading.gif"
 	);
 	const [count, setCount] = useState(1);
 	// in lieu of match.props.params
-	let { productId } = useParams();
+	const { productId } = useParams();
 	// in lieu of mapDispatch
 	const dispatch = useDispatch();
 	// in lieu of componentDidMount
@@ -21,6 +23,11 @@ export default function SingleProduct() {
 	useEffect(() => {
 		setImage(`/${singleProduct.imageUrl}`);
 	});
+
+	const handleAdd = () => {
+		dispatch(addItemUser(id, productId));
+	};
+
 	return (
 		<div className="single-product-container">
 			<h1>{singleProduct.name}</h1>
@@ -44,7 +51,9 @@ export default function SingleProduct() {
 					+
 				</button>
 			</div>
-			<button type="button">Add to Cart</button>
+			<button type="button" onClick={handleAdd}>
+				Add to Cart
+			</button>
 		</div>
 	);
 }

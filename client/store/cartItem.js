@@ -43,7 +43,21 @@ export const fetchCartItemsGuest = () => {
 	};
 };
 
-export const addItem = productId => {
+export const addItemUser = (userId, productId) => {
+	console.log("inside thunk");
+	return async dispatch => {
+		try {
+			const { data: items } = await axios.get(
+				`/api/usercart/${userId}/${productId}`
+			);
+			dispatch(addedItems(items.products));
+		} catch (err) {
+			console.log("We could not add this item to your cart.");
+		}
+	};
+};
+
+export const addItemGuest = productId => {
 	return async dispatch => {
 		try {
 			const { data: items } = await axios.get(`/api/guestcart/${productId}`);
