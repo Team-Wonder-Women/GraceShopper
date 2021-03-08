@@ -6,6 +6,7 @@ import { addItemUser, addItemGuest } from "../store/cartItem";
 export default function SingleProduct() {
 	// in lieu of mapState
 	const singleProduct = useSelector(state => state.singleProduct);
+	console.log("single product ----->", singleProduct);
 	const { id } = useSelector(state => state.user);
 	const [image, setImage] = useState(
 		"https://flevix.com/wp-content/uploads/2019/07/Round-Line-Loading.gif"
@@ -39,19 +40,8 @@ export default function SingleProduct() {
 			<h1>{singleProduct.name}</h1>
 			<img src={image} />
 			<h1>{singleProduct.description}</h1>
+			<h2>{singleProduct.size}</h2>
 			<h1>${(singleProduct.price / 100).toFixed(2)}</h1>
-			<label htmlFor="size">
-				<h2>Choose Size:</h2>
-			</label>
-			<select
-				name="size"
-				value={size}
-				onChange={evt => setSize(evt.target.value)}
-			>
-				<option value="2 oz">2 oz</option>
-				<option value="3 oz">3 oz</option>
-				<option value="9 oz">9 oz</option>
-			</select>
 			<div className="quantity-buttons">
 				<button
 					className="quantity-button"

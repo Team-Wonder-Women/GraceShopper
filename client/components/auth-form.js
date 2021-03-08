@@ -8,28 +8,44 @@ import { auth } from "../store";
  */
 const AuthForm = props => {
 	const { name, displayName, handleSubmit, error } = props;
-	console.log("props -->", props);
 	return (
-		<div>
+		<div className="login-signup-container">
 			<form onSubmit={handleSubmit} name={name}>
+				<h1>{displayName}</h1>
+				{displayName === "Sign Up" && (
+					<div className="first-last-name-container">
+						<div>
+							<label htmlFor="firstName">
+								<small>First Name</small>
+							</label>
+							<input name="firstName" type="text" required />
+						</div>
+						<div>
+							<label htmlFor="lastName">
+								<small>Last Name</small>
+							</label>
+							<input name="lastName" type="text" required />
+						</div>
+					</div>
+				)}
 				<div>
 					<label htmlFor="email">
 						<small>Email</small>
 					</label>
-					<input name="email" type="text" />
+					<input id="email" name="email" type="text" required />
 				</div>
 				<div>
 					<label htmlFor="password">
 						<small>Password</small>
 					</label>
-					<input name="password" type="password" />
+					<input id="password" name="password" type="password" required />
 				</div>
 				<div>
 					<button type="submit">{displayName}</button>
 				</div>
 				{error && error.response && <div> {error.response.data} </div>}
+				<a href="/auth/google">{displayName} with Google</a>
 			</form>
-			<a href="/auth/google">{displayName} with Google</a>
 		</div>
 	);
 };
@@ -64,7 +80,13 @@ const mapDispatch = dispatch => {
 			const formName = evt.target.name;
 			const email = evt.target.email.value;
 			const password = evt.target.password.value;
-			dispatch(auth(email, password, formName));
+			if (formName === "signup") {
+				const firstName = evt.target.firstName.value;
+				const lastName = evt.target.lastName.value;
+				dispatch(auth(email, password, formName, firstName, lastName));
+			} else {
+				dispatch(auth(email, password, formName));
+			}
 		}
 	};
 };
