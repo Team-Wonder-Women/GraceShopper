@@ -9,7 +9,8 @@ import { auth } from "../store";
 const AuthForm = props => {
 	const { name, displayName, handleSubmit, error } = props;
 	return (
-		<div>
+		<div className="login-signup-container">
+			<h1>{displayName}</h1>
 			<form onSubmit={handleSubmit} name={name}>
 				{displayName === "Sign Up" && (
 					<div>
