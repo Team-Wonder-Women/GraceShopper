@@ -6,10 +6,19 @@ class AddProduct extends Component {
 		// this.props.loadUsers();
 	}
 
+	handleSubmit(evt) {
+		evt.preventDefault();
+		const name = evt.target.name;
+		const description = evt.target.description.value;
+		const price = evt.target.price.value;
+		const size = evt.target.size.value;
+		const quantity = evt.target.quantity.value;
+	}
+
 	render() {
 		return (
-			<div>
-				<form>
+			<div className="add-product-bg">
+				<form onSubmit={handleSubmit}>
 					<div className="form">
 						<h2>Add Product</h2>
 						<label htmlFor="name">
@@ -32,10 +41,11 @@ class AddProduct extends Component {
 								min="1"
 								max="100"
 								step="0.01"
+								required
 							/>
 						</span>
 						<label htmlFor="size">
-							<h3>Size:</h3>
+							<h3>Size</h3>
 						</label>
 						<select name="size">
 							<option value="2 oz">2 oz</option>
@@ -45,7 +55,7 @@ class AddProduct extends Component {
 						<label htmlFor="quantity">
 							<h3>Quantity</h3>
 						</label>
-						<input type="number" name="price" min="1" max="500" />
+						<input type="number" name="price" min="1" max="500" required />
 						<button style={{ width: "100%" }} type="submit">
 							Add New Product
 						</button>
@@ -56,8 +66,8 @@ class AddProduct extends Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => ({
-	// loadUsers: () => dispatch(getUsers())
-});
+const mapDispatchToProps = dispatch => {
+	return {};
+};
 
 export default connect(null, mapDispatchToProps)(AddProduct);
