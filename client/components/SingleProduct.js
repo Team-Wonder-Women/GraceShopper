@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/singleProduct";
-import { addItemUser } from "../store/cartItem";
+import { addItemUser, addItemGuest } from "../store/cartItem";
 export default function SingleProduct() {
 	// in lieu of mapState
 	const singleProduct = useSelector(state => state.singleProduct);
@@ -27,7 +27,11 @@ export default function SingleProduct() {
 	});
 
 	const handleAdd = () => {
-		dispatch(addItemUser(productId, count));
+		if (id) {
+			dispatch(addItemUser(productId, count));
+		} else {
+			dispatch(addItemGuest(productId, count));
+		}
 		setCount(1);
 	};
 

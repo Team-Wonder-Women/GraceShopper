@@ -14,16 +14,18 @@ router.get("/", (req, res, next) => {
 });
 
 //GET api/guestCart/productId --> add-to-cart
-router.get("/:productId", async (req, res, next) => {
+router.get("/:productId/:count", async (req, res, next) => {
 	try {
 		let id = req.params.productId;
 		let cart = new GuestCart(req.session.cart ? req.session.cart : {});
 		let product = await Product.findByPk(id);
 		if (!product) res.status(401).json("this candle is not so lit");
 		else {
-			cart.addItem(product, id);
+			cart.addItem(product.dataValues, Number(req.params.count));
+			console.log("this is cart--->", cart);
 			req.session.cart = cart;
-			res.redirect("/products");
+			let cartArr = cart.createItemArr();
+			res.json({ products: cartArr, total: cart.totalPrice });
 		}
 	} catch (err) {
 		next(err);
@@ -31,7 +33,7 @@ router.get("/:productId", async (req, res, next) => {
 });
 
 //GET api/guestCart/reduce/productId --> decrement product quantity in cart
-router.get("/reduce/:productId", (req, res, next) => {
+router.get("/reduce/:productId/", (req, res, next) => {
 	let id = req.params.productId;
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
 
