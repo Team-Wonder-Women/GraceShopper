@@ -8,15 +8,15 @@ _cart_
 - only the logged in user should be able to edit their cart
 - edit quantity of product inside of cart
 
-  _checkout_
+_checkout_
 
 - make appropriate db changes when checkout (change cart status to complete, edit product quantities)
 
-  _create an account_
+_create an account_
 
 - add appropriate form with frontend validations (there is an auth/signup route already)
 
-  _protect backend routes_
+_protect backend routes_
 
 - add 'gatekeeper' function as middleware to express routes
 - only admin should be able to see all users, put/post/delete products
@@ -29,7 +29,7 @@ _in progress_
 - guest cart (check out local storage)
 - admish dashboard
 
-  _new_
+_new_
 
 - user profile with order history
 - look into payment method options (Stripe for example)
