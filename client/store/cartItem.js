@@ -73,13 +73,24 @@ export const addItemGuest = (productId, count) => {
 	};
 };
 
-export const deleteItem = (cartId, productId) => {
+export const deleteItemUser = (cartId, productId) => {
 	return async dispatch => {
 		try {
 			await axios.delete(`/api/userCart/${cartId}/${productId}`);
 			dispatch(deletedItem(productId));
 		} catch (err) {
-			console.log("We weren't able to delete this item from your cart.");
+			console.log("We weren't able to delete this item from your user cart.");
+		}
+	};
+};
+
+export const deleteItemGuest = productId => {
+	return async dispatch => {
+		try {
+			await axios.get(`/api/guestCart/${productId}/remove`);
+			dispatch(deletedItem(productId));
+		} catch (err) {
+			console.log("We weren't able to delete this item from your guest cart.");
 		}
 	};
 };

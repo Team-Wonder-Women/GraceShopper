@@ -35,12 +35,12 @@ class Navbar extends Component {
 
 	render() {
 		const { handleClick, isLoggedIn, isAdmin, cartItems } = this.props;
-		let cart;
-		if (isLoggedIn) {
-			cart = <InsideCart />;
-		} else {
-			cart = "";
-		}
+		// let cart;
+		// if (isLoggedIn) {
+		// 	cart = <InsideCart />;
+		// } else {
+		// 	cart = "";
+		// }
 		return (
 			<div className="navbar">
 				<div className="header-logo">
@@ -93,7 +93,8 @@ class Navbar extends Component {
 					<Cart show={this.state.show} handleClose={this.hideCart}>
 						<div className="cart-content">
 							<h1>Your Cart</h1>
-							{cart}
+							<InsideCart />
+							{/* {cart} */}
 						</div>
 					</Cart>
 					<div id="cart" onClick={this.showCart}>

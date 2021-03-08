@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteItem } from "../store/cartItem";
+import { deleteItemUser } from "../store/cartItem";
 
-export default function CartItem(props) {
+export default function CartItemUser(props) {
 	const { name, price, cartitem, id } = props;
+	console.log("props in CartItem -->", props);
 	const { cartId } = cartitem;
 
 	const [cartItem, setCartItem] = useState(cartitem);
@@ -11,7 +12,7 @@ export default function CartItem(props) {
 	const dispatch = useDispatch();
 
 	function handleDelete() {
-		dispatch(deleteItem(cartId, id));
+		dispatch(deleteItemUser(cartId, id));
 		setCartItem(null);
 	}
 

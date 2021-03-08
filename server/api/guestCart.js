@@ -42,12 +42,13 @@ router.get("/reduce/:productId/", (req, res, next) => {
 	res.redirect("/");
 });
 
-//GET api/guestCart/remove/productId --> delet item from cart
-router.get("/remove/:productId", (req, res, next) => {
-	let id = req.params.productId;
+//GET api/guestCart/remove/productId --> delete item from cart
+router.get("/:productId/remove", async (req, res, next) => {
+	let id = Number(req.params.productId);
+	console.log("id -->", id);
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
 
 	cart.removeProduct(id);
 	req.session.cart = cart;
-	res.send(204).redirect("/");
+	res.sendStatus(204);
 });
