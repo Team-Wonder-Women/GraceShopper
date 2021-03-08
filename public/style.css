@@ -343,7 +343,8 @@ select {
 	align-items: center;
 }
 
-.form h3 {
+.form h3,
+.single-product-container h2 {
 	margin-top: 13px;
 	margin-bottom: 3px;
 }
@@ -362,4 +363,10 @@ select {
 	);
 	height: 500px;
 	margin: 10px;
+}
+
+.single-product-container select {
+	width: 55px;
+	height: 30px;
+	font-size: 1rem;
 }
