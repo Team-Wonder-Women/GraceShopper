@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { addItemUser } from "../store/cartItem";
+import { addItemUser, addItemGuest } from "../store/cartItem";
 
 export default function Products(props) {
 	const [count, setCount] = useState(props.count);
-
+	const user = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
 	function handleAdd() {
-		console.log("count in handleAdd -->", props.id);
-		dispatch(addItemUser(props.id, count));
+		if (user.id) {
+			dispatch(addItemUser(props.id, count));
+		} else {
+			dispatch(addItemGuest(props.id, count));
+		}
 		setCount(1);
 	}
 

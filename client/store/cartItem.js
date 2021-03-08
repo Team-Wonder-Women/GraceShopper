@@ -51,23 +51,27 @@ export const addItemUser = (productId, count) => {
 			const { data: items } = await axios.post(`/api/usercart/${productId}`, {
 				count
 			});
+			console.log("this is items in usercart--->", items);
 			dispatch(addedItems(items.products, items.total));
 		} catch (err) {
-			console.log("We could not add this item to your cart.");
+			console.log("We could not add this item to your user cart.");
 		}
 	};
 };
 
-// export const addItemGuest = productId => {
-// 	return async dispatch => {
-// 		try {
-// 			const { data: items } = await axios.get(`/api/guestcart/${productId}`);
-// 			dispatch(addedItems(items.products, items.total));
-// 		} catch (err) {
-// 			console.log("We could not add this item to your cart.");
-// 		}
-// 	};
-// };
+export const addItemGuest = (productId, count) => {
+	return async dispatch => {
+		try {
+			const { data: items } = await axios.get(
+				`/api/guestcart/${productId}/${count}`
+			);
+			console.log("this is items in guestcart--->", items);
+			dispatch(addedItems(items.products, items.total));
+		} catch (err) {
+			console.log("We could not add this item to your guest cart.");
+		}
+	};
+};
 
 export const deleteItem = (cartId, productId) => {
 	return async dispatch => {
@@ -91,7 +95,7 @@ export default function cartItems(state = initialState, action) {
 				return state;
 			}
 		case ADDED_ITEMS:
-			return { ...state, products: [...action.items] };
+			return { ...state, products: [...action.items], total: action.total };
 		case DELETED_ITEM:
 			state.products = state.products.filter(
 				item => item.id !== action.productId
