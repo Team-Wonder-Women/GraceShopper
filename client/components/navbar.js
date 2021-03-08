@@ -25,8 +25,16 @@ class Navbar extends Component {
 		this.setState({ show: false });
 	};
 
+	cartCount = itemsArr => {
+		let count = 0;
+		itemsArr.forEach(item => {
+			count += item.cartitem.quantity;
+		});
+		return count;
+	};
+
 	render() {
-		const { handleClick, isLoggedIn, isAdmin } = this.props;
+		const { handleClick, isLoggedIn, isAdmin, cartItems } = this.props;
 		let cart;
 		if (isLoggedIn) {
 			cart = <InsideCart />;
@@ -90,7 +98,7 @@ class Navbar extends Component {
 					</Cart>
 					<div id="cart" onClick={this.showCart}>
 						<img src="/cart.svg" />
-						<span id="lblCartCount">0</span>
+						<span id="lblCartCount">{this.cartCount(cartItems.products)}</span>
 					</div>
 				</div>
 				<hr />
@@ -103,7 +111,9 @@ class Navbar extends Component {
  * CONTAINER
  */
 const mapState = state => {
+	console.log("this is navbar state", state);
 	return {
+		cartItems: state.cartItems,
 		isLoggedIn: !!state.user.id,
 		isAdmin: !!state.user.isAdmin
 	};
