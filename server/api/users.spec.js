@@ -8,6 +8,7 @@ const User = db.model("user");
 
 describe("User routes", () => {
 	beforeEach(() => {
+		console.log(request.agent);
 		return db.sync({ force: true });
 	});
 
@@ -25,10 +26,7 @@ describe("User routes", () => {
 		});
 
 		it("GET /api/users", async () => {
-			const res = await request(app).get("/api/users").expect(200);
-
-			expect(res.body).to.be.an("array");
-			expect(res.body[0].email).to.be.equal(codysEmail);
+			await request(app).get("/api/users").expect(403);
 		});
 	}); // end describe('/api/users')
 }); // end describe('User routes')

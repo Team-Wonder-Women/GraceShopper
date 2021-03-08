@@ -7,7 +7,7 @@ import User from "./User";
 class AdminDash extends Component {
 	componentDidMount() {
 		console.log("admin dash componentDidMount");
-		this.props.loadUsers(this.props.me.id);
+		this.props.loadUsers();
 	}
 
 	render() {
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	loadUsers: id => dispatch(getUsers(id))
+	loadUsers: () => dispatch(getUsers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDash);

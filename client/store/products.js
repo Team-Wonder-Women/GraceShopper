@@ -9,7 +9,7 @@ const ADD_SINGLE_PRODUCT = "ADD_SINGLE_PRODUCT";
 /**
  * INITIAL STATE
  */
-const products = [];
+const all = [];
 
 /**
  * ACTION CREATORS

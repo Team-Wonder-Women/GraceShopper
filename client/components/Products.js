@@ -1,8 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { Link } from "react-router-dom";
-
-import { addItem } from "../store/cartItem";
 
 export default function Products(props) {
 	return (

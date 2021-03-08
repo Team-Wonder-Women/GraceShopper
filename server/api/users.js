@@ -2,9 +2,9 @@ const router = require("express").Router();
 const { User } = require("../db/models");
 module.exports = router;
 
-router.get("/:id", async (req, res, next) => {
-	try {
-		if (req.user.isAdmin) {
+router.get("/", async (req, res, next) => {
+	if (req.user && req.user.isAdmin) {
+		try {
 			const users = await User.findAll({
 				// explicitly select only the id and email fields - even though
 				// users' passwords are encrypted, it won't help if we just
@@ -12,10 +12,10 @@ router.get("/:id", async (req, res, next) => {
 				attributes: ["id", "firstName", "lastName", "email", "isAdmin"]
 			});
 			res.json(users);
-		} else {
-			res.sendStatus(403);
+		} catch (error) {
+			next(error);
 		}
-	} catch (err) {
-		next(err);
+	} else {
+		res.sendStatus(403);
 	}
 });
