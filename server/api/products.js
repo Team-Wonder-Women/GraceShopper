@@ -24,28 +24,31 @@ router.get("/:productId", async (req, res, next) => {
 
 // POST /api/products/add
 router.post("/add", async (req, res, next) => {
-	console.log("req.body ----->", req.body);
-	try {
-		const name = req.body.name;
-		const description = req.body.description;
-		const price = req.body.price * 100;
-		const size = req.body.size;
-		const quantity = req.body.quantity;
-		const [newProduct, wasCreated] = await Product.findOrCreate({
-			where: {
-				name: name,
-				description: description,
-				price: price,
-				size: size,
-				quantity: quantity
+	if (req.user && req.user.isAdmin) {
+		try {
+			const name = req.body.name;
+			const description = req.body.description;
+			const price = req.body.price * 100;
+			const size = req.body.size;
+			const quantity = req.body.quantity;
+			const [newProduct, wasCreated] = await Product.findOrCreate({
+				where: {
+					name: name,
+					description: description,
+					price: price,
+					size: size,
+					quantity: quantity
+				}
+			});
+			if (!wasCreated) {
+				res.status(409).json("Product was not created..");
+			} else {
+				res.status(201).json(newProduct);
 			}
-		});
-		if (!wasCreated) {
-			res.status(409).json("Product was not created..");
-		} else {
-			res.status(201).json(newProduct);
+		} catch (err) {
+			next(err);
 		}
-	} catch (err) {
-		next(err);
+	} else {
+		res.sendStatus(403);
 	}
 });

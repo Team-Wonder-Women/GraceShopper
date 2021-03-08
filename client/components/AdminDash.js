@@ -31,9 +31,12 @@ class AdminDash extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	users: state.users
-});
+const mapStateToProps = state => {
+	console.log("mapState", state);
+	return {
+		users: state.users
+	};
+};
 
 const mapDispatchToProps = dispatch => ({
 	loadUsers: () => dispatch(getUsers())
