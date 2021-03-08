@@ -1,17 +1,19 @@
-// // /* global describe beforeEach it */
-
-// import { expect } from "chai";
+// import chai, { expect } from "chai";
+// import Enzyme, { mount, shallow } from "enzyme";
+// import chaiEnzyme from "chai-enzyme";
+// import sinonChai from "sinon-chai";
 // import React from "react";
-// import { Router } from "react-router-dom";
-// import enzyme, { shallow, mount } from "enzyme";
-// import Adapter from "enzyme-adapter-react-16";
-// import Products from "./Products";
 // import AllProductsList from "./AllProductsList";
+// import { Provider } from "react-redux";
+// import Adapter from "enzyme-adapter-react-16";
+// import store from "../store";
 
-// const adapter = new Adapter();
-// enzyme.configure({ adapter });
+// Enzyme.configure({ adapter: new Adapter() });
 
-// describe("Products component", () => {
+// chai.use(sinonChai);
+// chai.use(chaiEnzyme());
+
+// describe("AllProductsList Component", () => {
 // 	const products = [
 // 		{
 // 			id: 1,
@@ -36,27 +38,13 @@
 // 		}
 // 	];
 
-// 	it("renders a list of products", () => {
+// 	it("renders a Products component for every product we have in state", () => {
 // 		const wrapper = shallow(
-// 			<Router>
-// 				<Products products={products} />
-// 			</Router>
+// 			<Provider store={store}>
+// 				<AllProductsList />
+// 			</Provider>
 // 		);
-// 		console.log(typeof wrapper);
-// 		expect(wrapper.html()).to.include("oneCanlde");
-// 		// expect(wrapper).to.include.text('twoCanlde');
-// 		// expect(wrapper).to.include.text('threeCanlde');
+
+// 		expect(wrapper).to.have.descendants("Products");
 // 	});
-// });
-
-// // describe('UserHome', () => {
-// //   let userHome
-
-// //   beforeEach(() => {
-// //     userHome = shallow(<UserHome email="cody@email.com" />)
-// //   })
-
-// //   it('renders the email in an h3', () => {
-// //     expect(userHome.find('h3').text()).to.be.equal('Welcome, cody@email.com')
-// //   })
-// // })
+// }); // end describe('User model')

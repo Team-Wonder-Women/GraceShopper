@@ -1,20 +1,36 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteItem } from "../store/cartItem";
 
 export default function CartItem(props) {
-	const { name, price, cartitem } = props;
-
+	const { name, price, cartitem, id } = props;
+	console.log("name -->", name);
 	console.log("props -->", props);
+	const { cartId } = cartitem;
 
-	const cartItems = useSelector(state => state.cartItems);
+	const [cartItem, setCartItem] = useState(cartitem);
 
-	console.log("cartItems", cartItems);
+	const dispatch = useDispatch();
+
+	function handleDelete() {
+		dispatch(deleteItem(cartId, id));
+		setCartItem(null);
+	}
 
 	return (
 		<div>
-			<h1>{name}</h1>
-			<h1>{cartitem.quantity}</h1>
-			<h1>${(price / 100).toFixed(2)}</h1>
+			{cartItem ? (
+				<div>
+					<h1>{name}</h1>
+					<h1>{cartitem.quantity}</h1>
+					<h1>${(price / 100).toFixed(2)}</h1>
+					<button type="button" onClick={handleDelete}>
+						Delete
+					</button>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	);
 }
