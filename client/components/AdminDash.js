@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getUsers } from "../store/allUsers";
 import User from "./User";
 
@@ -14,9 +15,11 @@ class AdminDash extends Component {
 		return (
 			<div id="admin-dash-container">
 				<h2>New Product</h2>
-				<button style={{ width: "100%" }} type="button">
-					Add New Product
-				</button>
+				<Link to="/add-product">
+					<button style={{ width: "100%" }} type="button">
+						Add New Product
+					</button>
+				</Link>
 				<h2>Registered Users</h2>
 				<div id="users-container">
 					{users.map(user => {

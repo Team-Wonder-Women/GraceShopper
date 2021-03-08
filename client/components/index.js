@@ -12,3 +12,4 @@ export { default as Checkout } from "./Checkout";
 export { default as InsideCart } from "./InsideCart";
 export { default as LandingPage } from "./LandingPage";
 export { default as AdminDash } from "./AdminDash";
+export { default as AddProduct } from "./AddProduct";

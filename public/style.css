@@ -310,3 +310,7 @@ button {
 	padding: 0px 5px;
 	border-radius: 9px;
 }
+
+textarea {
+	resize: none;
+}

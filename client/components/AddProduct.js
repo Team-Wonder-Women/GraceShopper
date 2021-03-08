@@ -10,26 +10,32 @@ class AddProduct extends Component {
 		return (
 			<div>
 				<h2>Add Product</h2>
-				<h2>Registered Users</h2>
-				<div id="users-container">
-					{users.map(user => {
-						return <User key={user.id} {...user} />;
-					})}
-					<button style={{ width: "100%" }} type="button">
-						Add New Product
-					</button>
+				<div>
+					<form>
+						<div>
+							<label htmlFor="name">
+								<small>Name</small>
+							</label>
+							<input name="name" type="text" />
+						</div>
+						<div>
+							<label htmlFor="description">
+								<small>Description</small>
+							</label>
+							<textarea name="description" />
+						</div>
+						<button style={{ width: "100%" }} type="submit">
+							Add New Product
+						</button>
+					</form>
 				</div>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => ({
-	users: state.users
-});
-
 const mapDispatchToProps = dispatch => ({
-	loadUsers: () => dispatch(getUsers())
+	// loadUsers: () => dispatch(getUsers())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDash);
+export default connect(null, mapDispatchToProps)(AddProduct);
