@@ -36,18 +36,6 @@ export default function SingleProduct() {
 			<img src={image} />
 			<h1>{singleProduct.description}</h1>
 			<h1>${(singleProduct.price / 100).toFixed(2)}</h1>
-			<label htmlFor="size">
-				<h2>Choose Size:</h2>
-			</label>
-			<select
-				name="size"
-				value={size}
-				onChange={evt => setSize(evt.target.value)}
-			>
-				<option value="2 oz">2 oz</option>
-				<option value="3 oz">3 oz</option>
-				<option value="9 oz">9 oz</option>
-			</select>
 			<div className="quantity-buttons">
 				<button
 					className="quantity-button"
