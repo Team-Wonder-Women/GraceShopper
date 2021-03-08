@@ -8,7 +8,6 @@ export default function InsideCart() {
 	const cartItems = useSelector(state => state.cartItems.products);
 	console.log("cartItems -->", cartItems);
 	const user = useSelector(state => state.user);
-	const [items, setItems] = useState(cartItems);
 	const [isEmpty, setIsEmpty] = useState(true);
 
 	const dispatch = useDispatch();
@@ -22,10 +21,9 @@ export default function InsideCart() {
 	}, []);
 
 	useEffect(() => {
-		if (items && items.length >= 1) {
+		if (cartItems && cartItems.length >= 1) {
 			setIsEmpty(false);
 		}
-		setItems(cartItems.products);
 	});
 
 	// in lieu of componentDidUpdate
@@ -38,7 +36,7 @@ export default function InsideCart() {
 					<a href="/products">See all products.</a>
 				</h3>
 			) : (
-				items.map(item => {
+				cartItems.map(item => {
 					return <CartItem key={item.id} {...item} />;
 				})
 			)}
