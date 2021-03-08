@@ -9,7 +9,7 @@ const ADD_SINGLE_PRODUCT = "ADD_SINGLE_PRODUCT";
 /**
  * INITIAL STATE
  */
-const products = [];
+const initialState = [];
 
 /**
  * ACTION CREATORS
@@ -26,7 +26,7 @@ export const addSingleProduct = product => ({
  */
 export const getProducts = () => async dispatch => {
 	try {
-		const { data } = await axios.get("./api/products");
+		const { data } = await axios.get("/api/products");
 		dispatch(gotProducts(data));
 	} catch (err) {
 		console.error(err);
@@ -49,7 +49,7 @@ export const createSingleProduct = product => {
 /**
  * REDUCER
  */
-export default function (state = products, action) {
+export default function (state = initialState, action) {
 	switch (action.type) {
 		case GET_PRODUCTS:
 			return action.products;
