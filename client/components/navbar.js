@@ -111,7 +111,6 @@ class Navbar extends Component {
  * CONTAINER
  */
 const mapState = state => {
-	console.log("this is navbar state", state);
 	return {
 		cartItems: state.cartItems,
 		isLoggedIn: !!state.user.id,

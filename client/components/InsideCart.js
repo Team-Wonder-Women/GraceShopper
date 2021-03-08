@@ -6,7 +6,6 @@ import CartItem from "./CartItem";
 export default function InsideCart() {
 	// in lieu of mapState
 	const cartItems = useSelector(state => state.cartItems.products);
-	console.log("cartItems -->", cartItems);
 	const user = useSelector(state => state.user);
 	const [isEmpty, setIsEmpty] = useState(true);
 
@@ -23,9 +22,10 @@ export default function InsideCart() {
 	useEffect(() => {
 		if (cartItems && cartItems.length >= 1) {
 			setIsEmpty(false);
+		} else {
+			setIsEmpty(true);
 		}
 	});
-
 	// in lieu of componentDidUpdate
 	return (
 		<div>

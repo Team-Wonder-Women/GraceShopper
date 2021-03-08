@@ -14,9 +14,9 @@ export const addedItems = items => ({
 	items
 });
 
-export const deletedItem = item => ({
+export const deletedItem = productId => ({
 	type: DELETED_ITEM,
-	item
+	productId
 });
 
 //retrieve logged in cart
@@ -58,7 +58,7 @@ export const deleteItem = (cartId, productId) => {
 	return async dispatch => {
 		try {
 			await axios.delete(`/api/userCart/${cartId}/${productId}`);
-			console.log("This item was deleted.");
+			dispatch(deletedItem(productId));
 		} catch (err) {
 			console.log("We weren't able to delete this item from your cart.");
 		}
@@ -77,6 +77,11 @@ export default function cartItems(state = initialState, action) {
 			}
 		case ADDED_ITEMS:
 			return { ...state, products: [...action.items] };
+		case DELETED_ITEM:
+			state.products = state.products.filter(
+				item => item.id !== action.productId
+			);
+			return { ...state, products: [...state.products] };
 		default:
 			return state;
 	}
