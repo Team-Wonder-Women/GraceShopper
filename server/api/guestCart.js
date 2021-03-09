@@ -50,3 +50,9 @@ router.delete("/:productId", (req, res, next) => {
 	req.session.cart = cart;
 	res.sendStatus(204);
 });
+
+router.put("/", (req, res, next) => {
+	let cart = new GuestCart({});
+	req.session.cart = cart;
+	res.sendStatus(204);
+});

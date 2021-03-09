@@ -4,6 +4,7 @@ const GOT_CART_ITEMS = "GOT_CART_ITEMS";
 const ADDED_ITEMS = "ADDED_ITEMS";
 const DELETED_ITEM_USER = "DELETED_ITEM";
 const DELETED_ITEM_GUEST = "DELETED_ITEM_GUEST";
+const COMPLETED_CART = "COMPLETED_CART";
 
 export const gotCartItems = (items, total) => ({
 	type: GOT_CART_ITEMS,
@@ -25,6 +26,10 @@ export const deletedItemUser = productId => ({
 export const deletedItemGuest = productId => ({
 	type: DELETED_ITEM_GUEST,
 	productId
+});
+
+export const completedCart = () => ({
+	type: COMPLETED_CART
 });
 
 //retrieve logged in cart
@@ -100,6 +105,26 @@ export const deleteItemGuest = productId => {
 	};
 };
 
+// mark logged in cart as complete
+export const markUserCartComplete = () => {
+	return async dispatch => {
+		try {
+			await axios.put(`/api/usercart/`);
+			dispatch(completedCart());
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+};
+
+// mark guest cart as complete
+export const markGuestCartComplete = () => {
+	return function (dispatch) {
+		axios.put("/api/guestCart");
+		dispatch(completedCart());
+	};
+};
+
 const initialState = { products: [], total: 0 };
 
 export default function cartItems(state = initialState, action) {
@@ -126,6 +151,8 @@ export default function cartItems(state = initialState, action) {
 				product => product.item.id !== action.productId
 			);
 			return { ...state };
+		case COMPLETED_CART:
+			return initialState;
 		default:
 			return state;
 	}

@@ -98,6 +98,27 @@ router.put("/:cartId/:productId", async (req, res, next) => {
 	}
 });
 
+//PUT api/userCart/userId --> mark cart complete
+router.put("/", async (req, res, next) => {
+	try {
+		const cart = await Cart.update(
+			{ orderStatus: "complete" },
+			{
+				where: {
+					userId: req.user.id,
+					orderStatus: "incomplete"
+				}
+			}
+		);
+
+		console.log(cart);
+
+		res.sendStatus(200);
+	} catch (err) {
+		next(err);
+	}
+});
+
 //DELETE api/userCart/cartId/productId ---> delete item from cart
 router.delete("/:cartId/:productId", async (req, res, next) => {
 	if (req.user) {
