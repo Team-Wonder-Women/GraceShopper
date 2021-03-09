@@ -46,78 +46,86 @@ class Checkout extends Component {
 		const { firstName, lastName, address, city, state, zipcode } = this.state;
 		const { handleSubmit, handleChange } = this;
 		return (
-			<div>
-				<form onSubmit={handleSubmit}>
-					<h2>Checkout Form</h2>
-					<label htmlFor="firstName">
-						<h3>First Name</h3>
-					</label>
-					<input
-						name="firstName"
-						type="text"
-						value={firstName}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="lastName">
-						<h3>Last Name</h3>
-					</label>
-					<input
-						name="lastName"
-						type="text"
-						value={lastName}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="address">
-						<h3>Address</h3>
-					</label>
-					<input
-						name="address"
-						type="text"
-						value={address}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="lastName">
-						<h3>City</h3>
-					</label>
-					<input
-						name="city"
-						type="text"
-						value={city}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor="state">
-						<h3>State</h3>
-					</label>
-					<select name="state" value={state} onChange={handleChange}>
-						<option value="NY">NY</option>
-						<option value="ANYWHERE">Anywhere else</option>
-					</select>
-					<label htmlFor="zipcode">
-						<h3>Zipcode</h3>
-					</label>
-					<input
-						type="text"
-						name="zipcode"
-						inputMode="numeric"
-						pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
-						value={zipcode}
-						onChange={handleChange}
-						required
-					/>
-					<div>
-						<h2>Your Cart</h2>
+			<div className="checkout-container">
+				<h2>Checkout Form</h2>
+				<form className="checkout-form" onSubmit={handleSubmit}>
+					<div className="checkout-div">
+						<label htmlFor="firstName">
+							<h3>First Name</h3>
+						</label>
+						<input
+							name="firstName"
+							type="text"
+							value={firstName}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="lastName">
+							<h3>Last Name</h3>
+						</label>
+						<input
+							name="lastName"
+							type="text"
+							value={lastName}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="address">
+							<h3>Address</h3>
+						</label>
+						<input
+							name="address"
+							type="text"
+							value={address}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="lastName">
+							<h3>City</h3>
+						</label>
+						<input
+							name="city"
+							type="text"
+							value={city}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="state">
+							<h3>State</h3>
+						</label>
+						<select name="state" value={state} onChange={handleChange}>
+							<option value="NY">NY</option>
+							<option value="ANYWHERE">Anywhere else</option>
+						</select>
+						<label htmlFor="zipcode">
+							<h3>Zipcode</h3>
+						</label>
+						<input
+							type="text"
+							name="zipcode"
+							inputMode="numeric"
+							pattern="[0-9]{5}"
+							value={zipcode}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div className="checkout-cart">
+						<h2>Your Cart:</h2>
 						{products.map(product => (
-							<div key={product.name}>
-								<p>{product.name}</p>
+							<div id="checkout-product" key={product.name}>
+								<img src={product.imageUrl} id="product-image" />
+								<p>
+									<b>{product.name}</b>
+								</p>
 								<p>Qty: {product.cartitem.quantity}</p>
-								<p>Price: {(product.price / 100).toFixed(2)}</p>
+								<p>Price: ${(product.price / 100).toFixed(2)}</p>
 							</div>
 						))}
-						<p>Total: {(total / 100).toFixed(2)}</p>
+						<div id="total">
+							<h2>Total:</h2>
+							<h1>${(total / 100).toFixed(2)}</h1>
+						</div>
 					</div>
 					<button style={{ width: "50%" }} type="submit">
 						Checkout!

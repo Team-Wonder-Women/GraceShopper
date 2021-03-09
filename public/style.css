@@ -407,3 +407,45 @@ select {
 		rgba(255, 99, 82, 0.3)
 	);
 }
+
+.checkout-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	text-align: center;
+}
+
+.checkout-form {
+	justify-content: center;
+}
+
+.checkout-div,
+.checkout-div label .checkout-div h3 {
+	display: inline;
+}
+
+.checkout-cart {
+	vertical-align: top;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+/* 
+#checkout-product {
+	display: inline;
+} */
+
+.checkout-div input {
+	width: 300px;
+}
+
+#product-image {
+	width: 3rem;
+}
+
+#product-image {
+	margin: 0px;
+	padding: 0px;
+}
