@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteItemGuest, fetchCartItemsGuest } from "../store/cartItem";
+import { fetchCartItemsGuest, deleteItemGuest } from "../store/cartItem";
 
 export default function CartItemGuest(props) {
 	const { item, cartitem } = props;

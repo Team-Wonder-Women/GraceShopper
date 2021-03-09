@@ -51,16 +51,22 @@ export default function Products(props) {
 					+
 				</button>
 			</div>
-			{user.isAdmin ? (
-				<button type="button" onClick={handleDeleteProduct}>
-					Delete Product
+			<div className="allproducts-quantity button-container">
+				{user.isAdmin ? (
+					<button
+						type="button"
+						className="delete button-item"
+						onClick={handleDeleteProduct}
+					>
+						Delete Product
+					</button>
+				) : (
+					""
+				)}
+				<button type="button" className="button-item" onClick={handleAdd}>
+					Add to Cart
 				</button>
-			) : (
-				""
-			)}
-			<button type="button" onClick={handleAdd}>
-				Add to Cart
-			</button>
+			</div>
 		</div>
 	);
 }
