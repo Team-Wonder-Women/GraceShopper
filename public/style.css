@@ -390,3 +390,20 @@ select {
 #password {
 	width: 300px;
 }
+
+.button-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.button-item {
+	margin: 10px;
+}
+
+.delete {
+	background: linear-gradient(
+		to top right,
+		rgba(255, 99, 82, 0.7),
+		rgba(255, 99, 82, 0.3)
+	);
+}
