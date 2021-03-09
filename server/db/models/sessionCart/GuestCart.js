@@ -12,7 +12,6 @@ module.exports = function GuestCart(prevCart) {
 				item: product,
 				cartitem: { quantity: 0, price: product.price }
 			};
-			console.log("storedItem -->", storedItem);
 		}
 		storedItem.cartitem.quantity += count;
 		storedItem.cartitem.price =
@@ -24,12 +23,12 @@ module.exports = function GuestCart(prevCart) {
 	//decrement one item from cart
 	this.reduceItem = function (productId) {
 		let deletedItem = this.items[productId];
-		deletedItem.quantity--;
-		deletedItem.price -= deletedItem.item.price;
-		this.totalQuantity--;
+		deletedItem.cartitem.quantity--;
+		deletedItem.cartitem.price -= deletedItem.item.price;
+		// this.totalQuantity--;
 		this.totalPrice -= deletedItem.item.price;
 
-		if (this.items[productId] <= 0) {
+		if (deletedItem.cartitem.quantity <= 0) {
 			delete this.items[productId];
 		}
 	};
@@ -38,7 +37,6 @@ module.exports = function GuestCart(prevCart) {
 	this.removeProduct = function (productId) {
 		// this.totalQuantity -= this.items[productId].quantity;
 		this.totalPrice -= this.items[productId].price;
-		console.log("LOOK HERE!!!!", this.items[productId]);
 		delete this.items[productId];
 	};
 

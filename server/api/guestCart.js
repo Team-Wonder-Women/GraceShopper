@@ -22,7 +22,6 @@ router.get("/:productId/:count", async (req, res, next) => {
 		if (!product) res.status(401).json("this candle is not so lit");
 		else {
 			cart.addItem(product.dataValues, Number(req.params.count));
-			console.log("this is cart--->", cart);
 			req.session.cart = cart;
 			let cartArr = cart.createItemArr();
 			res.json({ products: cartArr, total: cart.totalPrice });
@@ -43,9 +42,8 @@ router.get("/reduce/:productId/", (req, res, next) => {
 });
 
 //GET api/guestCart/remove/productId --> delete item from cart
-router.get("/:productId/remove", async (req, res, next) => {
+router.delete("/:productId", (req, res, next) => {
 	let id = Number(req.params.productId);
-	console.log("id -->", id);
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
 
 	cart.removeProduct(id);

@@ -7,7 +7,7 @@ import CartItemGuest from "./CartItemGuest";
 export default function InsideCart() {
 	// in lieu of mapState
 	const cartItems = useSelector(state => state.cartItems.products);
-	console.log("cartItems -->", cartItems);
+	console.log("cartItems in insidecart -->", cartItems);
 	const user = useSelector(state => state.user);
 	const [isEmpty, setIsEmpty] = useState(true);
 
@@ -42,8 +42,8 @@ export default function InsideCart() {
 					return <CartItemUser key={item.id} {...item} />;
 				})
 			) : (
-				cartItems.map((item, idx) => {
-					return <CartItemGuest key={idx} {...item} />;
+				cartItems.map(item => {
+					return <CartItemGuest key={item.id} {...item} />;
 				})
 			)}
 		</div>
