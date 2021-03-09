@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { addItemUser, addItemGuest } from "../store/cartItem";
+import { useToasts } from "react-toast-notifications";
+
 export default function SingleProduct() {
+	const { addToast } = useToasts();
 	// in lieu of mapState
 	const singleProduct = useSelector(state => state.singleProduct);
 	const { id } = useSelector(state => state.user);
@@ -25,6 +28,7 @@ export default function SingleProduct() {
 	});
 
 	const handleAdd = () => {
+		addToast("Added!", { appearance: "success", autoDismiss: true });
 		if (id) {
 			dispatch(addItemUser(productId, count));
 		} else {
