@@ -2,7 +2,7 @@ const User = require("./user");
 const Cart = require("./Cart");
 const Product = require("./Product");
 const CartItem = require("./CartItem");
-const GuestCart = require("./GuestCart");
+const GuestCart = require("./sessionCart/GuestCart");
 
 /**
  * If we had any associations to make, this would be a great place to put them!
