@@ -407,3 +407,26 @@ select {
 		rgba(255, 99, 82, 0.3)
 	);
 }
+
+#user-welcome {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: auto;
+	background: white;
+	border-radius: 1rem;
+	background: linear-gradient(
+		to top right,
+		rgba(0, 0, 0, 0.7),
+		rgba(0, 0, 0, 0.3)
+	);
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	color: white;
+}
+
+.user-welcome {
+	font-size: 42px;
+	font-weight: bold;
+}

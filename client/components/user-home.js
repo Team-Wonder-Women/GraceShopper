@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import HipsterQuote from "./HipsterQuote";
+import LandingPage from "./LandingPage";
 
 /**
  * COMPONENT
@@ -8,8 +10,12 @@ import { connect } from "react-redux";
 export const UserHome = props => {
 	const { firstName } = props;
 	return (
-		<div>
-			<h3>Welcome, {firstName} 🕯</h3>
+		<div id="user-welcome">
+			<h3 className="user-welcome">
+				🕯 {firstName}, welcome to the collective 🕯
+			</h3>
+			<HipsterQuote />
+			<LandingPage />
 		</div>
 	);
 };
