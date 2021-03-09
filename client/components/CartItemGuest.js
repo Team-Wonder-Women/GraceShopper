@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteItemGuest } from "../store/cartItem";
+import { deleteItemGuest, fetchCartItemsGuest } from "../store/cartItem";
 
 export default function CartItemGuest(props) {
 	const { item, cartitem } = props;
-	console.log("props in CartItemGuest -->", props);
 	const { quantity, price } = cartitem;
 
 	const [cartItem, setCartItem] = useState(cartitem);
-
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchCartItemsGuest());
+	}, {});
 
 	function handleDelete() {
 		dispatch(deleteItemGuest(item.id));

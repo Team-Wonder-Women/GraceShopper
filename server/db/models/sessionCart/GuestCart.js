@@ -17,7 +17,7 @@ module.exports = function GuestCart(prevCart) {
 		storedItem.cartitem.price =
 			storedItem.item.price * storedItem.cartitem.quantity;
 		// this.totalQuantity = this.totalQuantity + count;
-		this.totalPrice = this.totalPrice + storedItem.cartitem.price;
+		this.totalPrice += storedItem.item.price * count;
 	};
 
 	//decrement one item from cart
@@ -36,7 +36,7 @@ module.exports = function GuestCart(prevCart) {
 	//remove one product entirely
 	this.removeProduct = function (productId) {
 		// this.totalQuantity -= this.items[productId].quantity;
-		this.totalPrice -= this.items[productId].price;
+		this.totalPrice -= this.items[productId].cartitem.price;
 		delete this.items[productId];
 	};
 

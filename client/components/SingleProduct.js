@@ -6,13 +6,11 @@ import { addItemUser, addItemGuest } from "../store/cartItem";
 export default function SingleProduct() {
 	// in lieu of mapState
 	const singleProduct = useSelector(state => state.singleProduct);
-	console.log("single product ----->", singleProduct);
 	const { id } = useSelector(state => state.user);
 	const [image, setImage] = useState(
 		"https://flevix.com/wp-content/uploads/2019/07/Round-Line-Loading.gif"
 	);
 	const [count, setCount] = useState(1);
-	const [size, setSize] = useState("");
 	// in lieu of match.props.params
 	const { productId } = useParams();
 	// in lieu of mapDispatch
