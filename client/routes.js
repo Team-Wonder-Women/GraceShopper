@@ -56,6 +56,7 @@ class Routes extends Component {
 				)}
 
 				{/* Displays our Login component as a fallback */}
+				<Route exact path="/confirmation" component={Confirmation} />
 				<Route component={Login} />
 				<Route path="/" component={LandingPage} />
 			</Switch>
