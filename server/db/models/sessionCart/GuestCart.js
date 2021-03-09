@@ -48,4 +48,9 @@ module.exports = function GuestCart(prevCart) {
 		}
 		return itemArr;
 	};
+
+	this.resetCart = function (prevCart) {
+		this.items = {};
+		this.totalPrice = 0;
+	};
 };
