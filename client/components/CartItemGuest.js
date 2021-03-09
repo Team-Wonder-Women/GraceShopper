@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchCartItemsGuest, deleteItemGuest } from "../store/cartItem";
+import { fetchCartItemsUser, deleteItemUser } from "../store/cartItem";
 
-export default function CartItemGuest(props) {
-	const { item, cartitem } = props;
-	const { quantity, price } = cartitem;
+export default function CartItemUser(props) {
+	const { name, price, cartitem, id } = props;
+	const { cartId } = cartitem;
 
 	const [cartItem, setCartItem] = useState(cartitem);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchCartItemsGuest());
+		dispatch(fetchCartItemsUser());
 	}, {});
 
 	function handleDelete() {
-		dispatch(deleteItemGuest(item.id));
+		dispatch(deleteItemUser(cartId, id));
 		setCartItem(null);
 	}
 
@@ -22,8 +23,8 @@ export default function CartItemGuest(props) {
 		<div>
 			{cartItem ? (
 				<div>
-					<h1>{item.name}</h1>
-					<h1>{quantity}</h1>
+					<h1>{name}</h1>
+					<h1>{cartitem.quantity}</h1>
 					<h1>${(price / 100).toFixed(2)}</h1>
 					<button type="button" onClick={handleDelete}>
 						Delete
