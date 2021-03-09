@@ -4,9 +4,11 @@ import { deleteItemGuest, fetchCartItemsGuest } from "../store/cartItem";
 
 export default function CartItemGuest(props) {
 	const { item, cartitem } = props;
-	const { quantity, price } = cartitem;
+	const { price } = cartitem;
 
 	const [cartItem, setCartItem] = useState(cartitem);
+	const [count, setCount] = useState(props.count);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -23,7 +25,21 @@ export default function CartItemGuest(props) {
 			{cartItem ? (
 				<div>
 					<h1>{item.name}</h1>
-					<h1>{quantity}</h1>
+					<button
+						className="quantity-button"
+						type="button"
+						onClick={() => setCount(count > 1 ? count - 1 : count)}
+					>
+						-
+					</button>
+					<h1>{count}</h1>
+					<button
+						className="quantity-button"
+						type="button"
+						onClick={() => setCount(count + 1)}
+					>
+						+
+					</button>
 					<h1>${(price / 100).toFixed(2)}</h1>
 					<button type="button" onClick={handleDelete}>
 						Delete
