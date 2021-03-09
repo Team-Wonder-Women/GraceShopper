@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { fetchCartItemsUser } from "../store/cartItem";
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
 	const { firstName } = props;
-
 	return (
 		<div>
 			<h3>Welcome, {firstName} 🕯</h3>
