@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteItemUser } from "../store/cartItem";
+import { fetchCartItemsUser, deleteItemUser } from "../store/cartItem";
 
 export default function CartItemUser(props) {
 	const { name, price, cartitem, id } = props;
-	console.log("props in CartItem -->", props);
 	const { cartId } = cartitem;
 
 	const [cartItem, setCartItem] = useState(cartitem);
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchCartItemsUser());
+	}, {});
 
 	function handleDelete() {
 		dispatch(deleteItemUser(cartId, id));

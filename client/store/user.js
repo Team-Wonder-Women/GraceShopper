@@ -1,5 +1,6 @@
 import axios from "axios";
 import history from "../history";
+import { fetchCartItemsUser } from "./cartItem";
 
 /**
  * ACTION TYPES
@@ -55,6 +56,7 @@ export const auth = (
 
 	try {
 		dispatch(getUser(res.data));
+		dispatch(fetchCartItemsUser(res.data.id));
 		history.push("/home");
 	} catch (dispatchOrHistoryErr) {
 		console.error(dispatchOrHistoryErr);

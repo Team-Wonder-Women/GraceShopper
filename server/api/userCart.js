@@ -28,8 +28,6 @@ router.get("/:userId", async (req, res, next) => {
 
 //POST api/userCart/userId/productId --> add-to-cart
 router.post("/:productId", async (req, res, next) => {
-	console.log("count -->", req.body.count);
-
 	try {
 		const cart = await Cart.findOrCreate({
 			where: {
