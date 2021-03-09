@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 import { addItemUser, addItemGuest } from "../store/cartItem";
 
@@ -8,10 +9,12 @@ import { deleteSingleProduct } from "../store/products";
 
 export default function Products(props) {
 	const [count, setCount] = useState(props.count);
+	const { addToast } = useToasts();
 	const user = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
 	function handleAdd() {
+		addToast("Added!", { appearance: "success", autoDismiss: true });
 		if (user.id) {
 			dispatch(addItemUser(props.id, count));
 		} else {
