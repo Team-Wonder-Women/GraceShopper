@@ -4,8 +4,11 @@ module.exports = router;
 
 // GET api/guestCart
 router.get("/", (req, res, next) => {
+	console.log("this is req.session---->", req.session);
 	if (!req.session.cart) {
-		res.status(200).json({ products: null });
+		let cart = new GuestCart();
+		req.session.cart = cart;
+		res.status(200).json({ products: null, total: 0 });
 	} else {
 		let cart = new GuestCart(req.session.cart);
 		let cartArr = cart.createItemArr();

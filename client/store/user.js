@@ -1,6 +1,6 @@
 import axios from "axios";
 import history from "../history";
-import { fetchCartItemsUser } from "./cartItem";
+import { fetchCartItemsUser, fetchCartItemsGuest } from "./cartItem";
 
 /**
  * ACTION TYPES
@@ -26,6 +26,10 @@ export const me = () => async dispatch => {
 	try {
 		const res = await axios.get("/auth/me");
 		dispatch(getUser(res.data || defaultUser));
+		if (res.data !== null) {
+			console.log("yo we are in here!");
+			dispatch(fetchCartItemsUser(res.data.id));
+		}
 	} catch (err) {
 		console.error(err);
 	}
@@ -67,7 +71,8 @@ export const logout = () => async dispatch => {
 	try {
 		await axios.post("/auth/logout");
 		dispatch(removeUser());
-		history.push("/login");
+		dispatch(fetchCartItemsGuest());
+		// history.push("/login");
 	} catch (err) {
 		console.error(err);
 	}

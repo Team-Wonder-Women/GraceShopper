@@ -12,7 +12,7 @@ export default function Products(props) {
 	const { addToast } = useToasts();
 	const user = useSelector(state => state.user);
 	const dispatch = useDispatch();
-
+	console.log("this is userId in products-->", user.id);
 	function handleAdd() {
 		addToast("Added!", { appearance: "success", autoDismiss: true });
 		if (user.id) {

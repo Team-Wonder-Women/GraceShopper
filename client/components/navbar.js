@@ -78,7 +78,7 @@ class Navbar extends Component {
 								<Link className="nav-buttons-left" to="/products">
 									All Candles
 								</Link>
-								<a className="nav-buttons-left" href="#" onClick={handleClick}>
+								<a className="nav-buttons-left" href="" onClick={handleClick}>
 									Logout
 								</a>
 							</div>
