@@ -90,9 +90,9 @@ export const deleteItemUser = (cartId, productId) => {
 };
 
 export const deleteItemGuest = productId => {
-	return async dispatch => {
+	return dispatch => {
 		try {
-			await axios.get(`/api/guestCart/${productId}/remove`);
+			axios.delete(`/api/guestCart/${productId}`);
 			dispatch(deletedItem(productId));
 		} catch (err) {
 			console.log("We weren't able to delete this item from your guest cart.");
@@ -115,6 +115,7 @@ export const markUserCartComplete = () => {
 // mark guest cart as complete
 export const markGuestCartComplete = () => {
 	return function (dispatch) {
+		axios.put("/api/guestCart");
 		dispatch(completedCart());
 	};
 };

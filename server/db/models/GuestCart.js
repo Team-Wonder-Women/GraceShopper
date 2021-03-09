@@ -38,7 +38,7 @@ module.exports = function GuestCart(prevCart) {
 	this.removeProduct = function (productId) {
 		// this.totalQuantity -= this.items[productId].quantity;
 		this.totalPrice -= this.items[productId].price;
-		console.log("LOOK HERE!!!!", this.items[productId]);
+		console.log("guest cart items before remove", this.items);
 		delete this.items[productId];
 	};
 

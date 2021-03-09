@@ -11,7 +11,13 @@ export default function Cart({ handleClose, handleCheckout, show, children }) {
 				<button className="modal-main-btn" type="button" onClick={handleClose}>
 					Keep Shopping
 				</button>
-				<Link onClick={handleCheckout} to="/checkout">
+				<Link
+					onClick={() => {
+						handleClose();
+						handleCheckout();
+					}}
+					to="/checkout"
+				>
 					<button type="button">Checkout</button>
 				</Link>
 			</section>
