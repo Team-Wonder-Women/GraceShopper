@@ -4,6 +4,7 @@ const GOT_CART_ITEMS = "GOT_CART_ITEMS";
 const ADDED_ITEMS = "ADDED_ITEMS";
 const DELETED_ITEM_USER = "DELETED_ITEM";
 const DELETED_ITEM_GUEST = "DELETED_ITEM_GUEST";
+const COMPLETED_CART = "COMPLETED_CART";
 
 export const gotCartItems = (items, total) => ({
 	type: GOT_CART_ITEMS,
@@ -150,6 +151,8 @@ export default function cartItems(state = initialState, action) {
 				product => product.item.id !== action.productId
 			);
 			return { ...state };
+		case COMPLETED_CART:
+			return initialState;
 		default:
 			return state;
 	}
