@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
-import { markUserCartComplete, markGuestCartComplete } from "../store/cartItem";
 import Cart from "./Cart";
 import InsideCart from "./InsideCart";
 
@@ -16,7 +15,6 @@ class Navbar extends Component {
 		};
 		this.showCart = this.showCart.bind(this);
 		this.hideCart = this.hideCart.bind(this);
-		this.handleCheckout = this.handleCheckout.bind(this);
 	}
 
 	showCart = () => {
@@ -25,11 +23,6 @@ class Navbar extends Component {
 
 	hideCart = () => {
 		this.setState({ show: false });
-	};
-
-	handleCheckout = id => {
-		if (this.props.isLoggedIn) this.props.checkoutUser();
-		else this.props.checkoutGuest();
 	};
 
 	cartCount = itemsArr => {
@@ -91,11 +84,7 @@ class Navbar extends Component {
 							</div>
 						)}
 					</div>
-					<Cart
-						show={this.state.show}
-						handleCheckout={this.handleCheckout}
-						handleClose={this.hideCart}
-					>
+					<Cart show={this.state.show} handleClose={this.hideCart}>
 						<div className="cart-content">
 							<h1>Your Cart</h1>
 							<InsideCart />
@@ -128,13 +117,13 @@ const mapDispatch = dispatch => {
 	return {
 		handleClick() {
 			dispatch(logout());
-		},
-		checkoutUser() {
-			dispatch(markUserCartComplete());
-		},
-		checkoutGuest() {
-			dispatch(markGuestCartComplete());
 		}
+		// checkoutUser() {
+		// 	dispatch(markUserCartComplete());
+		// },
+		// checkoutGuest() {
+		// 	dispatch(markGuestCartComplete());
+		// }
 	};
 };
 

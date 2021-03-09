@@ -1,7 +1,12 @@
 import React, { Component } from "react";
-import { fetchCartItemsUser, fetchCartItemsGuest } from "../store/cartItem";
+import {
+	markUserCartComplete,
+	markGuestCartComplete,
+	fetchCartItemsUser,
+	fetchCartItemsGuest
+} from "../store/cartItem";
 // import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 
 class Checkout extends Component {
 	constructor() {
@@ -14,9 +19,16 @@ class Checkout extends Component {
 			state: "",
 			zipcode: ""
 		};
+		this.handleCheckout = this.handleCheckout.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	handleCheckout = () => {
+		if (this.props.isLoggedIn) this.props.checkoutUser();
+		else this.props.checkoutGuest();
+	};
+
 	handleChange(evt) {
 		this.setState({
 			[evt.target.name]: evt.target.value
@@ -24,10 +36,13 @@ class Checkout extends Component {
 	}
 	handleSubmit(evt) {
 		evt.preventDefault();
+		this.handleCheckout();
 		this.props.history.push("/confirmation");
 	}
 
 	render() {
+		console.log("cart items -->", this.props.cartItems);
+		const { products, total } = this.props.cartItems;
 		const { firstName, lastName, address, city, state, zipcode } = this.state;
 		const { handleSubmit, handleChange } = this;
 		return (
@@ -93,6 +108,17 @@ class Checkout extends Component {
 						onChange={handleChange}
 						required
 					/>
+					<div>
+						<h2>Your Cart</h2>
+						{products.map(product => (
+							<div key={product.name}>
+								<p>{product.name}</p>
+								<p>Qty: {product.cartitem.quantity}</p>
+								<p>Price: {(product.price / 100).toFixed(2)}</p>
+							</div>
+						))}
+						<p>Total: {(total / 100).toFixed(2)}</p>
+					</div>
 					<button style={{ width: "50%" }} type="submit">
 						Checkout!
 					</button>
@@ -104,14 +130,14 @@ class Checkout extends Component {
 
 const mapState = state => {
 	return {
-		cartItems: state.cartItems.products
+		cartItems: state.cartItems
 	};
 };
 
-// const mapDispatch = dispatch => ({
-// 	loadUserCart: () => dispatch(fetchCartItemsUser(user.id)),
-// 	loadGuestCart: () => dispatch(fetchCartItemsGuest())
-// });
+const mapDispatch = dispatch => ({
+	checkoutUser: () => dispatch(markUserCartComplete()),
+	checkoutGuest: () => dispatch(markGuestCartComplete())
+});
 
-// export default connect(mapState, mapDispatch)(Checkout);
-export default Checkout;
+export default connect(mapState, mapDispatch)(Checkout);
+// export default Checkout;
