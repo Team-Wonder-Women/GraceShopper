@@ -5,7 +5,6 @@ import { getProducts } from "../store/products";
 import Products from "./Products";
 
 export default function AllProductsList() {
-  
 	const allProducts = useSelector(state => state.products);
 
 	const dispatch = useDispatch();
