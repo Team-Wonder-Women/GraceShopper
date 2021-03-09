@@ -407,3 +407,13 @@ select {
 		rgba(255, 99, 82, 0.3)
 	);
 }
+
+.cart-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#delete-item {
+	align-self: center;
+}

@@ -5,6 +5,7 @@ const ADDED_ITEMS = "ADDED_ITEMS";
 const DELETED_ITEM_USER = "DELETED_ITEM";
 const DELETED_ITEM_GUEST = "DELETED_ITEM_GUEST";
 const COMPLETED_CART = "COMPLETED_CART";
+const UPDATED_CART = "UPDATED_CART";
 
 export const gotCartItems = (items, total) => ({
 	type: GOT_CART_ITEMS,
@@ -30,6 +31,12 @@ export const deletedItemGuest = productId => ({
 
 export const completedCart = () => ({
 	type: COMPLETED_CART
+});
+
+export const updatedCart = (items, total) => ({
+	type: UPDATED_CART,
+	items,
+	total
 });
 
 //retrieve logged in cart
@@ -126,6 +133,21 @@ export const markGuestCartComplete = () => {
 	};
 };
 
+export const updateCartQuantity = (productId, update) => {
+	return async dispatch => {
+		try {
+			console.log("product id in update cart thunk ==>", productId);
+			const { data } = await axios.put(`/api/usercart/${productId}`, {
+				update
+			});
+			console.log("data in thunk -->", data);
+			dispatch(updatedCart(data.products, data.total));
+		} catch (err) {
+			console.log("We're having trouble updating this user cart.");
+		}
+	};
+};
+
 const initialState = { products: [], total: 0 };
 
 export default function cartItems(state = initialState, action) {
@@ -152,6 +174,8 @@ export default function cartItems(state = initialState, action) {
 				product => product.item.id !== action.productId
 			);
 			return { ...state };
+		case UPDATED_CART:
+			return { ...state, products: [...action.items], total: action.total };
 		case COMPLETED_CART:
 			return initialState;
 		default:
