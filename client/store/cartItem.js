@@ -31,6 +31,7 @@ export const deletedItemGuest = productId => ({
 export const fetchCartItemsUser = userId => {
 	return async dispatch => {
 		try {
+			console.log("this is userId in fetchCartUser--->", userId);
 			const { data: items } = await axios.get(`/api/usercart/${userId}`);
 			dispatch(gotCartItems(items.products, items.total));
 		} catch (err) {

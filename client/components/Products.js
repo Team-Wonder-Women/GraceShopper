@@ -10,7 +10,7 @@ export default function Products(props) {
 	const [count, setCount] = useState(props.count);
 	const user = useSelector(state => state.user);
 	const dispatch = useDispatch();
-
+	console.log("this is userId in products-->", user.id);
 	function handleAdd() {
 		if (user.id) {
 			dispatch(addItemUser(props.id, count));

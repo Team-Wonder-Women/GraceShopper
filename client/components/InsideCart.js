@@ -14,8 +14,11 @@ export default function InsideCart() {
 	console.log("these are cartItmes in inside cart-->", cartItems);
 	const dispatch = useDispatch();
 	// in lieu of componentDidMount
+	console.log("this is userId in insideCart--->", user.id);
+
 	useEffect(() => {
 		if (user.id) {
+			console.log("this is userId in insideCart--->", user.id);
 			dispatch(fetchCartItemsUser(user.id));
 		} else {
 			dispatch(fetchCartItemsGuest());
@@ -32,7 +35,7 @@ export default function InsideCart() {
 	// in lieu of componentDidUpdate
 	return (
 		<div>
-			{isEmpty ? (
+			{!(cartItems.length >= 1) ? (
 				<h3>
 					You don't have any items in your cart. <br />
 					<br />
