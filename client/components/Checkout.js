@@ -89,7 +89,7 @@ class Checkout extends Component {
 						</label>
 						<select name="state" value={state} onChange={handleChange}>
 							<option value="NY">NY</option>
-							<option value="ANYWHERE">Anywhere else</option>
+							<option value="IL">IL</option>
 						</select>
 						<label htmlFor="zipcode">
 							<h3>Zipcode</h3>
