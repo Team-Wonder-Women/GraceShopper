@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteItemUser } from "../store/cartItem";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteItemUser, updateCartQuantity } from "../store/cartItem";
 
 export default function CartItemUser(props) {
 	const { name, price, cartitem, id } = props;
 	const { cartId } = cartitem;
 
+	console.log("props in cartitem user", name);
+
+	// console.log("id ==>", id);
+
 	const [cartItem, setCartItem] = useState(cartitem);
-	const user = useSelector(state => state.user);
+	const [cartItemQuantity, setCartItemQuantity] = useState(cartitem.quantity);
 
 	const dispatch = useDispatch();
 
@@ -16,14 +20,43 @@ export default function CartItemUser(props) {
 		setCartItem(null);
 	}
 
+	function handleDecrement(e) {
+		console.log("YOU HIT DECREMENT!");
+		if (cartItemQuantity > 1) {
+			setCartItemQuantity(cartItemQuantity - 1);
+			dispatch(updateCartQuantity(id, "decrement"));
+		}
+	}
+
+	function handleIncrement(e) {
+		setCartItemQuantity(cartItemQuantity + 1);
+		dispatch(updateCartQuantity(id, "increment"));
+	}
+
 	return (
 		<div>
 			{cartItem ? (
-				<div>
+				<div className="cart-item">
 					<h1>{name}</h1>
-					<h1>{cartitem.quantity}</h1>
+					<div>
+						<button
+							className="quantity-button"
+							type="button"
+							onClick={handleDecrement}
+						>
+							-
+						</button>
+						<h2 id="quantity-counter">{cartitem.quantity}</h2>
+						<button
+							className="quantity-button"
+							type="button"
+							onClick={handleIncrement}
+						>
+							+
+						</button>
+					</div>
 					<h1>${(price / 100).toFixed(2)}</h1>
-					<button type="button" onClick={handleDelete}>
+					<button id="delete-item" type="button" onClick={handleDelete}>
 						Delete
 					</button>
 				</div>

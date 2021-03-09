@@ -29,7 +29,7 @@ class LandingPage extends Component {
 		console.log("we have these products", products);
 		return (
 			<div className="landingPage">
-				<h1>Littest Candle of the moment</h1>
+				<h1>Littest Candle of the Moment</h1>
 				{products.length ? (
 					<ChooseRandomCandle {...products} />
 				) : (
