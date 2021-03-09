@@ -42,23 +42,10 @@ export default function InsideCart() {
 				<div>
 					{user.id
 						? cartItems.map(item => {
-								console.log("item --->", item);
-								return (
-									<CartItemUser
-										key={item.id}
-										{...item}
-										count={item.cartitem.quantity}
-									/>
-								);
+								return <CartItemUser key={item.id} {...item} />;
 						  })
 						: cartItems.map((item, idx) => {
-								return (
-									<CartItemGuest
-										key={idx}
-										{...item}
-										count={item.cartitem.quantity}
-									/>
-								);
+								return <CartItemGuest key={idx} {...item} />;
 						  })}
 					<h1>Total: ${(total / 100).toFixed(2)}</h1>
 				</div>
