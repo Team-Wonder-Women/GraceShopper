@@ -42,7 +42,7 @@ router.get("/reduce/:productId/", (req, res, next) => {
 });
 
 //GET api/guestCart/remove/productId --> delete item from cart
-router.delete("/:productId", async (req, res, next) => {
+router.delete("/:productId", (req, res, next) => {
 	let id = Number(req.params.productId);
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
 

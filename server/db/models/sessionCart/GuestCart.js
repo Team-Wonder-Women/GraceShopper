@@ -12,24 +12,23 @@ module.exports = function GuestCart(prevCart) {
 				item: product,
 				cartitem: { quantity: 0, price: product.price }
 			};
-			console.log("storedItem -->", storedItem);
 		}
 		storedItem.cartitem.quantity += count;
 		storedItem.cartitem.price =
 			storedItem.item.price * storedItem.cartitem.quantity;
 		// this.totalQuantity = this.totalQuantity + count;
-		this.totalPrice = this.totalPrice + storedItem.cartitem.price;
+		this.totalPrice += storedItem.item.price * count;
 	};
 
 	//decrement one item from cart
 	this.reduceItem = function (productId) {
 		let deletedItem = this.items[productId];
-		deletedItem.quantity--;
-		deletedItem.price -= deletedItem.item.price;
-		this.totalQuantity--;
+		deletedItem.cartitem.quantity--;
+		deletedItem.cartitem.price -= deletedItem.item.price;
+		// this.totalQuantity--;
 		this.totalPrice -= deletedItem.item.price;
 
-		if (this.items[productId] <= 0) {
+		if (deletedItem.cartitem.quantity <= 0) {
 			delete this.items[productId];
 		}
 	};
@@ -37,8 +36,7 @@ module.exports = function GuestCart(prevCart) {
 	//remove one product entirely
 	this.removeProduct = function (productId) {
 		// this.totalQuantity -= this.items[productId].quantity;
-		this.totalPrice -= this.items[productId].price;
-		console.log("guest cart items before remove", this.items);
+		this.totalPrice -= this.items[productId].cartitem.price;
 		delete this.items[productId];
 	};
 
@@ -49,5 +47,10 @@ module.exports = function GuestCart(prevCart) {
 			itemArr.push(this.items[productId]);
 		}
 		return itemArr;
+	};
+
+	this.resetCart = function (prevCart) {
+		this.items = {};
+		this.totalPrice = 0;
 	};
 };
