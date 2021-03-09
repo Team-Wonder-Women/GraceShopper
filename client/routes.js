@@ -33,6 +33,7 @@ class Routes extends Component {
 				<Route exact path="/" component={LandingPage} />
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
+				<Route exact path="/checkout" component={Checkout} />
 				<Route exact path="/" component={AllProductsList} />
 				<Route exact path="/products" component={AllProductsList} />
 				<Route exact path="/products/:productId" component={SingleProduct} />
@@ -41,7 +42,7 @@ class Routes extends Component {
 					<Switch>
 						{/* Routes placed here are only available after logging in */}
 						<Route exact path="/home" component={UserHome} />
-						<Route path="/checkout" component={Checkout} />
+						<Route exact path="/checkout" component={Checkout} />
 						{isAdmin ? (
 							<>
 								<Route exact path="/admin" component={AdminDash} />
@@ -56,7 +57,6 @@ class Routes extends Component {
 				{/* Displays our Login component as a fallback */}
 				<Route component={Login} />
 				<Route path="/" component={LandingPage} />
-				<Route path="/checkout" component={Checkout} />
 			</Switch>
 		);
 	}
