@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import {
-	markUserCartComplete,
-	markGuestCartComplete,
-	fetchCartItemsUser,
-	fetchCartItemsGuest
-} from "../store/cartItem";
+import { markUserCartComplete, markGuestCartComplete } from "../store/cartItem";
 // import { Link } from "react-router-dom";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 class Checkout extends Component {
 	constructor() {
@@ -41,7 +36,7 @@ class Checkout extends Component {
 	}
 
 	render() {
-		console.log("cart items -->", this.props.cartItems);
+		console.log("AM I LISTED HERE", this.props.user);
 		const { products, total } = this.props.cartItems;
 		const { firstName, lastName, address, city, state, zipcode } = this.state;
 		const { handleSubmit, handleChange } = this;
@@ -113,7 +108,7 @@ class Checkout extends Component {
 					<div className="checkout-cart">
 						<h2>Your Cart:</h2>
 						{products.map(product => (
-							<div id="checkout-product" key={product.name}>
+							<div key={product.name} id="checkout-product">
 								<img src={product.imageUrl} id="product-image" />
 								<p>
 									<b>{product.name}</b>
@@ -138,7 +133,8 @@ class Checkout extends Component {
 
 const mapState = state => {
 	return {
-		cartItems: state.cartItems
+		cartItems: state.cartItems,
+		user: state.user
 	};
 };
 
