@@ -408,6 +408,16 @@ select {
 	);
 }
 
+.cart-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#delete-item {
+	align-self: center;
+}
+
 #user-welcome {
 	display: flex;
 	flex-direction: column;
@@ -429,4 +439,5 @@ select {
 .user-welcome {
 	font-size: 42px;
 	font-weight: bold;
+
 }

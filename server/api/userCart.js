@@ -66,30 +66,29 @@ router.post("/:productId", async (req, res, next) => {
 	}
 });
 
-//GET api/userCart/reduce/productId --> decrement product quantity in cart
-router.put("/:cartId/:productId", async (req, res, next) => {
+//PUT api/userCart/reduce/productId --> decrement or increment product quantity in cart
+router.put("/:productId", async (req, res, next) => {
 	if (req.user) {
 		try {
-			const updateItem = await CartItem.findOne({
-				where: { cartId: req.params.cartId, productId: req.params.productId }
+			const userCart = await Cart.findOne({
+				where: { userId: req.user.id, orderStatus: "incomplete" }
 			});
-			if (updateItem.quantity > 1) {
-				await CartItem.decrement("quantity", {
-					where: { cartId: req.params.cartId, productId: req.params.productId }
+			console.log("usercart ---> ", userCart);
+			if (req.body.update === "increment") {
+				await CartItem.increment("quantity", {
+					where: { cartId: userCart.id, productId: req.params.productId }
 				});
-			} else {
-				await CartItem.destroy({
-					where: { cartId: req.params.cartId, productId: req.params.productId }
+			} else if (req.body.update === "decrement") {
+				await CartItem.decrement("quantity", {
+					where: { cartId: userCart.id, productId: req.params.productId }
 				});
 			}
-			const cart = await Cart.findByPk(req.params.cartId);
-			const cartArr = await cart.getProducts();
+			const updatedCart = await userCart.getProducts();
 			let totalPrice = 0;
-			cartArr.forEach(item => {
+			updatedCart.forEach(item => {
 				totalPrice = totalPrice + item.price * item.cartitem.quantity;
 			});
-
-			res.status(202).json({ products: cartArr, total: totalPrice });
+			res.json({ products: updatedCart, total: totalPrice });
 		} catch (err) {
 			next(err);
 		}
@@ -110,8 +109,6 @@ router.put("/", async (req, res, next) => {
 				}
 			}
 		);
-
-		console.log(cart);
 
 		res.sendStatus(200);
 	} catch (err) {
