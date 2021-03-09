@@ -5,12 +5,12 @@ import axios from "axios";
  */
 const GET_PRODUCTS = "GET_PRODUCTS";
 const ADD_SINGLE_PRODUCT = "ADD_SINGLE_PRODUCT";
+const DELETED_SINGLE_PRODUCT = "DELETED_SINGLE_PRODUCT";
 
 /**
  * INITIAL STATE
  */
 const initialState = [];
-
 
 /**
  * ACTION CREATORS
@@ -20,6 +20,11 @@ const gotProducts = products => ({ type: GET_PRODUCTS, products });
 export const addSingleProduct = product => ({
 	type: ADD_SINGLE_PRODUCT,
 	product
+});
+
+export const deletedSingleProduct = productId => ({
+	type: DELETED_SINGLE_PRODUCT,
+	productId
 });
 
 /**
@@ -37,12 +42,21 @@ export const getProducts = () => async dispatch => {
 export const createSingleProduct = product => {
 	return async dispatch => {
 		try {
-			console.log("product -->", product);
 			const { data: created } = await axios.post("/api/products/add", product);
-			console.log("created -->", created);
 			dispatch(addSingleProduct(created));
 		} catch (err) {
 			console.log("We're having trouble adding this product.");
+		}
+	};
+};
+
+export const deleteSingleProduct = productId => {
+	return async dispatch => {
+		try {
+			await axios.delete(`/api/products/delete/${productId}`);
+			dispatch(deletedSingleProduct(productId));
+		} catch (err) {
+			console.log("We're having trouble deleting this product.");
 		}
 	};
 };
@@ -56,6 +70,8 @@ export default function (state = initialState, action) {
 			return action.products;
 		case ADD_SINGLE_PRODUCT:
 			return [...state, action.product];
+		case DELETED_SINGLE_PRODUCT:
+			return [...state].filter(product => product.id !== action.productId);
 		default:
 			return state;
 	}

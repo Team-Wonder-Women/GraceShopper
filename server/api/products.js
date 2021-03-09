@@ -52,3 +52,14 @@ router.post("/add", async (req, res, next) => {
 		res.sendStatus(403);
 	}
 });
+
+router.delete("/delete/:productId", async (req, res, next) => {
+	if (req.user && req.user.isAdmin) {
+		try {
+			await Product.destroy({ where: { id: req.params.productId } });
+			res.sendStatus(204);
+		} catch (err) {
+			next(err);
+		}
+	}
+});

@@ -1,9 +1,10 @@
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { addItemUser, addItemGuest } from "../store/cartItem";
+
+import { deleteSingleProduct } from "../store/products";
 
 export default function Products(props) {
 	const [count, setCount] = useState(props.count);
@@ -19,6 +20,10 @@ export default function Products(props) {
 		setCount(1);
 	}
 
+	function handleDeleteProduct() {
+		dispatch(deleteSingleProduct(props.id));
+	}
+
 	return (
 		<div className="product-container">
 			<Link to={`products/${props.id}`} className="product-link-container">
@@ -28,6 +33,7 @@ export default function Products(props) {
 					<p className="product-price">${(props.price / 100).toFixed(2)}</p>
 				</div>
 			</Link>
+
 			<div className="allproducts-quantity">
 				<button
 					className="quantity-button"
@@ -45,6 +51,13 @@ export default function Products(props) {
 					+
 				</button>
 			</div>
+			{user.isAdmin ? (
+				<button type="button" onClick={handleDeleteProduct}>
+					Delete Product
+				</button>
+			) : (
+				""
+			)}
 			<button type="button" onClick={handleAdd}>
 				Add to Cart
 			</button>
