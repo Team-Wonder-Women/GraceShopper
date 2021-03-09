@@ -25,6 +25,7 @@ export default function CartItemUser(props) {
 			{cartItem ? (
 				<div>
 					<h1>{name}</h1>
+					<h1>${(price / 100).toFixed(2)}</h1>
 					<button
 						className="quantity-button"
 						type="button"
@@ -40,7 +41,6 @@ export default function CartItemUser(props) {
 					>
 						+
 					</button>
-					<h1>${(price / 100).toFixed(2)}</h1>
 					<button type="button" onClick={handleDelete}>
 						Delete
 					</button>
