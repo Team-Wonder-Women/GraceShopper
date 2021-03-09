@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { markUserCartComplete, markGuestCartComplete } from "../store/cartItem";
-// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Checkout extends Component {
@@ -20,7 +19,7 @@ class Checkout extends Component {
 	}
 
 	handleCheckout = () => {
-		if (this.props.isLoggedIn) this.props.checkoutUser();
+		if (this.props.user.id) this.props.checkoutUser();
 		else this.props.checkoutGuest();
 	};
 
@@ -144,4 +143,3 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(Checkout);
-// export default Checkout;
