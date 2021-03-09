@@ -42,12 +42,6 @@ class Navbar extends Component {
 
 	render() {
 		const { handleClick, isLoggedIn, isAdmin, cartItems } = this.props;
-		// let cart;
-		// if (isLoggedIn) {
-		// 	cart = <InsideCart />;
-		// } else {
-		// 	cart = "";
-		// }
 		return (
 			<div className="navbar">
 				<div className="header-logo">
