@@ -35,7 +35,6 @@ class Checkout extends Component {
 	}
 
 	render() {
-		console.log("propsssss ---->", this.props);
 		const { products, total } = this.props.cartItems;
 		const { firstName, lastName, address, city, state, zipcode } = this.state;
 		const { handleSubmit, handleChange } = this;
