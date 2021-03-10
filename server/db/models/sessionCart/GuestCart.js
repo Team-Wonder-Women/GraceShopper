@@ -20,15 +20,23 @@ module.exports = function GuestCart(prevCart) {
 		this.totalPrice += storedItem.item.price * count;
 	};
 
-	//decrement one item from cart
-	this.reduceItem = function (productId) {
-		let deletedItem = this.items[productId];
-		deletedItem.cartitem.quantity--;
-		deletedItem.cartitem.price -= deletedItem.item.price;
-		// this.totalQuantity--;
-		this.totalPrice -= deletedItem.item.price;
+	//increment on item of cart
+	this.incrementItem = function (productId) {
+		let updatedItem = this.items[productId];
+		updatedItem.cartitem.quantity++;
+		updatedItem.cartitem.price += updatedItem.item.price;
+		this.totalPrice += updatedItem.item.price;
+	};
 
-		if (deletedItem.cartitem.quantity <= 0) {
+	//decrement one item of cart
+	this.decrementItem = function (productId) {
+		let updatedItem = this.items[productId];
+		updatedItem.cartitem.quantity--;
+		updatedItem.cartitem.price -= updatedItem.item.price;
+		// this.totalQuantity--;
+		this.totalPrice -= updatedItem.item.price;
+
+		if (updatedItem.cartitem.quantity <= 0) {
 			delete this.items[productId];
 		}
 	};

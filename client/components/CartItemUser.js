@@ -12,8 +12,8 @@ export default function CartItemUser(props) {
 	const dispatch = useDispatch();
 
 	function handleDelete() {
-		dispatch(deleteItemUser(cartId, id));
-		setCartItem(null);
+		let total = cartitem.quantity * price;
+		dispatch(deleteItemUser(cartId, id, total));
 	}
 
 	function handleDecrement(e) {
@@ -41,7 +41,7 @@ export default function CartItemUser(props) {
 						>
 							-
 						</button>
-						<h2 id="quantity-counter">{cartitem.quantity}</h2>
+						<h2 id="quantity-counter">{cartItemQuantity}</h2>
 						<button
 							className="quantity-button"
 							type="button"

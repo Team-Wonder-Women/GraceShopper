@@ -31,7 +31,7 @@ export default function InsideCart() {
 	// in lieu of componentDidUpdate
 	return (
 		<div>
-			{!(cartItems.length >= 1) && total > 1000 ? (
+			{!(cartItems.length >= 1) && total < 1000 ? (
 				<h3>
 					You don't have any items in your cart. <br />
 					<br />
@@ -40,7 +40,7 @@ export default function InsideCart() {
 			) : (
 				<div>
 					{user.id
-						? cartItems.map(item => {
+						? cartItems.sort().map(item => {
 								return <CartItemUser key={item.id} {...item} />;
 						  })
 						: cartItems.map(item => {
