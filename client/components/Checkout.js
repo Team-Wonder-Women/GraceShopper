@@ -35,7 +35,7 @@ class Checkout extends Component {
 	}
 
 	render() {
-		console.log("AM I LISTED HERE", this.props.user);
+		console.log("propsssss ---->", this.props);
 		const { products, total } = this.props.cartItems;
 		const { firstName, lastName, address, city, state, zipcode } = this.state;
 		const { handleSubmit, handleChange } = this;
@@ -108,12 +108,22 @@ class Checkout extends Component {
 						<h2>Your Cart:</h2>
 						{products.map(product => (
 							<div key={product.name} id="checkout-product">
-								<img src={product.imageUrl} id="product-image" />
+								<img
+									src={
+										product.imageUrl ? product.imageUrl : product.item.imageUrl
+									}
+									id="product-image"
+								/>
 								<p>
-									<b>{product.name}</b>
+									<b>{product.name ? product.name : product.item.name}</b>
 								</p>
 								<p>Qty: {product.cartitem.quantity}</p>
-								<p>Price: ${(product.price / 100).toFixed(2)}</p>
+								<p>
+									Price: $
+									{product.price
+										? (product.price / 100).toFixed(2)
+										: (product.item.price / 100).toFixed(2)}
+								</p>
 							</div>
 						))}
 						<div id="total">
