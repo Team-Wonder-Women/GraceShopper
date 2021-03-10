@@ -73,7 +73,6 @@ router.put("/:productId", async (req, res, next) => {
 			const userCart = await Cart.findOne({
 				where: { userId: req.user.id, orderStatus: "incomplete" }
 			});
-			console.log("usercart ---> ", userCart);
 			if (req.body.update === "increment") {
 				await CartItem.increment("quantity", {
 					where: { cartId: userCart.id, productId: req.params.productId }

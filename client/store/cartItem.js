@@ -43,7 +43,6 @@ export const updatedCart = (items, total) => ({
 export const fetchCartItemsUser = userId => {
 	return async dispatch => {
 		try {
-			console.log("this is userId in fetchCartUser--->", userId);
 			const { data: items } = await axios.get(`/api/usercart/${userId}`);
 			dispatch(gotCartItems(items.products, items.total));
 		} catch (err) {
@@ -57,7 +56,6 @@ export const fetchCartItemsGuest = () => {
 	return async dispatch => {
 		try {
 			const { data: items } = await axios.get(`/api/guestcart`);
-			console.log("these are the items in user cart-->", items);
 			dispatch(gotCartItems(items.products, items.total));
 		} catch (err) {
 			console.log("We're having trouble fetching the guest cart.");
@@ -136,11 +134,9 @@ export const markGuestCartComplete = () => {
 export const updateCartQuantity = (productId, update) => {
 	return async dispatch => {
 		try {
-			console.log("product id in update cart thunk ==>", productId);
 			const { data } = await axios.put(`/api/usercart/${productId}`, {
 				update
 			});
-			console.log("data in thunk -->", data);
 			dispatch(updatedCart(data.products, data.total));
 		} catch (err) {
 			console.log("We're having trouble updating this user cart.");

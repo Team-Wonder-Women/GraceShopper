@@ -4,7 +4,6 @@ module.exports = router;
 
 // GET api/guestCart
 router.get("/", (req, res, next) => {
-	console.log("this is req.session---->", req.session);
 	if (!req.session.cart) {
 		let cart = new GuestCart();
 		req.session.cart = cart;

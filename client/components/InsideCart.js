@@ -9,16 +9,12 @@ export default function InsideCart() {
 	const cartItems = useSelector(state => state.cartItems.products);
 	const user = useSelector(state => state.user);
 	const { total } = useSelector(state => state.cartItems);
-	console.log("this is total", total);
 	const [isEmpty, setIsEmpty] = useState(true);
-	console.log("these are cartItmes in inside cart-->", cartItems);
 	const dispatch = useDispatch();
 	// in lieu of componentDidMount
-	console.log("this is userId in insideCart--->", user.id);
 
 	useEffect(() => {
 		if (user.id) {
-			console.log("this is userId in insideCart--->", user.id);
 			dispatch(fetchCartItemsUser(user.id));
 		} else {
 			dispatch(fetchCartItemsGuest());
@@ -47,8 +43,8 @@ export default function InsideCart() {
 						? cartItems.map(item => {
 								return <CartItemUser key={item.id} {...item} />;
 						  })
-						: cartItems.map((item, idx) => {
-								return <CartItemGuest key={idx} {...item} />;
+						: cartItems.map(item => {
+								return <CartItemGuest key={item.id} {...item} />;
 						  })}
 					<h1>Total: ${(total / 100).toFixed(2)}</h1>
 				</div>

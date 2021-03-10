@@ -106,7 +106,7 @@ class Checkout extends Component {
 					<div className="checkout-cart">
 						<h2>Your Cart:</h2>
 						{products.map(product => (
-							<div key={product.name} id="checkout-product">
+							<div key={product} id="checkout-product">
 								<img
 									src={
 										product.imageUrl ? product.imageUrl : product.item.imageUrl

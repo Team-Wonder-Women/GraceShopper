@@ -21,12 +21,10 @@ function ChooseRandomCandle(candles) {
 
 class LandingPage extends Component {
 	componentDidMount() {
-		console.log("component Landingpage mounts!");
 		this.props.loadProducts();
 	}
 	render() {
 		const products = this.props.products;
-		console.log("we have these products", products);
 		return (
 			<div className="landingPage">
 				<h1>Littest Candle of the Moment</h1>

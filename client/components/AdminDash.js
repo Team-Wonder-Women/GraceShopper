@@ -6,7 +6,6 @@ import User from "./User";
 
 class AdminDash extends Component {
 	componentDidMount() {
-		console.log("admin dash componentDidMount");
 		this.props.loadUsers();
 	}
 
@@ -32,7 +31,6 @@ class AdminDash extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log("mapState", state);
 	return {
 		users: state.users
 	};
