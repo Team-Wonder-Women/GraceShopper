@@ -36,10 +36,11 @@ export const completedCart = () => ({
 	type: COMPLETED_CART
 });
 
-export const updatedCart = (items, total) => ({
+export const updatedCart = (productId, total, counter) => ({
 	type: UPDATED_CART,
-	items,
-	total
+	productId,
+	total,
+	counter
 });
 
 export const updatedGuestCart = (items, total) => ({
@@ -142,13 +143,13 @@ export const markGuestCartComplete = () => {
 	};
 };
 
-export const updateCartQuantity = (productId, update) => {
+export const updateCartQuantity = (productId, update, counter) => {
 	return async dispatch => {
 		try {
 			const { data } = await axios.put(`/api/usercart/${productId}`, {
 				update
 			});
-			dispatch(updatedCart(data.products, data.total));
+			dispatch(updatedCart(productId, data.total, counter));
 		} catch (err) {
 			console.log("We're having trouble updating this user cart.");
 		}
@@ -161,7 +162,6 @@ export const updateCartQuantityGuest = (productId, update) => {
 			const { data } = await axios.put(`/api/guestcart/${productId}`, {
 				update
 			});
-			console.log("this is data in usercart update--->", data);
 			dispatch(updatedGuestCart(data.products, data.total));
 		} catch (err) {
 			console.log("We're having trouble updating this guest cart.");
@@ -198,7 +198,13 @@ export default function cartItems(state = initialState, action) {
 			state.total = state.total - action.price;
 			return { ...state };
 		case UPDATED_CART:
-			return { ...state, products: [...action.items], total: action.total };
+			const updatedProducts = state.products.map(product => {
+				if (product.id === action.productId) {
+					product.quantity = product.quantity + action.counter;
+				}
+				return product;
+			});
+			return { ...state, products: [...updatedProducts], total: action.total };
 		case UPDATED_GUEST_CART:
 			return { ...state, products: [...action.items], total: action.total };
 		case COMPLETED_CART:
