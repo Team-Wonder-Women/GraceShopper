@@ -66,14 +66,13 @@ router.post("/:productId", async (req, res, next) => {
 	}
 });
 
-//PUT api/userCart/reduce/productId --> decrement or increment product quantity in cart
+//PUT api/userCart/productId --> decrement or increment product quantity in cart
 router.put("/:productId", async (req, res, next) => {
 	if (req.user) {
 		try {
 			const userCart = await Cart.findOne({
 				where: { userId: req.user.id, orderStatus: "incomplete" }
 			});
-			console.log("usercart ---> ", userCart);
 			if (req.body.update === "increment") {
 				await CartItem.increment("quantity", {
 					where: { cartId: userCart.id, productId: req.params.productId }
@@ -100,7 +99,7 @@ router.put("/:productId", async (req, res, next) => {
 //PUT api/userCart/userId --> mark cart complete
 router.put("/", async (req, res, next) => {
 	try {
-		const cart = await Cart.update(
+		await Cart.update(
 			{ orderStatus: "complete" },
 			{
 				where: {
@@ -109,7 +108,10 @@ router.put("/", async (req, res, next) => {
 				}
 			}
 		);
-
+		const newCart = Cart.create({
+			userId: req.user.id,
+			orderStatus: "incomplete"
+		});
 		res.sendStatus(200);
 	} catch (err) {
 		next(err);

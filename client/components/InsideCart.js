@@ -11,14 +11,11 @@ export default function InsideCart() {
 	const { total } = useSelector(state => state.cartItems);
 	console.log("this is total", total);
 	const [isEmpty, setIsEmpty] = useState(true);
-	console.log("these are cartItmes in inside cart-->", cartItems);
 	const dispatch = useDispatch();
 	// in lieu of componentDidMount
-	console.log("this is userId in insideCart--->", user.id);
 
 	useEffect(() => {
 		if (user.id) {
-			console.log("this is userId in insideCart--->", user.id);
 			dispatch(fetchCartItemsUser(user.id));
 		} else {
 			dispatch(fetchCartItemsGuest());
@@ -35,7 +32,7 @@ export default function InsideCart() {
 	// in lieu of componentDidUpdate
 	return (
 		<div>
-			{!(cartItems.length >= 1) && total > 1000 ? (
+			{!(cartItems.length >= 1) && total < 1000 ? (
 				<h3>
 					You don't have any items in your cart. <br />
 					<br />
@@ -44,7 +41,7 @@ export default function InsideCart() {
 			) : (
 				<div>
 					{user.id
-						? cartItems.map(item => {
+						? cartItems.sort().map(item => {
 								return <CartItemUser key={item.id} {...item} />;
 						  })
 						: cartItems.map((item, idx) => {

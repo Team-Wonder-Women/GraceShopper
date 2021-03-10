@@ -34,14 +34,18 @@ router.get("/:productId/:count", async (req, res, next) => {
 	}
 });
 
-//GET api/guestCart/reduce/productId --> decrement product quantity in cart
-router.get("/reduce/:productId/", (req, res, next) => {
+//GET api/guestCart/productId --> decrement/increment product quantity in cart
+router.put("/:productId/", (req, res, next) => {
 	let id = req.params.productId;
 	let cart = new GuestCart(req.session.cart ? req.session.cart : {});
-
-	cart.reduceItem(id);
+	if (req.body.update === "decrement") {
+		cart.decrementItem(id);
+	} else if (req.body.update === "increment") {
+		cart.incrementItem(id);
+	}
 	req.session.cart = cart;
-	res.redirect("/");
+	let cartArr = cart.createItemArr();
+	res.json({ products: cartArr, total: cart.totalPrice });
 });
 
 //GET api/guestCart/remove/productId --> delete item from cart
