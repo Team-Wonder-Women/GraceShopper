@@ -19,13 +19,13 @@ export default function CartItemUser(props) {
 	function handleDecrement(e) {
 		if (cartItemQuantity > 1) {
 			setCartItemQuantity(cartItemQuantity - 1);
-			dispatch(updateCartQuantity(id, "decrement"));
+			dispatch(updateCartQuantity(id, "decrement", -1));
 		}
 	}
 
 	function handleIncrement(e) {
 		setCartItemQuantity(cartItemQuantity + 1);
-		dispatch(updateCartQuantity(id, "increment"));
+		dispatch(updateCartQuantity(id, "increment", 1));
 	}
 
 	return (

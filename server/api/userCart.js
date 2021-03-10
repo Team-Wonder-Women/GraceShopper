@@ -87,7 +87,7 @@ router.put("/:productId", async (req, res, next) => {
 			updatedCart.forEach(item => {
 				totalPrice = totalPrice + item.price * item.cartitem.quantity;
 			});
-			res.json({ products: updatedCart, total: totalPrice });
+			res.json({ total: totalPrice });
 		} catch (err) {
 			next(err);
 		}

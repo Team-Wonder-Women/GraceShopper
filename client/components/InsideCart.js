@@ -40,7 +40,7 @@ export default function InsideCart() {
 			) : (
 				<div>
 					{user.id
-						? cartItems.sort().map(item => {
+						? cartItems.map(item => {
 								return <CartItemUser key={item.id} {...item} />;
 						  })
 						: cartItems.map(item => {
