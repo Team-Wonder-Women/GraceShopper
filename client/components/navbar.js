@@ -48,7 +48,7 @@ class Navbar extends Component {
 					</Link>
 				</div>
 				<div id="nav-buttons">
-					<div>
+					<div className="nav-titles">
 						{isLoggedIn ? (
 							<div className="nav-buttons-left-container">
 								{/* The navbar will show these links after you log in */}
