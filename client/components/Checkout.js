@@ -40,7 +40,7 @@ class Checkout extends Component {
 		const { handleSubmit, handleChange } = this;
 		return (
 			<div className="checkout-container">
-				<h2>Checkout Form</h2>
+				<h1 id="checkout-form">Checkout Form</h1>
 				<form className="checkout-form" onSubmit={handleSubmit}>
 					<div className="checkout-div">
 						<label htmlFor="firstName">

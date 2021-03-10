@@ -527,3 +527,7 @@ select {
 #confirmation-container a {
 	color: rgba(55, 87, 194, 1);
 }
+
+#checkout-form {
+	margin-bottom: 0px;
+}
