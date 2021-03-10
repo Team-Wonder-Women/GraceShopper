@@ -28,6 +28,10 @@ h1 {
 	margin: 20px;
 }
 
+.nav-titles {
+	margin-top: 2rem;
+}
+
 #nav-buttons {
 	display: flex;
 	justify-content: space-between;
@@ -54,6 +58,10 @@ hr {
 	border-radius: 0.5rem;
 	border-bottom: 0.5px solid slategray;
 	border-right: 0.2px solid slategray;
+}
+
+#nav-buttons {
+	align-items: baseline;
 }
 
 .nav-buttons-left-container {
@@ -115,9 +123,10 @@ img {
 
 #logo {
 	width: auto;
-	height: 3.8rem;
+	height: 4rem;
 	margin-left: 6px;
 	box-shadow: none;
+	vertical-align: text-bottom;
 }
 
 .header-logo {
@@ -228,6 +237,7 @@ button {
 	font-family: "High Tide Sans", sans-serif;
 	font-weight: lighter;
 	font-size: 30px;
+	padding-left: 5px;
 }
 
 .quantity-button {
@@ -516,4 +526,8 @@ select {
 
 #confirmation-container a {
 	color: rgba(55, 87, 194, 1);
+}
+
+#checkout-form {
+	margin-bottom: 0px;
 }

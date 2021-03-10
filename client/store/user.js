@@ -27,7 +27,6 @@ export const me = () => async dispatch => {
 		const res = await axios.get("/auth/me");
 		dispatch(getUser(res.data || defaultUser));
 		if (res.data !== null) {
-			console.log("yo we are in here!");
 			dispatch(fetchCartItemsUser(res.data.id));
 		}
 	} catch (err) {

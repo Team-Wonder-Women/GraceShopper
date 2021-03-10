@@ -52,7 +52,6 @@ export const updatedGuestCart = (items, total) => ({
 export const fetchCartItemsUser = userId => {
 	return async dispatch => {
 		try {
-			console.log("this is userId in fetchCartUser--->", userId);
 			const { data: items } = await axios.get(`/api/usercart/${userId}`);
 			dispatch(gotCartItems(items.products, items.total));
 		} catch (err) {
@@ -66,7 +65,6 @@ export const fetchCartItemsGuest = () => {
 	return async dispatch => {
 		try {
 			const { data: items } = await axios.get(`/api/guestcart`);
-			console.log("these are the items in user cart-->", items);
 			dispatch(gotCartItems(items.products, items.total));
 		} catch (err) {
 			console.log("We're having trouble fetching the guest cart.");

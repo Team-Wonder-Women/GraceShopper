@@ -9,7 +9,6 @@ export default function InsideCart() {
 	const cartItems = useSelector(state => state.cartItems.products);
 	const user = useSelector(state => state.user);
 	const { total } = useSelector(state => state.cartItems);
-	console.log("this is total", total);
 	const [isEmpty, setIsEmpty] = useState(true);
 	const dispatch = useDispatch();
 	// in lieu of componentDidMount
@@ -44,8 +43,8 @@ export default function InsideCart() {
 						? cartItems.sort().map(item => {
 								return <CartItemUser key={item.id} {...item} />;
 						  })
-						: cartItems.map((item, idx) => {
-								return <CartItemGuest key={idx} {...item} />;
+						: cartItems.map(item => {
+								return <CartItemGuest key={item.id} {...item} />;
 						  })}
 					<h1>Total: ${(total / 100).toFixed(2)}</h1>
 				</div>
