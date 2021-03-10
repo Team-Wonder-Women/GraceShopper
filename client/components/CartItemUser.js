@@ -6,22 +6,17 @@ export default function CartItemUser(props) {
 	const { name, price, cartitem, id } = props;
 	const { cartId } = cartitem;
 
-	console.log("props in cartitem user", name);
-
-	// console.log("id ==>", id);
-
 	const [cartItem, setCartItem] = useState(cartitem);
 	const [cartItemQuantity, setCartItemQuantity] = useState(cartitem.quantity);
 
 	const dispatch = useDispatch();
 
 	function handleDelete() {
-		dispatch(deleteItemUser(cartId, id));
-		setCartItem(null);
+		let total = cartitem.quantity * price;
+		dispatch(deleteItemUser(cartId, id, total));
 	}
 
 	function handleDecrement(e) {
-		console.log("YOU HIT DECREMENT!");
 		if (cartItemQuantity > 1) {
 			setCartItemQuantity(cartItemQuantity - 1);
 			dispatch(updateCartQuantity(id, "decrement"));
@@ -46,7 +41,7 @@ export default function CartItemUser(props) {
 						>
 							-
 						</button>
-						<h2 id="quantity-counter">{cartitem.quantity}</h2>
+						<h2 id="quantity-counter">{cartItemQuantity}</h2>
 						<button
 							className="quantity-button"
 							type="button"

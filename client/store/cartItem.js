@@ -6,6 +6,7 @@ const DELETED_ITEM_USER = "DELETED_ITEM";
 const DELETED_ITEM_GUEST = "DELETED_ITEM_GUEST";
 const COMPLETED_CART = "COMPLETED_CART";
 const UPDATED_CART = "UPDATED_CART";
+const UPDATED_GUEST_CART = "UPDATED_GUEST_CART";
 
 export const gotCartItems = (items, total) => ({
 	type: GOT_CART_ITEMS,
@@ -19,14 +20,16 @@ export const addedItems = (items, total) => ({
 	total
 });
 
-export const deletedItemUser = productId => ({
+export const deletedItemUser = (productId, price) => ({
 	type: DELETED_ITEM_USER,
-	productId
+	productId,
+	price
 });
 
-export const deletedItemGuest = productId => ({
+export const deletedItemGuest = (productId, price) => ({
 	type: DELETED_ITEM_GUEST,
-	productId
+	productId,
+	price
 });
 
 export const completedCart = () => ({
@@ -35,6 +38,12 @@ export const completedCart = () => ({
 
 export const updatedCart = (items, total) => ({
 	type: UPDATED_CART,
+	items,
+	total
+});
+
+export const updatedGuestCart = (items, total) => ({
+	type: UPDATED_GUEST_CART,
 	items,
 	total
 });
@@ -91,22 +100,22 @@ export const addItemGuest = (productId, count) => {
 	};
 };
 
-export const deleteItemUser = (cartId, productId) => {
+export const deleteItemUser = (cartId, productId, price) => {
 	return async dispatch => {
 		try {
 			await axios.delete(`/api/usercart/${cartId}/${productId}`);
-			dispatch(deletedItemUser(productId));
+			dispatch(deletedItemUser(productId, price));
 		} catch (err) {
 			console.log("We weren't able to delete this item from your user cart.");
 		}
 	};
 };
 
-export const deleteItemGuest = productId => {
+export const deleteItemGuest = (productId, price) => {
 	return async dispatch => {
 		try {
 			await axios.delete(`/api/guestcart/${productId}`);
-			dispatch(deletedItemGuest(productId));
+			dispatch(deletedItemGuest(productId, price));
 		} catch (err) {
 			console.log("We weren't able to delete this item from your guest cart.");
 		}
@@ -136,14 +145,26 @@ export const markGuestCartComplete = () => {
 export const updateCartQuantity = (productId, update) => {
 	return async dispatch => {
 		try {
-			console.log("product id in update cart thunk ==>", productId);
 			const { data } = await axios.put(`/api/usercart/${productId}`, {
 				update
 			});
-			console.log("data in thunk -->", data);
 			dispatch(updatedCart(data.products, data.total));
 		} catch (err) {
 			console.log("We're having trouble updating this user cart.");
+		}
+	};
+};
+
+export const updateCartQuantityGuest = (productId, update) => {
+	return async dispatch => {
+		try {
+			const { data } = await axios.put(`/api/guestcart/${productId}`, {
+				update
+			});
+			console.log("this is data in usercart update--->", data);
+			dispatch(updatedGuestCart(data.products, data.total));
+		} catch (err) {
+			console.log("We're having trouble updating this guest cart.");
 		}
 	};
 };
@@ -168,13 +189,17 @@ export default function cartItems(state = initialState, action) {
 			state.products = state.products.filter(
 				item => item.id !== action.productId
 			);
+			state.total = state.total - action.price;
 			return { ...state };
 		case DELETED_ITEM_GUEST:
 			state.products = state.products.filter(
 				product => product.item.id !== action.productId
 			);
+			state.total = state.total - action.price;
 			return { ...state };
 		case UPDATED_CART:
+			return { ...state, products: [...action.items], total: action.total };
+		case UPDATED_GUEST_CART:
 			return { ...state, products: [...action.items], total: action.total };
 		case COMPLETED_CART:
 			return initialState;
