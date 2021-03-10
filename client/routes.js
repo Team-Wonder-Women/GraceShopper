@@ -26,24 +26,23 @@ class Routes extends Component {
 	}
 
 	render() {
-		console.log("routes props", this.props);
-		const { isLoggedIn, isAdmin } = this.props;
+		const { isLoggedIn, isAdmin, user } = this.props;
 		return (
 			<Switch>
 				{/* Routes placed here are available to all visitors */}
 				<Route exact path="/" component={LandingPage} />
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
-				<Route exact path="/checkout" component={Checkout} />
+				<Route exact path="/checkout" user={user} component={Checkout} />
 				<Route exact path="/" component={AllProductsList} />
 				<Route exact path="/products" component={AllProductsList} />
 				<Route exact path="/products/:productId" component={SingleProduct} />
 				<Route exact path="/cart/:id" component={InsideCart} />
+				<Route exact path="/confirmation" component={Confirmation} />
 				{isLoggedIn && (
 					<Switch>
 						{/* Routes placed here are only available after logging in */}
 						<Route exact path="/home" component={UserHome} />
-						<Route exact path="/confirmation" component={Confirmation} />
 						{isAdmin ? (
 							<>
 								<Route exact path="/admin" component={AdminDash} />
@@ -56,7 +55,6 @@ class Routes extends Component {
 				)}
 
 				{/* Displays our Login component as a fallback */}
-				<Route exact path="/confirmation" component={Confirmation} />
 				<Route component={Login} />
 				<Route path="/" component={LandingPage} />
 			</Switch>
