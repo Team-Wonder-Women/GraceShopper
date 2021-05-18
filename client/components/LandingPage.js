@@ -9,11 +9,13 @@ function ChooseRandomCandle(candles) {
 	let randomCandle = Math.floor(Math.random() * Math.floor(max));
 	let candle = candles[randomCandle];
 	return (
-		<div className="landingPage">
+		<div className="flex-col text-center">
 			<h2>{candle.name}</h2>
-			<Link to={`products/${candle.id}`}>
-				<img src={candle.imageUrl} />
-			</Link>
+			<div className="place-self-center">
+				<Link to={`products/${candle.id}`}>
+					<img src={candle.imageUrl} />
+				</Link>
+			</div>
 			<h3 className="product-description">{candle.description}</h3>
 		</div>
 	);
@@ -26,7 +28,7 @@ class LandingPage extends Component {
 	render() {
 		const products = this.props.products;
 		return (
-			<div className="landingPage">
+			<div className="flex-col text-center">
 				<h1>Littest Candle of the Moment</h1>
 				{products.length ? (
 					<ChooseRandomCandle {...products} />

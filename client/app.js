@@ -6,7 +6,7 @@ import Routes from "./routes";
 
 const App = () => {
 	return (
-		<div>
+		<div className="bg-gradient-to-b from-indigo-50 via-indigo-100 to-indigo-200">
 			<ToastProvider>
 				<Navbar />
 				<Routes />

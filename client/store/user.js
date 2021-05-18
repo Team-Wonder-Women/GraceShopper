@@ -71,7 +71,7 @@ export const logout = () => async dispatch => {
 		await axios.post("/auth/logout");
 		dispatch(removeUser());
 		dispatch(fetchCartItemsGuest());
-		// history.push("/login");
+		history.push("/");
 	} catch (err) {
 		console.error(err);
 	}
