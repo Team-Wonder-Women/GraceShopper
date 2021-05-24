@@ -22,7 +22,7 @@ class LandingPage extends Component {
 	render() {
 		return (
 			<div className="flex-col text-center space-y-6 my-auto">
-				<h1 className="text-4xl font-black mt-10">
+				<h1 className="text-4xl font-black mt-16 mb-10">
 					Littest Candle of the Moment
 				</h1>
 				{this.state.candle ? (
@@ -37,13 +37,13 @@ class LandingPage extends Component {
 								src={this.state.candle.imageUrl}
 							/>
 						</Link>
-						<div className="flex-col pt-2 p-5 text-center border-2 border-indigo-50">
-							<h2 className="text-3xl font-extrabold mb-2">
+						<div className="flex flex-col pt-2 p-5 text-center border-2 border-indigo-50">
+							<h2 className="text-3xl font-extrabold my-6">
 								{this.state.candle.name}
 							</h2>
 							<h3>{this.state.candle.description}</h3>
-							<div className="relative float-right mt-10">
-								<Link to="/products" className="hover:text-indigo-200">
+							<div className="flex-grow flex items-end justify-end align-text-bottom">
+								<Link to="/products" className="flex-end hover:text-indigo-200">
 									want to see more?
 								</Link>
 							</div>

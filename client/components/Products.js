@@ -27,17 +27,16 @@ export default function Products(props) {
 	}
 
 	return (
-		<div className="flex border-2 border-indigo-50">
-			{/* <Link to={`products/${props.id}`} className="flex-shrink-2"> */}
-			<img src={props.imageUrl} className="w-2/4 mr-0" />
-			{/* </Link> */}
-			<div className="flex-grow flex-col text-center ml-px">
-				<div className="text-xl font-extrabold">{props.name}</div>
-				<button className="hover:text-indigo-200" type="button">
-					see details
-				</button>
+		<div className="flex-initial border-2 border-indigo-50">
+			<Link to={`products/${props.id}`} className="flex hover:opacity-50">
+				<img src={props.imageUrl} className="flex-grow w-2/4 mr-0" />
+			</Link>
+			<div className="flex flex-col text-center my-2 ml-px">
+				<div className="text-xl font-extrabold text-indigo-600">
+					{props.name}
+				</div>
 				<p>${(props.price / 100).toFixed(2)}</p>
-				<div className="flex justify-evenly">
+				<div className="items-end flex justify-center mb-2">
 					<button
 						className="bg-indigo-50 w-6 h-6 hover:bg-indigo-200"
 						type="button"
