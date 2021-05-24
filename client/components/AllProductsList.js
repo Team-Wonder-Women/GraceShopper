@@ -15,8 +15,10 @@ export default function AllProductsList() {
 
 	return (
 		// this.state.counts !== null &&
-		allProducts.map(product => {
-			return <Products key={product.id} {...product} count={1} />;
-		})
+		<div className="grid grid-flow-rows grid-cols-3 gap-2 mt-6 mx-6">
+			{allProducts.map(product => {
+				return <Products key={product.id} {...product} count={1} />;
+			})}
+		</div>
 	);
 }

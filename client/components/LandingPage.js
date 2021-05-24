@@ -4,40 +4,54 @@ import { Link } from "react-router-dom";
 
 import { getProducts } from "../store/products";
 
-function ChooseRandomCandle(candles) {
-	let max = Object.keys(candles).length;
-	let randomCandle = Math.floor(Math.random() * Math.floor(max));
-	let candle = candles[randomCandle];
-	return (
-		<div className="flex-col text-center">
-			<h2>{candle.name}</h2>
-			<div className="place-self-center">
-				<Link to={`products/${candle.id}`}>
-					<img src={candle.imageUrl} />
-				</Link>
-			</div>
-			<h3 className="product-description">{candle.description}</h3>
-		</div>
-	);
-}
-
 class LandingPage extends Component {
-	componentDidMount() {
-		this.props.loadProducts();
+	constructor(props) {
+		super(props);
+		this.state = {
+			candle: {}
+		};
 	}
+	async componentDidMount() {
+		await this.props.loadProducts();
+		let candles = this.props.products;
+		let max = Object.keys(candles).length;
+		let randomCandle = Math.floor(Math.random() * Math.floor(max));
+		this.setState({ candle: candles[randomCandle] });
+	}
+
 	render() {
-		const products = this.props.products;
 		return (
-			<div className="flex-col text-center">
-				<h1>Littest Candle of the Moment</h1>
-				{products.length ? (
-					<ChooseRandomCandle {...products} />
+			<div className="flex-col text-center space-y-6 my-auto">
+				<h1 className="text-4xl font-black mt-10">
+					Littest Candle of the Moment
+				</h1>
+				{this.state.candle ? (
+					<div className="grid grid-flow-col grid-cols-4 gap-x-1 mx-6 mb-6">
+						<div></div>
+						<Link
+							to={`products/${this.state.candle.id}`}
+							className="inline-block align-center"
+						>
+							<img
+								className="inline border-2 border-indigo-50"
+								src={this.state.candle.imageUrl}
+							/>
+						</Link>
+						<div className="flex-col pt-2 p-5 text-center border-2 border-indigo-50">
+							<h2 className="text-3xl font-extrabold mb-2">
+								{this.state.candle.name}
+							</h2>
+							<h3>{this.state.candle.description}</h3>
+							<div className="relative float-right mt-10">
+								<Link to="/products" className="hover:text-indigo-200">
+									want to see more?
+								</Link>
+							</div>
+						</div>
+					</div>
 				) : (
 					<div>We are burning to show you this!</div>
 				)}
-				<Link to="/products">
-					<span>want to see more?</span>
-				</Link>
 			</div>
 		);
 	}

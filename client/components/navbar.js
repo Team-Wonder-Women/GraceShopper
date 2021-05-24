@@ -36,20 +36,24 @@ class Navbar extends Component {
 	render() {
 		const { handleClick, isLoggedIn, isAdmin, cartItems } = this.props;
 		return (
-			<div className="flex-col">
-				<Link to="/">
-					<div className="flex items-end justify-center">
-						<img
-							className="w-10"
-							src="/lit-collective.png"
-							alt="lit collective logo"
-						/>
-						<h1 className="flex justify-center">Lit Collective</h1>
-					</div>
-				</Link>
+			<div className="flex justify-between bg-indigo-50 py-3 px-2">
+				<div>
+					<Link to="/">
+						<div className="flex items-end justify-center">
+							<img
+								className="w-10"
+								src="/lit-collective.png"
+								alt="lit collective logo"
+							/>
+							<h1 className="flex justify-center font-display text-gray-700 text-xl pl-2">
+								Lit Collective
+							</h1>
+						</div>
+					</Link>
+				</div>
 				<div className="flex justify-between">
 					{isLoggedIn ? (
-						<div className="flex content-end space-x-10">
+						<div className="flex space-x-10">
 							{/* The navbar will show these links after you log in */}
 							<div>
 								<Link to="/home">Home</Link>
@@ -91,19 +95,15 @@ class Navbar extends Component {
 							</div>
 						</Cart>
 					) : null}
-					<div className="flex m-2" onClick={this.showCart}>
-						<img
-							className="relative bg-indigo-500 rounded-sm p-2"
-							src="/cart.svg"
-						/>
-						<div className="z-10 absolute top-12 right-1">
-							<span className="bg-yellow-300 rounded-lg p-1">
+					<div className="flex items-end pl-10 pr-3" onClick={this.showCart}>
+						<img className="relative" src="/cart.svg" />
+						<div>
+							<span className="bg-indigo-200 bg-opacity-50 rounded-lg p-1 text-xs absolute top-8 right-3">
 								{this.cartCount(cartItems.products)}
 							</span>
 						</div>
 					</div>
 				</div>
-				<hr />
 			</div>
 		);
 	}

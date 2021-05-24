@@ -545,6 +545,12 @@ video {
 	height: auto;
 }
 
+@font-face {
+	font-family: "High Tide Sans";
+
+	src: local("High Tide Sans"), url(../fonts/HighTide-Sans.otf) format("otf");
+}
+
 .container {
 	width: 100%;
 }
@@ -11736,6 +11742,14 @@ video {
 .font-mono {
 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
+}
+
+.font-display {
+	font-family: "High Tide Sans";
+}
+
+.font-body {
+	font-family: "Work Sans", sans-serif;
 }
 
 .font-thin {
@@ -43674,6 +43688,14 @@ video {
 			"Liberation Mono", "Courier New", monospace;
 	}
 
+	.sm\:font-display {
+		font-family: "High Tide Sans";
+	}
+
+	.sm\:font-body {
+		font-family: "Work Sans", sans-serif;
+	}
+
 	.sm\:font-thin {
 		font-weight: 100;
 	}
@@ -75435,6 +75457,14 @@ video {
 	.md\:font-mono {
 		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 			"Liberation Mono", "Courier New", monospace;
+	}
+
+	.md\:font-display {
+		font-family: "High Tide Sans";
+	}
+
+	.md\:font-body {
+		font-family: "Work Sans", sans-serif;
 	}
 
 	.md\:font-thin {
@@ -107200,6 +107230,14 @@ video {
 			"Liberation Mono", "Courier New", monospace;
 	}
 
+	.lg\:font-display {
+		font-family: "High Tide Sans";
+	}
+
+	.lg\:font-body {
+		font-family: "Work Sans", sans-serif;
+	}
+
 	.lg\:font-thin {
 		font-weight: 100;
 	}
@@ -138963,6 +139001,14 @@ video {
 			"Liberation Mono", "Courier New", monospace;
 	}
 
+	.xl\:font-display {
+		font-family: "High Tide Sans";
+	}
+
+	.xl\:font-body {
+		font-family: "Work Sans", sans-serif;
+	}
+
 	.xl\:font-thin {
 		font-weight: 100;
 	}
@@ -170724,6 +170770,14 @@ video {
 	.\32xl\:font-mono {
 		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 			"Liberation Mono", "Courier New", monospace;
+	}
+
+	.\32xl\:font-display {
+		font-family: "High Tide Sans";
+	}
+
+	.\32xl\:font-body {
+		font-family: "Work Sans", sans-serif;
 	}
 
 	.\32xl\:font-thin {
