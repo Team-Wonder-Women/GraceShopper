@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import Cart from "./Cart";
-import InsideCart from "./InsideCart";
 
 class Navbar extends Component {
 	constructor(props) {
@@ -13,16 +12,11 @@ class Navbar extends Component {
 		this.state = {
 			show: false
 		};
-		this.showCart = this.showCart.bind(this);
-		this.hideCart = this.hideCart.bind(this);
+		this.toggleShow = this.toggleShow.bind(this);
 	}
 
-	showCart = () => {
-		this.setState({ show: true });
-	};
-
-	hideCart = () => {
-		this.setState({ show: false });
+	toggleShow = () => {
+		this.setState(prevState => ({ show: !prevState.show }));
 	};
 
 	cartCount = itemsArr => {
@@ -86,16 +80,10 @@ class Navbar extends Component {
 							</div>
 						</div>
 					)}
-					{this.state.show ? (
-						<Cart show={this.state.show} handleClose={this.hideCart}>
-							<div className="cart-content">
-								<h1>Your Cart</h1>
-								<InsideCart />
-								{/* {cart} */}
-							</div>
-						</Cart>
-					) : null}
-					<div className="flex items-end pl-10 pr-3" onClick={this.showCart}>
+					{this.state.show && (
+						<Cart show={this.state.show} toggleShow={this.toggleShow} />
+					)}
+					<div className="flex items-end pl-10 pr-3" onClick={this.toggleShow}>
 						<img className="relative" src="/cart.svg" />
 						<div>
 							<span className="bg-indigo-200 bg-opacity-50 rounded-lg p-1 text-xs absolute top-8 right-3">

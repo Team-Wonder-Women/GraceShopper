@@ -33,7 +33,7 @@ export default function Products(props) {
 			</Link>
 			<div className="flex flex-col text-center my-2 ml-px">
 				<div className="text-xl font-extrabold text-indigo-600">
-					{props.name}
+					<Link to={`products/${props.id}`}>{props.name}</Link>
 				</div>
 				<p>${(props.price / 100).toFixed(2)}</p>
 				<div className="items-end flex justify-center mb-2">

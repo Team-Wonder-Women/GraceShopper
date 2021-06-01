@@ -9,43 +9,76 @@ import { auth } from "../store";
 const AuthForm = props => {
 	const { name, displayName, handleSubmit, error } = props;
 	return (
-		<div className="login-signup-container">
-			<form onSubmit={handleSubmit} name={name}>
-				<h1>{displayName}</h1>
-				{displayName === "Sign Up" && (
-					<div className="first-last-name-container">
+		<div className="h-screen w-full flex justify-center items-center">
+			<div className="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-indigo-50">
+				<div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-indigo-400 backdrop">
+					<h1 className="text-3xl pt-3 md:text-4xl font-extrabold text-white my-2 md:my-0">
+						litCollective
+					</h1>
+					<p className="mb-2 text-white hidden md:block">join the gang</p>
+				</div>
+				<form
+					className="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4"
+					onSubmit={handleSubmit}
+					name={name}
+				>
+					<h1 className="mb-4 font-bold text-3xl flex items-center text-indigo-400">
+						{displayName}
+					</h1>
+					{displayName === "Sign Up" && (
 						<div>
-							<label htmlFor="firstName">
-								<small>First Name</small>
-							</label>
-							<input name="firstName" type="text" required />
+							<div className="mb-3">
+								<input
+									className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+									name="firstName"
+									placeholder="first name"
+									type="text"
+									required
+								/>
+							</div>
+							<div className="mb-3">
+								<input
+									className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+									name="lastName"
+									placeholder="last name"
+									type="text"
+									required
+								/>
+							</div>
 						</div>
-						<div>
-							<label htmlFor="lastName">
-								<small>Last Name</small>
-							</label>
-							<input name="lastName" type="text" required />
-						</div>
+					)}
+					<div className="mb-3">
+						<input
+							className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+							id="email"
+							name="email"
+							placeholder="email"
+							type="text"
+							required
+						/>
 					</div>
-				)}
-				<div>
-					<label htmlFor="email">
-						<small>Email</small>
-					</label>
-					<input id="email" name="email" type="text" required />
-				</div>
-				<div>
-					<label htmlFor="password">
-						<small>Password</small>
-					</label>
-					<input id="password" name="password" type="password" required />
-				</div>
-				<div>
-					<button type="submit">{displayName}</button>
-				</div>
-				{error && error.response && <div> {error.response.data} </div>}
-				<a href="/auth/google">{displayName} with Google</a>
-			</form>
+					<div className="mb-3">
+						<input
+							className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+							id="password"
+							name="password"
+							placeholder="password"
+							type="password"
+							required
+						/>
+					</div>
+					<div className="mb-3">
+						<button
+							className="flex justify-center items-center bg-indigo-200 hover:bg-indigo-400 text-white focus:outline-none focus:ring rounded px-3 py-1"
+							type="submit"
+						>
+							{displayName}
+						</button>
+					</div>
+					{error && error.response && <div> {error.response.data} </div>}
+					<a href="/auth/google">{displayName} with Google</a>
+				</form>
+			</div>
 		</div>
 	);
 };
