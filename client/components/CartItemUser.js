@@ -35,21 +35,21 @@ export default function CartItemUser(props) {
 	}
 
 	return (
-		<div>
-			{cartItem ? (
-				<div className="cart-item">
+		<div className="mb-3">
+			{cartItem && (
+				<div className="flex justify-between">
 					<h1>{name}</h1>
-					<div>
+					<div className="grid grid-cols-3">
 						<button
-							className="quantity-button"
+							className="bg-indigo-200 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-300"
 							type="button"
 							onClick={handleDecrement}
 						>
 							-
 						</button>
-						<h2 id="quantity-counter">{cartitem.quantity}</h2>
+						<h2 className="w-6 h-6">{cartitem.quantity}</h2>
 						<button
-							className="quantity-button"
+							className="bg-indigo-200 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-300"
 							type="button"
 							onClick={handleIncrement}
 						>
@@ -57,12 +57,10 @@ export default function CartItemUser(props) {
 						</button>
 					</div>
 					<h1>${(price / 100).toFixed(2)}</h1>
-					<button id="delete-item" type="button" onClick={handleDelete}>
+					<button type="button" onClick={handleDelete}>
 						Delete
 					</button>
 				</div>
-			) : (
-				""
 			)}
 		</div>
 	);

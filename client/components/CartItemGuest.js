@@ -38,13 +38,19 @@ export default function CartItemGuest(props) {
 
 	return (
 		<div className="mb-3">
-			{cartItem ? (
-				<div className="flex justify-between">
+			{cartItem && (
+				<div className="flex justify-between items-center">
+					<div className="w-12 h-12">
+						<img
+							className="object-scale-down focus:ring rounded"
+							src={item.imageUrl}
+						/>
+					</div>
 					<h1>{item.name}</h1>
 					<div className="grid grid-cols-3">
 						<div className="flex">
 							<button
-								className="bg-indigo-200 w-6 h-6 hover:bg-indigo-300"
+								className="bg-indigo-200 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-300"
 								type="button"
 								onClick={handleDecrement}
 							>
@@ -52,7 +58,7 @@ export default function CartItemGuest(props) {
 							</button>
 							<h2 className="w-6 h-6">{quantity}</h2>
 							<button
-								className="bg-indigo-200 w-6 h-6 hover:bg-indigo-300"
+								className="bg-indigo-200 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-300"
 								type="button"
 								onClick={handleIncrement}
 							>
@@ -60,13 +66,11 @@ export default function CartItemGuest(props) {
 							</button>
 						</div>
 						<h1>${(price / 100).toFixed(2)}</h1>
-						<button id="delete-item" type="button" onClick={handleDelete}>
+						<button type="button" onClick={handleDelete}>
 							Delete
 						</button>
 					</div>
 				</div>
-			) : (
-				""
 			)}
 		</div>
 	);

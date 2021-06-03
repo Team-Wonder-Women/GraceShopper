@@ -4,7 +4,7 @@ import { fetchCartItemsUser, fetchCartItemsGuest } from "../store/cartItem";
 import CartItemUser from "./CartItemUser";
 import CartItemGuest from "./CartItemGuest";
 
-export default function InsideCart({ setHasItems }) {
+export default function InsideCart({ setHasItems, setCartItems, setTotal }) {
 	// in lieu of mapState
 	const cartItems = useSelector(state => state.cartItems.products);
 	const user = useSelector(state => state.user);
@@ -23,6 +23,8 @@ export default function InsideCart({ setHasItems }) {
 	useEffect(() => {
 		if (cartItems.length >= 1) {
 			setHasItems(true);
+			setCartItems(cartItems);
+			setTotal(total);
 		} else {
 			setHasItems(false);
 		}
@@ -35,11 +37,11 @@ export default function InsideCart({ setHasItems }) {
 			) : (
 				<div className="flex-row">
 					{user.id
-						? cartItems.map(item => {
-								return <CartItemUser key={item.item.id} {...item} />;
+						? cartItems.map((item, idx) => {
+								return <CartItemUser key={idx} {...item} />;
 						  })
-						: cartItems.map(item => {
-								return <CartItemGuest key={item.item.id} {...item} />;
+						: cartItems.map((item, idx) => {
+								return <CartItemGuest key={idx} {...item} />;
 						  })}
 					<h1 className="float-right font-bold p-4">
 						Total: ${(total / 100).toFixed(2)}

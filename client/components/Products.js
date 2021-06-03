@@ -38,7 +38,7 @@ export default function Products(props) {
 				<p>${(props.price / 100).toFixed(2)}</p>
 				<div className="items-end flex justify-center mb-2">
 					<button
-						className="bg-indigo-50 w-6 h-6 hover:bg-indigo-200"
+						className="bg-indigo-50 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-200"
 						type="button"
 						onClick={() => setCount(count > 1 ? count - 1 : count)}
 					>
@@ -46,7 +46,7 @@ export default function Products(props) {
 					</button>
 					<div className="w-6 h-6">{count}</div>
 					<button
-						className="bg-indigo-50 w-6 h-6 hover:bg-indigo-200"
+						className="bg-indigo-50 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-200"
 						type="button"
 						onClick={() => setCount(count + 1)}
 					>

@@ -39,25 +39,23 @@ class Navbar extends Component {
 								src="/lit-collective.png"
 								alt="lit collective logo"
 							/>
-							<h1 className="flex justify-center font-display text-gray-700 text-xl pl-2">
-								Lit Collective
+							<h1 className="flex justify-center font-extrabolt text-gray-700 text-xl pl-2">
+								litCollective
 							</h1>
 						</div>
 					</Link>
 				</div>
 				<div className="flex justify-between">
 					{isLoggedIn ? (
-						<div className="flex space-x-10">
+						<div className="flex items-end space-x-10">
 							{/* The navbar will show these links after you log in */}
 							<div>
 								<Link to="/home">Home</Link>
 							</div>
-							{isAdmin ? (
+							{isAdmin && (
 								<div>
 									<Link to="/admin">Dashboard</Link>
 								</div>
-							) : (
-								<></>
 							)}
 							<div>
 								<Link to="/products">All Candles</Link>

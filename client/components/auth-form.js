@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { auth } from "../store";
@@ -15,7 +16,16 @@ const AuthForm = props => {
 					<h1 className="text-3xl pt-3 md:text-4xl font-extrabold text-white my-2 md:my-0">
 						litCollective
 					</h1>
-					<p className="mb-2 text-white hidden md:block">join the gang</p>
+					{displayName === "Sign Up" ? (
+						<p className="mb-2 text-white hidden md:block">join the gang</p>
+					) : (
+						<p className="mb-2 text-white hidden md:block">
+							not a member?{" "}
+							<Link className="text-indigo-400" to="/signup">
+								join the gang
+							</Link>
+						</p>
+					)}
 				</div>
 				<form
 					className="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4"

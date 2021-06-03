@@ -20,11 +20,14 @@ class LandingPage extends Component {
 	}
 
 	render() {
+		const { isLoggedIn, firstName } = this.props;
 		return (
 			<div className="flex-col text-center space-y-6 my-auto">
-				<h1 className="text-4xl font-black mt-16 mb-10">
-					Littest Candle of the Moment
-				</h1>
+				{isLoggedIn && (
+					<h1 className="text-4xl font-black mt-16 mb-10">
+						{firstName}, check out our candle of the day
+					</h1>
+				)}
 				{this.state.candle ? (
 					<div className="grid grid-flow-col grid-cols-4 gap-x-1 mx-6 mb-6">
 						<div></div>
@@ -41,9 +44,14 @@ class LandingPage extends Component {
 							<h2 className="text-3xl font-extrabold my-6">
 								{this.state.candle.name}
 							</h2>
-							<h3>{this.state.candle.description}</h3>
+							{this.state.candle.description && (
+								<h3>{this.state.candle.description.slice(0, 173)}...</h3>
+							)}
 							<div className="flex-grow flex items-end justify-end align-text-bottom">
-								<Link to="/products" className="flex-end hover:text-indigo-200">
+								<Link
+									to="/products"
+									className="flex-end bg-indigo-200 hover:bg-indigo-400 text-white focus:outline-none focus:ring rounded px-3 py-1 transition ease-in-out duration-700"
+								>
 									want to see more?
 								</Link>
 							</div>
@@ -58,7 +66,9 @@ class LandingPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	products: state.products
+	products: state.products,
+	isLoggedIn: !!state.user.id,
+	firstName: state.user.firstName
 });
 
 const mapDispatchToProps = dispatch => ({
