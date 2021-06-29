@@ -39,7 +39,7 @@ export default function NewSingleProduct() {
 
 	return (
 		<div className="flex justify-center my-20">
-			<div className="flex lg:flex-row flex-col lg:w-1/2 sm:w-2/5">
+			<div className="flex lg:flex-row sm:flex-col lg:w-1/2 sm:w-2/5">
 				<img
 					className="lg:w-1/2 border-2 border-indigo-50 lg:mr-1 lg:mb-0 sm:mb-1"
 					src={image}
