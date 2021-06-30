@@ -1,147 +1,162 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { markUserCartComplete, markGuestCartComplete } from "../store/cartItem";
 import { connect } from "react-redux";
+import { useLocation } from "react-router";
 
-class Checkout extends Component {
-	constructor() {
-		super();
-		this.state = {
-			firstName: "",
-			lastName: "",
-			address: "",
-			city: "",
-			state: "",
-			zipcode: ""
-		};
-		this.handleCheckout = this.handleCheckout.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
+function Checkout(props) {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [address, setAddress] = useState("");
+	const [city, setCity] = useState("");
+	const [formState, setFormState] = useState("");
+	const [zipCode, setZipCode] = useState("");
+	const location = useLocation();
+	const { cartItems, total } = location.state;
 
-	handleCheckout = () => {
-		if (this.props.user.id) this.props.checkoutUser();
-		else this.props.checkoutGuest();
+	const handleCheckout = () => {
+		if (props.user.id) props.checkoutUser();
+		else props.checkoutGuest();
 	};
 
-	handleChange(evt) {
-		this.setState({
-			[evt.target.name]: evt.target.value
-		});
-	}
-	handleSubmit(evt) {
+	const handleSubmit = evt => {
 		evt.preventDefault();
-		this.handleCheckout();
-		this.props.history.push("/confirmation");
-	}
+		handleCheckout();
+		props.history.push("/confirmation");
+	};
 
-	render() {
-		const { products, total } = this.props.cartItems;
-		const { firstName, lastName, address, city, state, zipcode } = this.state;
-		const { handleSubmit, handleChange } = this;
-		return (
-			<div className="checkout-container">
-				<h1 id="checkout-form">Checkout Form</h1>
-				<form className="checkout-form" onSubmit={handleSubmit}>
-					<div className="checkout-div">
-						<label htmlFor="firstName">
-							<h3>First Name</h3>
-						</label>
-						<input
-							name="firstName"
-							type="text"
-							value={firstName}
-							onChange={handleChange}
-							required
-						/>
-						<label htmlFor="lastName">
-							<h3>Last Name</h3>
-						</label>
-						<input
-							name="lastName"
-							type="text"
-							value={lastName}
-							onChange={handleChange}
-							required
-						/>
-						<label htmlFor="address">
-							<h3>Address</h3>
-						</label>
-						<input
-							name="address"
-							type="text"
-							value={address}
-							onChange={handleChange}
-							required
-						/>
-						<label htmlFor="lastName">
-							<h3>City</h3>
-						</label>
-						<input
-							name="city"
-							type="text"
-							value={city}
-							onChange={handleChange}
-							required
-						/>
-						<label htmlFor="state">
-							<h3>State</h3>
-						</label>
-						<select name="state" value={state} onChange={handleChange}>
-							<option value="NY">NY</option>
-							<option value="IL">IL</option>
-						</select>
-						<label htmlFor="zipcode">
-							<h3>Zipcode</h3>
-						</label>
-						<input
-							type="text"
-							name="zipcode"
-							inputMode="numeric"
-							pattern="[0-9]{5}"
-							value={zipcode}
-							onChange={handleChange}
-							required
-						/>
-					</div>
-					<div className="checkout-cart">
-						<h2>Your Cart:</h2>
-						{products.map(product => (
-							<div key={product} id="checkout-product">
-								<img
-									src={
-										product.imageUrl ? product.imageUrl : product.item.imageUrl
-									}
-									id="product-image"
-								/>
-								<p>
-									<b>{product.name ? product.name : product.item.name}</b>
-								</p>
-								<p>Qty: {product.cartitem.quantity}</p>
-								<p>
-									Price: $
-									{product.price
-										? (product.price / 100).toFixed(2)
-										: (product.item.price / 100).toFixed(2)}
-								</p>
-							</div>
-						))}
-						<div id="total">
-							<h2>Total:</h2>
-							<h1>${(total / 100).toFixed(2)}</h1>
+	return (
+		<div className="grid grid-flow-col grid-cols-2 gap-x-1 mx-6 my-6">
+			<div className="inline p-4 border-2 border-indigo-50">
+				<h1 className="font-bold text-3xl m-4 flex items-center text-indigo-400">
+					Checkout
+				</h1>
+				<form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+					<div className="flex content-evenly ">
+						<div className="flex flex-col">
+							<label className="px-4">First Name</label>
+							<input
+								className="px-4 py-2 mx-4 flex-grow rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+								name="firstName"
+								placeholder="first name"
+								type="text"
+								value={firstName}
+								onChange={e => setFirstName(e.target.value)}
+								required
+							/>
+						</div>
+						<div className="flex flex-col">
+							<label>Last Name</label>
+							<input
+								className="px-4 py-2 mr-4 flex-grow rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+								name="lastName"
+								placeholder="last name"
+								type="text"
+								value={lastName}
+								onChange={e => setLastName(e.target.value)}
+								required
+							/>
 						</div>
 					</div>
-					<button style={{ width: "50%" }} type="submit">
+					<div className="flex flex-col content-evenly">
+						<label className="px-4">Address</label>
+						<input
+							className="px-4 py-2 mx-4 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+							name="address"
+							placeholder="address"
+							type="text"
+							value={address}
+							onChange={e => setAddress(e.target.value)}
+							required
+						/>
+						<label className="px-4 mt-4">City</label>
+						<input
+							className="px-4 py-2 mx-4 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+							name="city"
+							placeholder="city"
+							type="text"
+							value={city}
+							onChange={e => setCity(e.target.value)}
+							required
+						/>
+						<label className="px-4 mt-4">State</label>
+						<input
+							className="px-4 py-2 mx-4 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+							name="state"
+							placeholder="state"
+							type="text"
+							value={formState}
+							onChange={e => setFormState(e.target.value)}
+							required
+						/>
+						<label className="px-4 mt-4">Zip</label>
+						<input
+							className="px-4 py-2 mx-4 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+							type="text"
+							name="zipcode"
+							placeholder="zip code"
+							inputMode="numeric"
+							pattern="[0-9]{5}"
+							value={zipCode}
+							onChange={e => setZipCode(e.target.value)}
+							required
+						/>
+					</div>
+					<button
+						className="mx-4 mb-2 md:mb-0 bg-indigo-400 border border-indigo-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-indigo-500"
+						type="submit"
+					>
 						Checkout!
 					</button>
 				</form>
 			</div>
-		);
-	}
+			<div className="inline p-4 border-2 border-indigo-50">
+				<h2 className="m-4 font-bold text-3xl text-indigo-400">Your Cart</h2>
+				{cartItems.length ? (
+					<div className="m-4">
+						{" "}
+						{cartItems.map(cartItem => (
+							<div
+								className="flex items-center"
+								key={cartItem.id ? cartItem.id : cartItem.item.id}
+							>
+								<div className="w-20 h-20 mr-8">
+									<img
+										className="object-scale-down rounded focus:ring"
+										src={
+											cartItem.imageUrl
+												? cartItem.imageUrl
+												: cartItem.item.imageUrl
+										}
+									/>
+								</div>
+								<div className="flex-grow-2">
+									<p>
+										<b>{cartItem.name ? cartItem.name : cartItem.item.name}</b>
+									</p>
+									<p>Qty: {cartItem.cartitem.quantity}</p>
+									<p>
+										Price: $
+										{cartItem.price
+											? (cartItem.price / 100).toFixed(2)
+											: (cartItem.item.price / 100).toFixed(2)}
+									</p>
+								</div>
+							</div>
+						))}
+						<h2 className="float-right mt-8">
+							Total: ${(total / 100).toFixed(2)}
+						</h2>
+					</div>
+				) : (
+					<h2>You have no items in your cart.</h2>
+				)}
+			</div>
+		</div>
+	);
 }
 
 const mapState = state => {
 	return {
-		cartItems: state.cartItems,
 		user: state.user
 	};
 };

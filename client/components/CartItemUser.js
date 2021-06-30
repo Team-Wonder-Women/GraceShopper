@@ -13,37 +13,43 @@ export default function CartItemUser(props) {
 
 	function handleDelete() {
 		let total = cartitem.quantity * price;
+		console.log("this is price in hanlde delete--->", price);
+		console.log(
+			"this is cartitem.quantity in hanlde delete--->",
+			cartitem.quantity
+		);
 		dispatch(deleteItemUser(cartId, id, total));
 	}
 
 	function handleDecrement(e) {
-		if (cartItemQuantity > 1) {
-			setCartItemQuantity(cartItemQuantity - 1);
+		if (cartitem.quantity > 1) {
+			console.log("this is cartItem--->", cartItem);
+			setCartItemQuantity(cartitem.quantity - 1);
 			dispatch(updateCartQuantity(id, "decrement", -1));
 		}
 	}
 
 	function handleIncrement(e) {
-		setCartItemQuantity(cartItemQuantity + 1);
+		setCartItemQuantity(cartitem.quantity + 1);
 		dispatch(updateCartQuantity(id, "increment", 1));
 	}
 
 	return (
-		<div>
-			{cartItem ? (
-				<div className="cart-item">
+		<div className="mb-3">
+			{cartItem && (
+				<div className="flex justify-between">
 					<h1>{name}</h1>
-					<div>
+					<div className="grid grid-cols-3">
 						<button
-							className="quantity-button"
+							className="bg-indigo-200 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-300"
 							type="button"
 							onClick={handleDecrement}
 						>
 							-
 						</button>
-						<h2 id="quantity-counter">{cartItemQuantity}</h2>
+						<h2 className="w-6 h-6">{cartitem.quantity}</h2>
 						<button
-							className="quantity-button"
+							className="bg-indigo-200 w-6 h-6 focus:outline-none focus:ring rounded hover:bg-indigo-300"
 							type="button"
 							onClick={handleIncrement}
 						>
@@ -51,12 +57,10 @@ export default function CartItemUser(props) {
 						</button>
 					</div>
 					<h1>${(price / 100).toFixed(2)}</h1>
-					<button id="delete-item" type="button" onClick={handleDelete}>
+					<button type="button" onClick={handleDelete}>
 						Delete
 					</button>
 				</div>
-			) : (
-				""
 			)}
 		</div>
 	);

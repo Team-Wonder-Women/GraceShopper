@@ -10,10 +10,8 @@ import LandingPage from "./LandingPage";
 export const UserHome = props => {
 	const { firstName } = props;
 	return (
-		<div id="user-welcome">
-			<h3 className="user-welcome">
-				🕯 {firstName}, welcome to the collective 🕯
-			</h3>
+		<div>
+			<h3>🕯 {firstName}, welcome to the collective 🕯</h3>
 			<HipsterQuote />
 			<LandingPage />
 		</div>

@@ -42,14 +42,12 @@ class Routes extends Component {
 				{isLoggedIn && (
 					<Switch>
 						{/* Routes placed here are only available after logging in */}
-						<Route exact path="/home" component={UserHome} />
-						{isAdmin ? (
+						<Route exact path="/home" component={LandingPage} />
+						{isAdmin && (
 							<>
 								<Route exact path="/admin" component={AdminDash} />
 								<Route exact path="/add-product" component={AddProduct} />
 							</>
-						) : (
-							""
 						)}
 					</Switch>
 				)}

@@ -1,4 +1,4 @@
-a {
+/* a {
 	text-decoration: none;
 }
 
@@ -336,6 +336,7 @@ textarea {
 }
 
 /* gets rids of arrows in number input */
+/*
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
@@ -530,4 +531,4 @@ select {
 
 #checkout-form {
 	margin-bottom: 0px;
-}
+} */
