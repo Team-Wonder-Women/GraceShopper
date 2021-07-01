@@ -20,7 +20,6 @@ export default function CartItemGuest(props) {
 	}, {});
 
 	function handleDelete() {
-		console.log("this is quantity and price at deletion", quantity, price);
 		dispatch(deleteItemGuest(item.id, price));
 	}
 
