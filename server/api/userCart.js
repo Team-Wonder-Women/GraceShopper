@@ -12,6 +12,23 @@ router.get("/:userId", async (req, res, next) => {
 					orderStatus: "incomplete"
 				}
 			});
+			if (req.session.cart) {
+				Object.keys(req.session.cart.items).forEach(async productId => {
+					if (!(await cart[0].hasProduct(productId))) {
+						const newItem = await Product.findByPk(productId);
+						await cart[0].addProduct(newItem);
+						CartItem.update(
+							{ priceAtPurchase: newItem.price },
+							{ where: { cartId: cart[0].id, productId: productId } }
+						);
+					}
+					await CartItem.increment("quantity", {
+						by: req.body.count,
+						where: { cartId: cart[0].id, productId: productId }
+					});
+				});
+			}
+			req.session.cart = null;
 			const cartArr = await cart[0].getProducts();
 			if (cartArr.length) {
 				let totalPrice = 0;

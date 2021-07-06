@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
+import cartItems, {
 	fetchCartItemsGuest,
 	deleteItemGuest,
 	updateCartQuantityGuest
@@ -9,7 +9,6 @@ import {
 export default function CartItemGuest(props) {
 	const { item, cartitem } = props;
 	const { quantity, price } = cartitem;
-
 	const [cartItem, setCartItem] = useState(cartitem);
 	const [cartItemQuantity, setCartItemQuantity] = useState(cartitem.quantity);
 
@@ -42,7 +41,7 @@ export default function CartItemGuest(props) {
 					<div className="w-12 h-12">
 						<img
 							className="object-scale-down focus:ring rounded"
-							src={item.imageUrl}
+							src={`/${item.imageUrl}`}
 						/>
 					</div>
 					<h1>{item.name}</h1>

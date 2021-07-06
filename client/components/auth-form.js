@@ -8,7 +8,7 @@ import { auth } from "../store";
  * COMPONENT
  */
 const AuthForm = props => {
-	const { name, displayName, handleSubmit, error } = props;
+	const { name, displayName, cartItems, handleSubmit, error } = props;
 	return (
 		<div className="h-screen w-full flex justify-center items-center">
 			<div className="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-indigo-50">
@@ -104,6 +104,7 @@ const mapLogin = state => {
 	return {
 		name: "login",
 		displayName: "Login",
+		cartItems: state.cartItems,
 		error: state.user.error
 	};
 };
@@ -112,6 +113,7 @@ const mapSignup = state => {
 	return {
 		name: "signup",
 		displayName: "Sign Up",
+		cartItems: state.cartItems,
 		error: state.user.error
 	};
 };

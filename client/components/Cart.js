@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import InsideCart from "./InsideCart";
 
-export default function Cart({ toggleShow }) {
+export default function Cart({ toggleShow, cartItems }) {
 	// if show is true, the cart will display
 	const [hasItems, setHasItems] = useState(false);
-	const [cartItems, setCartItems] = useState([]);
+	// const [cartItems, setCartItems] = useState([]);
 	const [total, setTotal] = useState(0);
 	return (
 		<div className="min-w-screen h-screen overflow-x-hidden overflow-y-auto fixed  my-auto inset-0 z-50 outline-none focus:outline-none  items-center flex justify-center">
@@ -21,7 +21,7 @@ export default function Cart({ toggleShow }) {
 					<h1 className="text-xl font-bold py-4 mb-5">Your Cart</h1>
 					<InsideCart
 						setHasItems={setHasItems}
-						setCartItems={setCartItems}
+						cartItems={cartItems}
 						setTotal={setTotal}
 					/>
 				</div>
