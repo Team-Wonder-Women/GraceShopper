@@ -11,7 +11,6 @@ export default function CartItemGuest(props) {
 	const { quantity, price } = cartitem;
 	const [cartItem, setCartItem] = useState(cartitem);
 	const [cartItemQuantity, setCartItemQuantity] = useState(cartitem.quantity);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {

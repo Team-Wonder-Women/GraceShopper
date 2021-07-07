@@ -4,7 +4,12 @@ import { fetchCartItemsUser, fetchCartItemsGuest } from "../store/cartItem";
 import CartItemUser from "./CartItemUser";
 import CartItemGuest from "./CartItemGuest";
 
-export default function InsideCart({ setHasItems, cartItems, setTotal }) {
+export default function InsideCart({
+	setHasItems,
+	cartCount,
+	cartItems,
+	setTotal
+}) {
 	// in lieu of mapState
 	// const cartItems = useSelector(state => state.cartItems.products);
 	const user = useSelector(state => state.user);
@@ -36,12 +41,9 @@ export default function InsideCart({ setHasItems, cartItems, setTotal }) {
 				<div className="flex-row">
 					{user.id
 						? products.map((item, idx) => {
-								//unfortunately not the work around when guest cart gets trasported over to user cart :()
-								// if(item.item !== undefined){
-								// 	item = { ...item.item, cartitem: item.cartitem };
-								// 	item.cartitem.cartId = user.id
-								// }
-								return <CartItemUser key={idx} {...item} />;
+								return (
+									<CartItemUser key={idx} {...item} cartCount={cartCount} />
+								);
 						  })
 						: products.map((item, idx) => {
 								return <CartItemGuest key={idx} {...item} />;

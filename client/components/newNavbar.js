@@ -18,10 +18,9 @@ export default function Navbar() {
 	const handleClick = () => {
 		dispatch(logout());
 	};
+
 	useEffect(() => {
-		if (user.id !== undefined) {
-			dispatch(fetchCartItemsUser(user.id));
-		} else {
+		if (user.id === undefined) {
 			dispatch(fetchCartItemsGuest());
 		}
 	}, [user.id]);
