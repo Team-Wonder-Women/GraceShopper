@@ -198,7 +198,8 @@ export default function cartItems(state = initialState, action) {
 		case UPDATED_CART:
 			const updatedProducts = state.products.map(product => {
 				if (product.id === action.productId) {
-					product.quantity = product.quantity + action.counter;
+					product.cartitem.quantity =
+						product.cartitem.quantity + action.counter;
 				}
 				return product;
 			});

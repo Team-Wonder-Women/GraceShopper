@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import Cart from "./Cart";
+import { fetchCartItemsGuest } from "../store/cartItem";
 
 class Navbar extends Component {
 	constructor(props) {
@@ -14,7 +15,13 @@ class Navbar extends Component {
 		};
 		this.toggleShow = this.toggleShow.bind(this);
 	}
-
+	// async componentDidMount() {
+	// 	console.log("component mounts!")
+	// 	if (!this.props.isLoggedIn) {
+	// 		console.log("i am fetching the guest cart items!")
+	// 		await this.props.fetchCartItemsGuest();
+	// 	}
+	// }
 	toggleShow = () => {
 		this.setState(prevState => ({ show: !prevState.show }));
 	};
@@ -99,6 +106,7 @@ class Navbar extends Component {
  * CONTAINER
  */
 const mapState = state => {
+	console.log("state", state);
 	return {
 		cartItems: state.cartItems,
 		isLoggedIn: !!state.user.id,
@@ -110,6 +118,9 @@ const mapDispatch = dispatch => {
 	return {
 		handleClick() {
 			dispatch(logout());
+		},
+		fetchCartItemsGuest() {
+			dispatch(fetchCartItemsGuest());
 		}
 		// checkoutUser() {
 		// 	dispatch(markUserCartComplete());
